@@ -7,7 +7,7 @@ servers:
   - url: http://localhost:8585
     description: local server
 paths:
-  /api/product:
+  /api/business/product:
     post:
       summary: Create new Product
       operationId: createProduct
@@ -39,6 +39,9 @@ components:
         familyProduct:
           type: string
           description: family product could be ACTIVE or PASSIVe
+        userBank:
+          type: string
+          description: userbank who create product
 
     CreateProductRS:
       type: object
