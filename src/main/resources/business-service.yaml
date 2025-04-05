@@ -1,0 +1,48 @@
+openapi: "3.0.1"
+info:
+  title: Business service API
+  description: API with logic business
+  version: 1.0.0
+servers:
+  - url: http://localhost:8585
+    description: local server
+paths:
+  /api/product:
+    post:
+      summary: Create new Product
+      operationId: createProduct
+      requestBody:
+        description: Request to create new product.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateProductRQ"
+      responses:
+        '200':
+          description: Success create
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateProductRS"
+components:
+  schemas:
+    CreateProductRQ:
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: customer id
+        productType:
+          type: string
+          description: product type
+        familyProduct:
+          type: string
+          description: family product could be ACTIVE or PASSIVe
+
+    CreateProductRS:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Description with result of create product
