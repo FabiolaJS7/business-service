@@ -105,7 +105,11 @@
 		<dependency>
 			<groupId>com.bootcamp</groupId>
 			<artifactId>commons-bean</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
 		</dependency>
 	</dependencies>
 
