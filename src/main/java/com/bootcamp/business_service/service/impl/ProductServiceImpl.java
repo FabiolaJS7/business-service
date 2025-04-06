@@ -1,10 +1,12 @@
 package com.bootcamp.business_service.service.impl;
 
+import com.bootcamp.business_service.components.LogicalCreateProduct;
 import com.bootcamp.business_service.connector.ProductConnector;
 
+import com.bootcamp.business_service.model.AdditionalPersonRQ;
+import com.bootcamp.business_service.model.AdditionalPersonRS;
 import com.bootcamp.business_service.model.CreateProductRQ;
 import com.bootcamp.business_service.model.CreateProductRS;
-import com.bootcamp.business_service.service.EnabledToCreateProduct;
 import com.bootcamp.business_service.service.ProductService;
 import com.bootcamp.business_service.transfer.ProductTransfer;
 import com.bootcamp.business_service.util.JsonTransferUtil;
@@ -21,14 +23,14 @@ public class ProductServiceImpl implements ProductService {
 
 
     ProductConnector productConnector;
-    EnabledToCreateProduct enabledToCreateProduct;
+    LogicalCreateProduct logicalCreateProduct;
     ProductTransfer productTransfer;
 
     @Override
     public Mono<CreateProductRS> createProduct(Mono<CreateProductRQ> createProductRQ) {
 
         return createProductRQ
-                .map(createProductRQ1 -> enabledToCreateProduct.validate(Mono.just(createProductRQ1)))
+                .map(createProductRQ1 -> logicalCreateProduct.validate(Mono.just(createProductRQ1)))
                 .doOnSubscribe(subscription -> log.info("Product creation started"))
                 .flatMap(hashMapMono ->
                     hashMapMono.flatMap(attributesMainMap -> {
@@ -58,6 +60,11 @@ public class ProductServiceImpl implements ProductService {
                         , JsonTransferUtil.objectToJson(createProductRS)))
                 .doOnError(throwable -> log.error("Product creation failed", throwable));
 
+    }
+
+    @Override
+    public Mono<AdditionalPersonRS> updateAdditionalPerson(Mono<AdditionalPersonRQ> additionalPersonRQ) {
+        return null;
     }
 
 

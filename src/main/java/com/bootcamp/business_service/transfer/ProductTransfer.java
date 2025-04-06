@@ -1,9 +1,8 @@
 package com.bootcamp.business_service.transfer;
 
-import com.bootcamp.business_service.constants.FamilyTypeProductConstants;
 import com.bootcamp.business_service.constants.ProductTypeConstants;
 import com.bootcamp.business_service.model.CreateProductRQ;
-import com.bootcamp.business_service.service.InfoTransactionManagement;
+import com.bootcamp.business_service.components.LogicalTransactionProducts;
 import com.bootcamp.business_service.util.JsonTransferUtil;
 import com.bootcamp.business_service.util.NumberRandomUtil;
 import com.bootcamp.commons.bean.products.*;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class ProductTransfer {
 
-    InfoTransactionManagement infoTransactionManagement;
+    LogicalTransactionProducts logicalTransactionProducts;
 
     public Mono<ProductRequest> buildProductRequest(Mono<CreateProductRQ> createProductRQ, String customerType) {
         return createProductRQ
@@ -40,7 +39,7 @@ public class ProductTransfer {
                         passiveProductBean.setAmountOfOpen(createProductRQ1.getOpenAmount());
                         passiveProductBean.setAccountNumber(NumberRandomUtil.generateAccountNumber(createProductRQ1.getProductType()));
 
-                        InfoTransactionBean infoTransactionBean = infoTransactionManagement
+                        InfoTransactionBean infoTransactionBean = logicalTransactionProducts
                                 .buildToPassiveProduct(createProductRQ1.getProductType(), customerType);
                         passiveProductBean.setInforToTransaction(infoTransactionBean);
 

@@ -1,4 +1,4 @@
-package com.bootcamp.business_service.service;
+package com.bootcamp.business_service.components;
 
 import com.bootcamp.business_service.connector.CustomerConnector;
 import com.bootcamp.business_service.connector.ProductConnector;
@@ -19,7 +19,7 @@ import java.util.List;
 @Component
 @AllArgsConstructor
 @Slf4j
-public class EnabledToCreateProduct {
+public class LogicalCreateProduct {
 
     ProductConnector productConnector;
     CustomerConnector customerConnector;

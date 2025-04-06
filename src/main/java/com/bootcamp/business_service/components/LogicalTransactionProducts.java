@@ -1,4 +1,4 @@
-package com.bootcamp.business_service.service;
+package com.bootcamp.business_service.components;
 
 import com.bootcamp.business_service.constants.CustomerTypeConstants;
 import com.bootcamp.business_service.constants.ProductTypeConstants;
@@ -7,7 +7,7 @@ import com.bootcamp.commons.bean.products.InfoTransactionBean;
 import org.springframework.stereotype.Component;
 
 @Component
-public class InfoTransactionManagement {
+public class LogicalTransactionProducts {
 
     public InfoTransactionBean buildToPassiveProduct(String productType, String customerType) {
         InfoTransactionBean infoTransactionBean = new InfoTransactionBean();
