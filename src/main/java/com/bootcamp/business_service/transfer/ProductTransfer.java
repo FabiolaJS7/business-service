@@ -47,7 +47,7 @@ public class ProductTransfer {
                         productRequest.setPassiveProduct(passiveProductBean);
                     } else {
                         ActiveProductBean activeProductBean = new ActiveProductBean();
-                        activeProductBean.setHasCreditCard(true);
+                        activeProductBean.setHasCreditCard(productRequest.getProductType().equals(ProductTypeConstants.CREDIT_CARD));
                         activeProductBean.setCreditLimit(33000.00);
                         activeProductBean.setCreditLimitUsed(0.00);
 

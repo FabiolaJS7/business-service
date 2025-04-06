@@ -2,6 +2,7 @@ package com.bootcamp.business_service.service;
 
 import com.bootcamp.business_service.connector.CustomerConnector;
 import com.bootcamp.business_service.connector.ProductConnector;
+import com.bootcamp.business_service.constants.ProductTypeConstants;
 import com.bootcamp.business_service.model.CreateProductRQ;
 import com.bootcamp.commons.bean.customers.CustomerResponse;
 import com.bootcamp.commons.bean.products.ProductResponse;
@@ -51,11 +52,35 @@ public class EnabledToCreateProduct {
                             .anyMatch(productResponse -> productResponse.getProductType()
                                     .equals(createProductRQ1.getProductType()));
 
-                    // si el producto existe, el cliente es PERSONAL y el tipo de producto SA (Cuenta de ahorros) no debe permitir la creación
-                    if (exists && map.get("customerType").equalsIgnoreCase("P") && map.get("productType").equalsIgnoreCase("SA")) {
-                        map.put("enabled", "false");
-                        map.put("message", "Customer type P (Personal) has SA (Save Account) yet, can't create this product again");
+                    // si el producto existe, el cliente es PERSONAL y el tipo de producto SA (Cuenta de ahorros), CA (cuenta corriente) o FA (Plazo fijo) no debe permitir la creación
+                    if (exists) {
+                        if (map.get("customerType").equalsIgnoreCase("P")) {
+                            if (ProductTypeConstants.PASSIVE_PRODUCTS.contains(map.get("productType"))) {
+                                map.put("enabled", "false");
+                                map.put("message", "Customer type P (Personal) has SA (Save Account) yet, can't create this product again");
+                            } else if (map.get("productType").equalsIgnoreCase(ProductTypeConstants.CREDIT_PERSONAL)) {
+                                map.put("enabled", "false");
+                                map.put("message", "Customer type P (Personal) has a Credit personal yet, can't create this product again");
+                            }
+
+                        }
                     }
+
+                    if (map.get("customerType").equalsIgnoreCase("B")) {
+
+                        if ((map.get("productType").equalsIgnoreCase(ProductTypeConstants.SAVING_ACCOUNT)
+                                || map.get("productType").equalsIgnoreCase(ProductTypeConstants.FIXED_ACCOUNT) )) {
+                            map.put("enabled", "false");
+                            map.put("message", "Customer type B (Bussines) can't create products SA (Save account) or FA (Fixed account)");
+                        } else if (map.get("productType").equalsIgnoreCase(ProductTypeConstants.CREDIT_PERSONAL)) {
+                            map.put("enabled", "false");
+                            map.put("message", "Customer type B (Bussines) can't create product CP (Credit personal)");
+                        }
+
+                    }
+
+
+
 
                     return Mono.just(map);
                 });
