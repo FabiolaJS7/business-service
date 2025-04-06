@@ -79,7 +79,27 @@ public class EnabledToCreateProduct {
 
                     }
 
+                    boolean hasCreditCard = productResponses
+                            .stream()
+                            .anyMatch(productResponse -> productResponse.getProductType()
+                                    .equalsIgnoreCase(ProductTypeConstants.CREDIT_CARD));
 
+                    if (map.get("productType").equalsIgnoreCase(ProductTypeConstants.SAVING_ACCOUNT)
+                            && map.get("customerType").equalsIgnoreCase("V")) {
+                        if (!hasCreditCard) {
+                            map.put("enabled", "false");
+                            map.put("message", "Customer type V (Personal VIP) should be credit card previously to create SA (Save account)");
+                        }
+
+                    }
+
+                    if (map.get("productType").equalsIgnoreCase(ProductTypeConstants.CURRENT_ACCOUNT)
+                            && map.get("customerType").equalsIgnoreCase("M")) {
+                        if (!hasCreditCard) {
+                            map.put("enabled", "false");
+                            map.put("message", "Customer type M (Bussines Pyme) should be credit card previously to create CA (Current account)");
+                        }
+                    }
 
 
                     return Mono.just(map);

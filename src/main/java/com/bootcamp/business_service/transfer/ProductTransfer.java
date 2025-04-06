@@ -21,14 +21,14 @@ public class ProductTransfer {
 
     InfoTransactionManagement infoTransactionManagement;
 
-    public Mono<ProductRequest> buildProductRequest(Mono<CreateProductRQ> createProductRQ) {
+    public Mono<ProductRequest> buildProductRequest(Mono<CreateProductRQ> createProductRQ, String customerType) {
         return createProductRQ
                 .flatMap(createProductRQ1 -> {
                     //Tengo que crear un ProductRequest
                     ProductRequest productRequest = new ProductRequest();
                     productRequest.setProductType(createProductRQ1.getProductType());
                     CustomerBean customerBean = new CustomerBean();
-                    customerBean.setCustomerType("P");
+                    customerBean.setCustomerType(customerType);
                     customerBean.setCustomerId(createProductRQ1.getCustomerId());
                     productRequest.setCustomer(customerBean);
 
@@ -37,11 +37,11 @@ public class ProductTransfer {
                         PassiveProductBean passiveProductBean = new PassiveProductBean();
 
                         passiveProductBean.setIsFreeCommission(true);
-                        passiveProductBean.setAmountOfOpen(0.00);
+                        passiveProductBean.setAmountOfOpen(createProductRQ1.getOpenAmount());
                         passiveProductBean.setAccountNumber(NumberRandomUtil.generateAccountNumber(createProductRQ1.getProductType()));
 
                         InfoTransactionBean infoTransactionBean = infoTransactionManagement
-                                .buildToPassiveProduct(createProductRQ1.getProductType());
+                                .buildToPassiveProduct(createProductRQ1.getProductType(), customerType);
                         passiveProductBean.setInforToTransaction(infoTransactionBean);
 
                         productRequest.setPassiveProduct(passiveProductBean);

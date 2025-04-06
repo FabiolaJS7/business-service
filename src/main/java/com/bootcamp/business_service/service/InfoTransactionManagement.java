@@ -1,5 +1,6 @@
 package com.bootcamp.business_service.service;
 
+import com.bootcamp.business_service.constants.CustomerTypeConstants;
 import com.bootcamp.business_service.constants.ProductTypeConstants;
 import com.bootcamp.business_service.constants.TypeMovementConstants;
 import com.bootcamp.commons.bean.products.InfoTransactionBean;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class InfoTransactionManagement {
 
-    public InfoTransactionBean buildToPassiveProduct(String productType) {
+    public InfoTransactionBean buildToPassiveProduct(String productType, String customerType) {
         InfoTransactionBean infoTransactionBean = new InfoTransactionBean();
         infoTransactionBean.setTransactionDone(TypeMovementConstants.NUM_TRANSACTION_DONE); //transacciones reaalizadas en 0 porque es nueva cuenta
         infoTransactionBean.setEnabledToMovement(true); //habilitado para transaction porque es nueva cuenta
@@ -21,7 +22,9 @@ public class InfoTransactionManagement {
                 return infoTransactionBean;
             case ProductTypeConstants.CURRENT_ACCOUNT:
                 //	Cuenta corriente: posee comisión de mantenimiento y sin límite de movimientos mensuales.
-                infoTransactionBean.setCommission(TypeMovementConstants.AMOUNT_COMMISSION_PER_MOVEMENT); // posee comisión de mantenimiento
+                infoTransactionBean.setCommission(customerType.equalsIgnoreCase(CustomerTypeConstants.BUSINESS_PYME)
+                        ? TypeMovementConstants.ZERO_COMMISSION_PER_MOVEMENT // customerType Pyme cuenta corriente sin comisión de mantenimiento
+                        : TypeMovementConstants.AMOUNT_COMMISSION_PER_MOVEMENT); // posee comisión de mantenimiento
                 infoTransactionBean.setMaxPerMonth(TypeMovementConstants.FREE_MOVEMENT); //sin límite de movimientos mensuales.
                 return infoTransactionBean;
             default:

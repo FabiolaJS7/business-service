@@ -31,10 +31,10 @@ public class ProductServiceImpl implements ProductService {
                 .map(createProductRQ1 -> enabledToCreateProduct.validate(Mono.just(createProductRQ1)))
                 .doOnSubscribe(subscription -> log.info("Product creation started"))
                 .flatMap(hashMapMono ->
-                    hashMapMono.flatMap(stringStringHashMap -> {
-                        if (stringStringHashMap.get("enabled").equalsIgnoreCase("true")) {
+                    hashMapMono.flatMap(attributesMainMap -> {
+                        if (attributesMainMap.get("enabled").equalsIgnoreCase("true")) {
                             // Construir el ProductRequest y llamar al conector
-                            Mono<ProductRequest> requestMono = productTransfer.buildProductRequest(createProductRQ);
+                            Mono<ProductRequest> requestMono = productTransfer.buildProductRequest(createProductRQ, attributesMainMap.get("customerType"));
                             return productConnector.createProduct(requestMono)
                                     .flatMap(productId -> {
                                         // Crear la respuesta con el productId
@@ -48,7 +48,7 @@ public class ProductServiceImpl implements ProductService {
                             CreateProductRS createProductRS = new CreateProductRS();
                             createProductRS.setProductId(null);
                             createProductRS.setResult(false);
-                            createProductRS.setMessage(stringStringHashMap.get("message"));
+                            createProductRS.setMessage(attributesMainMap.get("message"));
                             return Mono.just(createProductRS);
                         }
                     })

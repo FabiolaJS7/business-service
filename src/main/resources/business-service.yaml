@@ -39,6 +39,10 @@ components:
         familyProduct:
           type: string
           description: family product could be ACTIVE or PASSIVe
+        openAmount:
+          type: number
+          format: double
+          description: amount to open accounts bank
         userBank:
           type: string
           description: userbank who create product
@@ -51,6 +55,7 @@ components:
         productId:
           type: string
           description: indicate product id of new product
+
         message:
           type: string
           description: indicate some message in case cannot create product

@@ -23,13 +23,6 @@ class ProductConnectorTest {
 
     @Disabled
     @Test
-    void getAllProducts() {
-    Flux<ProductResponse> productResponseFlux = productConnector.getAllCustomers();
-        System.out.println(JsonTransferUtil.objectToJson(productResponseFlux.collectList().block()));
-    }
-
-    @Disabled
-    @Test
     void shouldCreateProduct_whenProductRequestIsValid() {
 
         Mono<String> result = productConnector.createProduct(Mono.just(getProductRequest()));
