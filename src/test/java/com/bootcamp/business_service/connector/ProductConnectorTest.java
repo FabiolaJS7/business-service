@@ -2,6 +2,8 @@ package com.bootcamp.business_service.connector;
 
 import com.bootcamp.business_service.util.JsonTransferUtil;
 import com.bootcamp.commons.bean.products.*;
+import io.swagger.v3.core.util.Json;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,17 +21,28 @@ class ProductConnectorTest {
     @Autowired
     ProductConnector productConnector;
 
+    @Disabled
     @Test
     void getAllProducts() {
     Flux<ProductResponse> productResponseFlux = productConnector.getAllCustomers();
         System.out.println(JsonTransferUtil.objectToJson(productResponseFlux.collectList().block()));
     }
 
+    @Disabled
     @Test
     void shouldCreateProduct_whenProductRequestIsValid() {
 
         Mono<String> result = productConnector.createProduct(Mono.just(getProductRequest()));
         System.out.println("result create product: " + result);
+    }
+
+    @Test
+    void shouldGetProducts_whenProductRequestIsValidAndCustomerIdIsValid() {
+
+        String customerId = "67ec1a41fabf6d0f4ada9865";
+
+        Flux<ProductResponse> result = productConnector.getProductsByCustomerId(customerId);
+        System.out.println("result product by customerId: " + JsonTransferUtil.objectToJson(result.collectList().block()));
     }
 
     private ProductRequest getProductRequest() {

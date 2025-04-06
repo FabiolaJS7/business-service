@@ -1,22 +1,18 @@
 package com.bootcamp.business_service.service.impl;
 
 import com.bootcamp.business_service.connector.ProductConnector;
-import com.bootcamp.business_service.constants.FamilyTypeProductConstants;
+
 import com.bootcamp.business_service.model.CreateProductRQ;
 import com.bootcamp.business_service.model.CreateProductRS;
-import com.bootcamp.business_service.service.InfoTransactionManagement;
+import com.bootcamp.business_service.service.EnabledToCreateProduct;
 import com.bootcamp.business_service.service.ProductService;
+import com.bootcamp.business_service.transfer.ProductTransfer;
 import com.bootcamp.business_service.util.JsonTransferUtil;
-import com.bootcamp.business_service.util.NumberRandomUtil;
-import com.bootcamp.commons.bean.products.*;
+import com.bootcamp.commons.bean.products.ProductRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 @Service
 @AllArgsConstructor
@@ -25,65 +21,44 @@ public class ProductServiceImpl implements ProductService {
 
 
     ProductConnector productConnector;
-    InfoTransactionManagement infoTransactionManagement;
+    EnabledToCreateProduct enabledToCreateProduct;
+    ProductTransfer productTransfer;
 
     @Override
     public Mono<CreateProductRS> createProduct(Mono<CreateProductRQ> createProductRQ) {
-        Mono<ProductRequest> productRequestMono = createProductRQ
-                .publishOn(Schedulers.boundedElastic())
-                .publishOn(Schedulers.boundedElastic())
-                .publishOn(Schedulers.boundedElastic())
-                .flatMap(createProductRQ1 -> {
-                    //Tengo que crear un ProductRequest
-                    ProductRequest productRequest = new ProductRequest();
-                    productRequest.setProductType(createProductRQ1.getProductType());
-                    CustomerBean customerBean = new CustomerBean();
-                    customerBean.setCustomerType("P");
-                    customerBean.setCustomerId(createProductRQ1.getCustomerId());
-                    productRequest.setCustomer(customerBean);
 
-
-                    if (createProductRQ1.getFamilyProduct().equalsIgnoreCase(FamilyTypeProductConstants.PASSIVE)) {
-                        PassiveProductBean passiveProductBean = new PassiveProductBean();
-
-                        passiveProductBean.setIsFreeCommission(true);
-                        passiveProductBean.setAmountOfOpen(0.00);
-                        passiveProductBean.setAccountNumber(NumberRandomUtil.generateAccountNumber(createProductRQ1.getProductType()));
-
-                        InfoTransactionBean infoTransactionBean = infoTransactionManagement
-                                .buildToPassiveProduct(createProductRQ1.getProductType());
-                        passiveProductBean.setInforToTransaction(infoTransactionBean);
-
-                        productRequest.setPassiveProduct(passiveProductBean);
-                    } else {
-                        ActiveProductBean activeProductBean = new ActiveProductBean();
-                        activeProductBean.setHasCreditCard(true);
-                        activeProductBean.setCreditLimit(33000.00);
-                        activeProductBean.setCreditLimitUsed(0.00);
-
-                        if (Boolean.TRUE.equals(activeProductBean.getHasCreditCard())) {
-                            CreditCardBean creditCardBean = new CreditCardBean();
-                            creditCardBean.setNumber(NumberRandomUtil.generateNumberCreditCard().block());
-                            creditCardBean.setExpirationDate(null);
-                            activeProductBean.setCreditCard(creditCardBean);
+        return createProductRQ
+                .map(createProductRQ1 -> enabledToCreateProduct.validate(Mono.just(createProductRQ1)))
+                .doOnSubscribe(subscription -> log.info("Product creation started"))
+                .flatMap(hashMapMono ->
+                    hashMapMono.flatMap(stringStringHashMap -> {
+                        if (stringStringHashMap.get("enabled").equalsIgnoreCase("true")) {
+                            // Construir el ProductRequest y llamar al conector
+                            Mono<ProductRequest> requestMono = productTransfer.buildProductRequest(createProductRQ);
+                            return productConnector.createProduct(requestMono)
+                                    .flatMap(productId -> {
+                                        // Crear la respuesta con el productId
+                                        CreateProductRS createProductRS = new CreateProductRS();
+                                        createProductRS.setProductId(productId); // Asignar el valor del Mono<String>
+                                        createProductRS.setResult(true);
+                                        return Mono.just(createProductRS);
+                                    });
+                        } else {
+                            // Crear la respuesta con el mensaje de error
+                            CreateProductRS createProductRS = new CreateProductRS();
+                            createProductRS.setProductId(null);
+                            createProductRS.setResult(false);
+                            createProductRS.setMessage(stringStringHashMap.get("message"));
+                            return Mono.just(createProductRS);
                         }
+                    })
 
-                        productRequest.setActiveProduct(activeProductBean);
+                )
+                .doOnSuccess(createProductRS -> log.info("Product creation completed {}"
+                        , JsonTransferUtil.objectToJson(createProductRS)))
+                .doOnError(throwable -> log.error("Product creation failed", throwable));
 
-                    }
-
-                    productRequest.setHolders(new ArrayList<>());
-                    productRequest.setAuthorizedSignatories(new ArrayList<>());
-                    log.info("productRequest: {}", JsonTransferUtil.objectToJson(productRequest));
-                    return Mono.just(productRequest);
-
-                });
-
-        return productConnector.createProduct(productRequestMono)
-                .flatMap(s -> {
-                    CreateProductRS createProductRS = new CreateProductRS();
-                    createProductRS.setResult(s);
-                    return Mono.just(createProductRS);
-                });
     }
+
+
 }

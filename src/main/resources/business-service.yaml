@@ -47,5 +47,10 @@ components:
       type: object
       properties:
         result:
+          type: boolean
+        productId:
           type: string
-          description: Description with result of create product
+          description: indicate product id of new product
+        message:
+          type: string
+          description: indicate some message in case cannot create product

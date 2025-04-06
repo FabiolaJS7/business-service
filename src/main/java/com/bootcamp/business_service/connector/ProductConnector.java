@@ -1,5 +1,6 @@
 package com.bootcamp.business_service.connector;
 
+import com.bootcamp.commons.bean.customers.CustomerResponse;
 import com.bootcamp.commons.bean.products.ProductRequest;
 import com.bootcamp.commons.bean.products.ProductResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -19,23 +20,22 @@ public class ProductConnector {
         this.webClient = webClient;
     }
 
-    // Endpoint de la API para traer todos los productos
-    public Flux<ProductResponse> getAllCustomers() {
-        return webClient.get()
-                .uri("/api/products")
-                .retrieve()
-                .bodyToFlux(ProductResponse.class)
-                .doOnError(error -> log.error("Error while fetching products: {}", error.getMessage()));
-
-
-    }
-
     public Mono<String> createProduct(Mono<ProductRequest> productRequest) {
         return webClient.post()
                 .uri("/api/products")
                 .body(productRequest, ProductRequest.class) //Enviado productRequest como body
                 .retrieve()
                 .bodyToMono(String.class)
+                .doOnError(error -> log.error("Error while create product: {}", error.getMessage()));
+
+    }
+
+
+    public Flux<ProductResponse> getProductsByCustomerId(String customerId) {
+        return webClient.get()
+                .uri("/api/products/customer/" + customerId )
+                .retrieve()
+                .bodyToFlux(ProductResponse.class)
                 .doOnError(error -> log.error("Error while create product: {}", error.getMessage()));
 
     }
