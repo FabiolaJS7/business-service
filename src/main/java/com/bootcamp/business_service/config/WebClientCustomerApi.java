@@ -18,6 +18,9 @@ public class WebClientCustomerApi {
     @Value("${client.product.service}")
     String clientProduct;
 
+    @Value("${client.transaction.service}")
+    String clientTransaction;
+
     @Bean(name = "webClientCustomerService")
     public WebClient webClientCustomerService(WebClient.Builder builder) {
         return builder.baseUrl(clientCustomer)
@@ -29,6 +32,14 @@ public class WebClientCustomerApi {
     @Bean(name = "webClientProductService")
     public WebClient webClientProductService(WebClient.Builder builder) {
         return builder.baseUrl(clientProduct)
+                .filter(logRequest()) // Filtro para registrar la solicitud
+                .filter(logResponse()) // Filtro para registrar la respuesta
+                .build();
+    }
+
+    @Bean(name = "webClientTransactionService")
+    public WebClient webClientTransactionService(WebClient.Builder builder) {
+        return builder.baseUrl(clientTransaction)
                 .filter(logRequest()) // Filtro para registrar la solicitud
                 .filter(logResponse()) // Filtro para registrar la respuesta
                 .build();

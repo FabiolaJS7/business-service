@@ -1,9 +1,7 @@
 package com.bootcamp.business_service.connector;
 
 import com.bootcamp.commons.bean.customers.CustomerResponse;
-import com.bootcamp.commons.bean.products.ProductRequest;
-import com.bootcamp.commons.bean.products.ProductResponse;
-import com.bootcamp.commons.bean.products.ProductUpdateRQ;
+import com.bootcamp.commons.bean.products.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -54,6 +52,23 @@ public class ProductConnector {
                 .retrieve()
                 .bodyToMono(ProductResponse.class)
                 .doOnError(error -> log.error("Error while getting product by id: {}", error.getMessage()));
+    }
+
+    public Mono<BalanceBeanResponse> findBalanceByProductId (String productId) {
+        return webClient.get()
+                .uri("/api/products/" + productId + "/balance")
+                .retrieve()
+                .bodyToMono(BalanceBeanResponse.class)
+                .doOnError(error -> log.error("Error while getting balance by product: {}", error.getMessage()));
+    }
+
+    public Mono<BalanceBeanResponse> updateBalance (String productId, Mono<BalanceBeanRequest> balanceBeanRequestMono) {
+        return webClient.put()
+                .uri("/api/products/" + productId + "/balance")
+                .body(balanceBeanRequestMono, BalanceBeanRequest.class)
+                .retrieve()
+                .bodyToMono(BalanceBeanResponse.class)
+                .doOnError(error -> log.error("Error while update balance: {}", error.getMessage()));
     }
 
 
