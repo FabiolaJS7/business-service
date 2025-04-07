@@ -1,4 +1,4 @@
-package com.bootcamp.service.product.constants;
+package com.bootcamp.business_service.constants;
 
 public class MovementTypeConstants {
     public static final String DEPOSIT = "DEPOSIT";

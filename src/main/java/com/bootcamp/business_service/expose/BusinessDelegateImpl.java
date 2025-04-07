@@ -1,10 +1,8 @@
 package com.bootcamp.business_service.expose;
 
 import com.bootcamp.business_service.api.ApiApiDelegate;
-import com.bootcamp.business_service.model.AdditionalPersonRQ;
-import com.bootcamp.business_service.model.AdditionalPersonRS;
-import com.bootcamp.business_service.model.CreateProductRQ;
-import com.bootcamp.business_service.model.CreateProductRS;
+import com.bootcamp.business_service.model.*;
+import com.bootcamp.business_service.service.MovementService;
 import com.bootcamp.business_service.service.ProductService;
 import com.bootcamp.business_service.util.JsonTransferUtil;
 import lombok.AllArgsConstructor;
@@ -20,6 +18,7 @@ import reactor.core.publisher.Mono;
 @AllArgsConstructor
 public class BusinessDelegateImpl implements ApiApiDelegate {
 
+    private final MovementService movementService;
     ProductService productService;
 
     @Override
@@ -47,6 +46,16 @@ public class BusinessDelegateImpl implements ApiApiDelegate {
                 .doOnError(throwable -> log.error("Request error updateAdditionalPerson {}", throwable.getMessage()))
                 .onErrorResume(e -> Mono.just(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR)));
 
+    }
+
+    @Override
+    public Mono<ResponseEntity<MovementRS>> doMovement(Mono<MovementRQ> movementRQ, ServerWebExchange exchange) {
+        return  movementRQ
+                .doOnNext(m -> log.info("-> Init doMovement: {}", JsonTransferUtil.objectToJson(m)))
+                .flatMap(m -> movementService.doMovementToTransaction(Mono.just(m)))
+                .map(ResponseEntity::ok)
+                .doOnSuccess(movement -> log.info("success doMovement: {}", JsonTransferUtil.objectToJson(movement)))
+                .doOnError(throwable -> log.error("Request error doMovement {}", throwable.getMessage()));
     }
 
 

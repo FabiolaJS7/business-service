@@ -43,6 +43,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdditionalPersonRS'
+  /api/business/movement:
+    post:
+      summary: Movement the account
+      operationId: doMovement
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MovementRQ'
+      responses:
+        '200':
+          description: Success add
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovementRS'
+
 components:
   schemas:
     CreateProductRQ:
@@ -112,3 +130,29 @@ components:
         result:
           type: boolean
           description: result of to addition
+
+    MovementRQ:
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: customerId
+        productId:
+          type: string
+          description: productId
+        movementType:
+          type: string
+          description:  type of movement DEPOSIT , WITHDRAWAL
+        amount:
+          type: number
+          format: double
+          description: amount of movement
+    MovementRS:
+      type: object
+      properties:
+        result:
+          type: string
+          description: result
+        message:
+          type: string
+          description: obeservations
