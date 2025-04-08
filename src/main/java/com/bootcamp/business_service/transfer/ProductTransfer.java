@@ -47,8 +47,11 @@ public class ProductTransfer {
                     } else {
                         ActiveProductBean activeProductBean = new ActiveProductBean();
                         activeProductBean.setHasCreditCard(productRequest.getProductType().equals(ProductTypeConstants.CREDIT_CARD));
-                        activeProductBean.setCreditLimit(33000.00);
-                        activeProductBean.setCreditLimitUsed(0.00);
+                        activeProductBean.setCreditLimit(3000.00); //todos los creditos serán 3000
+                        activeProductBean.setCreditLimitUsed(Boolean.TRUE.equals(activeProductBean.getHasCreditCard())
+                                ? 0 : activeProductBean.getCreditLimit()); //si es tarjeta de credito al ser nueva tiene 0 usado, si es un credito personal o business tiene el monto de la linea de credito
+                        activeProductBean.setCreditBalance(Boolean.TRUE.equals(activeProductBean.getHasCreditCard()) ? activeProductBean.getCreditLimit()
+                                : 0); //si es CC tiene balance (monto disponible) el monto del credito apertra, si es otro credito tiene balance 0
 
                         if (Boolean.TRUE.equals(activeProductBean.getHasCreditCard())) {
                             CreditCardBean creditCardBean = new CreditCardBean();

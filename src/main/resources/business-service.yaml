@@ -142,7 +142,10 @@ components:
           description: productId
         movementType:
           type: string
-          description:  type of movement DEPOSIT , WITHDRAWAL
+          description:  type of movement DEPOSIT , WITHDRAWAL, TRANSFER
+        accountNumberToTransfer:
+          type: string
+          description:  account number of passive product
         amount:
           type: number
           format: double

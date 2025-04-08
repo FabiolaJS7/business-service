@@ -1,6 +1,5 @@
 package com.bootcamp.business_service.connector;
 
-import com.bootcamp.commons.bean.customers.CustomerResponse;
 import com.bootcamp.commons.bean.products.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,7 +24,8 @@ public class ProductConnector {
                 .body(productRequest, ProductRequest.class) //Enviado productRequest como body
                 .retrieve()
                 .bodyToMono(String.class)
-                .doOnError(error -> log.error("Error while create product: {}", error.getMessage()));
+                .doOnError(error -> log.error("Error while create product: {}"
+                        , error.getMessage()));
     }
 
     public Flux<ProductResponse> getProductsByCustomerId(String customerId) {
@@ -33,7 +33,8 @@ public class ProductConnector {
                 .uri("/api/products/customer/" + customerId)
                 .retrieve()
                 .bodyToFlux(ProductResponse.class)
-                .doOnError(error -> log.error("Error while create product: {}", error.getMessage()));
+                .doOnError(error -> log.error("Error while getting product by customer id {}"
+                        , error.getMessage()));
 
     }
 
@@ -59,7 +60,8 @@ public class ProductConnector {
                 .uri("/api/products/" + productId + "/balance")
                 .retrieve()
                 .bodyToMono(BalanceBeanResponse.class)
-                .doOnError(error -> log.error("Error while getting balance by product: {}", error.getMessage()));
+                .doOnError(error -> log.error("Error while getting balance by product: {}"
+                        , error.getMessage()));
     }
 
     public Mono<BalanceBeanResponse> updateBalance (String productId, Mono<BalanceBeanRequest> balanceBeanRequestMono) {
@@ -71,8 +73,13 @@ public class ProductConnector {
                 .doOnError(error -> log.error("Error while update balance: {}", error.getMessage()));
     }
 
-
-
-
+    public Mono<ProductResponse> getProductByAccountNumber (String accountNumber) {
+        return webClient.get()
+                .uri("/api/products/account/" + accountNumber)
+                .retrieve()
+                .bodyToMono(ProductResponse.class)
+                .doOnError(error -> log.error("Error while getting product by account: {}"
+                        , error.getMessage()));
+    }
 
 }
