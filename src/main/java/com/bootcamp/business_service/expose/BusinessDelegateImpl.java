@@ -4,6 +4,7 @@ import com.bootcamp.business_service.api.ApiApiDelegate;
 import com.bootcamp.business_service.model.*;
 import com.bootcamp.business_service.service.MovementService;
 import com.bootcamp.business_service.service.ProductService;
+import com.bootcamp.business_service.service.ReportService;
 import com.bootcamp.business_service.util.JsonTransferUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ public class BusinessDelegateImpl implements ApiApiDelegate {
 
     private final MovementService movementService;
     ProductService productService;
+    ReportService reportService;
 
     @Override
     public Mono<ResponseEntity<CreateProductRS>> createProduct(Mono<CreateProductRQ> createProductRQ,
@@ -56,6 +58,14 @@ public class BusinessDelegateImpl implements ApiApiDelegate {
                 .map(ResponseEntity::ok)
                 .doOnSuccess(movement -> log.info("success doMovement: {}", JsonTransferUtil.objectToJson(movement)))
                 .doOnError(throwable -> log.error("Request error doMovement {}", throwable.getMessage()));
+    }
+
+    @Override
+    public Mono<ResponseEntity<ReportRS>> buildReport(Mono<ReportRQ> reportRQ, ServerWebExchange exchange) {
+        return reportRQ
+                .flatMap(reportRQ1 -> reportService.getReportByCustomerId(Mono.just(reportRQ1)))
+                .map(ResponseEntity::ok)
+                .doOnError(throwable -> log.error("Request error buildReport {}", throwable.getMessage())) ;
     }
 
 

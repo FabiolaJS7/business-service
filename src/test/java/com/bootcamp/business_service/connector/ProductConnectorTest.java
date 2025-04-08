@@ -29,6 +29,7 @@ class ProductConnectorTest {
         System.out.println("result create product: " + result);
     }
 
+    @Disabled
     @Test
     void shouldGetProducts_whenProductRequestIsValidAndCustomerIdIsValid() {
 

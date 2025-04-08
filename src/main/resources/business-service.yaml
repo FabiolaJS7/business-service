@@ -61,6 +61,24 @@ paths:
               schema:
                 $ref: '#/components/schemas/MovementRS'
 
+  /api/business/report:
+    post:
+      summary: Report of BALANCE or MOVEMENT
+      operationId: buildReport
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportRQ'
+      responses:
+        '200':
+          description: Success of build report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportRS'
+
 components:
   schemas:
     CreateProductRQ:
@@ -159,3 +177,73 @@ components:
         message:
           type: string
           description: obeservations
+
+    ReportRQ:
+      type: object
+      properties:
+        typeReport:
+          type: string
+          description: type report as BALANCE or MOVEMENT
+        customerId:
+          type: string
+          description: customer id
+        productId:
+          type: string
+          description: product id in case typereport is MOVEMENT
+
+    ReportRS:
+      type: object
+      properties:
+        typeReport:
+          type: string
+          description: type report as BALANCE or MOVEMENT
+        customerId:
+          type: string
+          description: customer id
+        dateToday:
+          type: string
+          format: date
+          description: date today
+        products:
+          type: array
+          description: list of products
+          items:
+            $ref: '#/components/schemas/ProductReportbean'
+
+    ProductReportbean:
+      type: object
+      properties:
+        productId:
+          type: string
+          description: type report as BALANCE or MOVEMENT
+        customerId:
+          type: string
+          description: customer id
+        productType:
+          type: string
+          description: product type
+        familyType:
+          type: string
+          description:  family type of product PASSIVE or ACTIVE
+        balance:
+          type: number
+          format: double
+          description:  amount total of balance of passive product
+        accountNumber:
+          type: string
+          description: account number of PASSIVE product
+        creditCardNumber:
+          type: string
+          description: credit card number of ACTIVE product
+        creditLimitTotal:
+          type: number
+          format: double
+          description: credit limit of CC( credit card)
+        creditUser:
+          type: number
+          format: double
+          description: credit userd of CC
+        creditEnabled:
+          type: number
+          format: double
+          description: amount enabled to consume in case CC
