@@ -69,7 +69,7 @@ public class LogicalCreateProduct {
                     if (map.get("customerType").equalsIgnoreCase("B")) {
 
                         if ((map.get("productType").equalsIgnoreCase(ProductTypeConstants.SAVING_ACCOUNT)
-                                || map.get("productType").equalsIgnoreCase(ProductTypeConstants.FIXED_ACCOUNT) )) {
+                                || map.get("productType").equalsIgnoreCase(ProductTypeConstants.FIXED_ACCOUNT))) {
                             map.put("enabled", "false");
                             map.put("message", "Customer type B (Bussines) can't create products SA (Save account) or FA (Fixed account)");
                         } else if (map.get("productType").equalsIgnoreCase(ProductTypeConstants.CREDIT_PERSONAL)) {

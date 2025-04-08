@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
+
 
 @Service
 @AllArgsConstructor
@@ -62,8 +62,8 @@ public class ProductServiceImpl implements ProductService {
                     })
 
                 )
-                .doOnSuccess(createProductRS -> log.info("Product creation completed {}"
-                        , JsonTransferUtil.objectToJson(createProductRS)))
+                .doOnSuccess(createProductRS -> log.info("Product creation completed {}",
+                        JsonTransferUtil.objectToJson(createProductRS)))
                 .doOnError(throwable -> log.error("Product creation failed", throwable));
 
     }

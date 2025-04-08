@@ -1,7 +1,5 @@
 package com.bootcamp.business_service.transfer;
 
-import com.bootcamp.business_service.connector.CustomerConnector;
-import com.bootcamp.business_service.connector.ProductConnector;
 import com.bootcamp.business_service.constants.CasesUpdateConstants;
 import com.bootcamp.business_service.model.AdditionalPersonRQ;
 import com.bootcamp.commons.bean.products.AdditionalPersonBean;

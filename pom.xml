@@ -159,7 +159,7 @@
 					<configLocation>/config/checkstyle.xml</configLocation>
 					<suppressionsLocation>/config/checkstyle-suppressions.xml</suppressionsLocation>
 					<consoleOutput>true</consoleOutput>
-					<failsOnError>false</failsOnError>
+					<failsOnError>true</failsOnError>
 					<linkXRef>false</linkXRef>
 				</configuration>
 				<executions>

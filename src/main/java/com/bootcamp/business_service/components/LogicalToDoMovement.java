@@ -35,7 +35,7 @@ public class LogicalToDoMovement {
 
         HashMap<String, String> map = new HashMap<>();
         map.put("enabled", "false");
-        map.put("commission","0");
+        map.put("commission", "0");
 
         Mono<ProductResponse> product = movementRQ
                 .flatMap(movementRQ1 -> productConnector.getProductById(movementRQ1.getProductId()))

@@ -18,6 +18,8 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class ProductTransfer {
 
+    private static final double CREDIT_LIMIT_CC_NEW = 3000.00;
+
     LogicalTransactionProducts logicalTransactionProducts;
 
     public Mono<ProductRequest> buildProductRequest(Mono<CreateProductRQ> createProductRQ, String customerType) {
@@ -47,7 +49,7 @@ public class ProductTransfer {
                     } else {
                         ActiveProductBean activeProductBean = new ActiveProductBean();
                         activeProductBean.setHasCreditCard(productRequest.getProductType().equals(ProductTypeConstants.CREDIT_CARD));
-                        activeProductBean.setCreditLimit(3000.00); //todos los creditos serán 3000
+                        activeProductBean.setCreditLimit(CREDIT_LIMIT_CC_NEW); //todos los creditos serán 3000
                         activeProductBean.setCreditLimitUsed(Boolean.TRUE.equals(activeProductBean.getHasCreditCard())
                                 ? 0 : activeProductBean.getCreditLimit()); //si es tarjeta de credito al ser nueva tiene 0 usado, si es un credito personal o business tiene el monto de la linea de credito
                         activeProductBean.setCreditBalance(Boolean.TRUE.equals(activeProductBean.getHasCreditCard()) ? activeProductBean.getCreditLimit()

@@ -1,6 +1,5 @@
 package com.bootcamp.business_service.connector;
 
-import com.bootcamp.business_service.util.JsonTransferUtil;
 import com.bootcamp.commons.bean.transaction.TransactionRQ;
 import com.bootcamp.commons.bean.transaction.TransactionRS;
 import lombok.extern.slf4j.Slf4j;

@@ -99,10 +99,10 @@ public class MovementServiceImpl implements MovementService {
                         return productConnector.updateBalance(map.get("productToTransfer"), Mono.just(secondBalanceRequest))
                                 .doOnSubscribe(s -> log.info("Sending update balance for second account: {}",
                                         JsonTransferUtil.objectToJson(secondBalanceRequest)))
-                                .doOnSuccess(secondBalanceResponse -> log.info("Update balance response for second account: {}"
-                                        , JsonTransferUtil.objectToJson(secondBalanceResponse)))
-                                .doOnError(error -> log.error("Error while updating balance for second account: {}"
-                                        , error.getMessage()))
+                                .doOnSuccess(secondBalanceResponse -> log.info("Update balance response for second account: {}",
+                                        JsonTransferUtil.objectToJson(secondBalanceResponse)))
+                                .doOnError(error -> log.error("Error while updating balance for second account: {}",
+                                        error.getMessage()))
                                 .thenReturn(balanceBeanResponse); // Retornar la respuesta original después de actualizar la segunda cuenta
                     }
                     return Mono.just(balanceBeanResponse); // Si no es transferencia, devolver la respuesta original
