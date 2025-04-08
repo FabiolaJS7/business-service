@@ -31,10 +31,18 @@ public class TransactionConnector {
 
     public Flux<TransactionRS> getTransactionsByCustomerId(String customerId) {
         return webClient.get()
-                .uri("/api/transactions/customer/" + customerId)
+                .uri("/api/transactions/customers/" + customerId)
                 .retrieve()
                 .bodyToFlux(TransactionRS.class)
                 .doOnError(error -> log.error("Error while getTransactionsByCustomerId: {}", error.getMessage()));
+    }
+
+    public Flux<TransactionRS> getTransactionsByProductId(String productId) {
+        return webClient.get()
+                .uri("/api/transactions/products/" + productId)
+                .retrieve()
+                .bodyToFlux(TransactionRS.class)
+                .doOnError(error -> log.error("Error while getTransactionsByProductId: {}", error.getMessage()));
     }
 
 }

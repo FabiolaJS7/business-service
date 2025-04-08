@@ -6,4 +6,5 @@ import reactor.core.publisher.Mono;
 
 public interface ReportService {
     Mono<ReportRS> getReportByCustomerId(Mono<ReportRQ> reportRQ);
+    Mono<ReportRS> getMovementByProductId(Mono<ReportRQ> reportRQ);
 }

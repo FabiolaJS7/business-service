@@ -1,13 +1,16 @@
 package com.bootcamp.business_service.service.impl;
 
 import com.bootcamp.business_service.connector.ProductConnector;
+import com.bootcamp.business_service.connector.TransactionConnector;
 import com.bootcamp.business_service.constants.ProductTypeConstants;
+import com.bootcamp.business_service.model.MovementReportbean;
 import com.bootcamp.business_service.model.ProductReportbean;
 import com.bootcamp.business_service.model.ReportRQ;
 import com.bootcamp.business_service.model.ReportRS;
 import com.bootcamp.business_service.service.ReportService;
 import com.bootcamp.business_service.util.JsonTransferUtil;
 import com.bootcamp.commons.bean.products.ProductResponse;
+import com.bootcamp.commons.bean.transaction.TransactionRS;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,7 @@ import reactor.core.publisher.Mono;
 public class ReportServiceImpl implements ReportService {
 
 
+    TransactionConnector transactionConnector;
     ProductConnector productConnector;
 
     @Override
@@ -77,9 +81,43 @@ public class ReportServiceImpl implements ReportService {
                 .doOnSuccess(reportRS1 -> log.info("Report successfully built {}", JsonTransferUtil.objectToJson(reportRS1)))
                 .doOnError(throwable -> log.error("Request error getReportByCustomerId {}", throwable.getMessage()));
 
+    }
 
+    @Override
+    public Mono<ReportRS> getMovementByProductId(Mono<ReportRQ> reportRQ) {
 
+        Flux<TransactionRS> transactionRSFlux = reportRQ
+                .flatMapMany(reportRQ1 -> transactionConnector.getTransactionsByProductId(reportRQ1.getProductId()));
 
+        Flux<MovementReportbean> movementReportbeanFlux = transactionRSFlux
+                .map(transactionRS -> {
+                    MovementReportbean movementReportbean = new MovementReportbean();
+                    movementReportbean.setAmount(transactionRS.getAmount());
+                    movementReportbean.setMovementType(transactionRS.getMovementType());
+                    movementReportbean.setDateOfMovement(transactionRS.getDateOfTransaction());
+                    movementReportbean.setCommissionAmount(transactionRS.getCommissionAmount());
+                    return movementReportbean;
+                });
+
+        return movementReportbeanFlux
+                .collectList()
+                .flatMap(movementReportbeans -> {
+                    if (movementReportbeans.isEmpty()) {
+                        // Manejar el caso en que no haya transactions
+                        return Mono.error(new RuntimeException("No transactions found for this product"));
+                    }
+
+                    return reportRQ
+                            .map(reportRQ1 -> {
+                                ReportRS reportRS1 = new ReportRS();
+                                reportRS1.setCustomerId(reportRQ1.getCustomerId());
+                                reportRS1.setMovements(movementReportbeans);
+                                reportRS1.setTypeReport(reportRQ1.getTypeReport());
+                                return reportRS1;
+                            });
+                })
+                .doOnSuccess(reportRS1 -> log.info("Report of movement successfully built {}", JsonTransferUtil.objectToJson(reportRS1)))
+                .doOnError(throwable -> log.error("Request error getMovementByProductId {}", throwable.getMessage()));
     }
 
 }

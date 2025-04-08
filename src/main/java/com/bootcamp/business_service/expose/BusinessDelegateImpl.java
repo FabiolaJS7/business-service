@@ -63,9 +63,15 @@ public class BusinessDelegateImpl implements ApiApiDelegate {
     @Override
     public Mono<ResponseEntity<ReportRS>> buildReport(Mono<ReportRQ> reportRQ, ServerWebExchange exchange) {
         return reportRQ
-                .flatMap(reportRQ1 -> reportService.getReportByCustomerId(Mono.just(reportRQ1)))
+                .flatMap(reportRQ1 -> {
+                    if (reportRQ1.getTypeReport().equalsIgnoreCase("BALANCE")) {
+                        return reportService.getReportByCustomerId(Mono.just(reportRQ1));
+                    } else {
+                        return reportService.getMovementByProductId(Mono.just(reportRQ1));
+                    }
+                })
                 .map(ResponseEntity::ok)
-                .doOnError(throwable -> log.error("Request error buildReport {}", throwable.getMessage())) ;
+                .doOnError(throwable -> log.error("Request error buildReport {}", throwable.getMessage()));
     }
 
 

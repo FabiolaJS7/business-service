@@ -209,6 +209,11 @@ components:
           description: list of products
           items:
             $ref: '#/components/schemas/ProductReportbean'
+        movements:
+          type: array
+          description: list of movements for reportType MOVEMENT
+          items:
+            $ref: '#/components/schemas/MovementReportbean'
 
     ProductReportbean:
       type: object
@@ -247,3 +252,24 @@ components:
           type: number
           format: double
           description: amount enabled to consume in case CC
+
+
+    MovementReportbean:
+      type: object
+      properties:
+
+        movementType:
+          type: string
+          description:  movement type as DEPOSIT or WITHDRAWAL
+        amount:
+          type: number
+          format: double
+          description: amount of the movement
+        commissionAmount:
+          type: number
+          format: double
+          description: commission amount of movement
+        dateOfMovement:
+          type: string
+          format: date
+          description: date of movement
