@@ -56,10 +56,12 @@ public class MovementServiceImpl implements MovementService {
         // Crear TransactionRQ y realizar la transacción
         TransactionRQ transactionRQ = new TransactionRQ();
         transactionRQ.setProductId(movementRQ.getProductId());
-        transactionRQ.setAmount(movementRQ.getAmount());
+        transactionRQ.setCustomerId(movementRQ.getCustomerId());
+        transactionRQ.setAmountMoved(movementRQ.getAmount());
         transactionRQ.setMovementType(movementRQ.getMovementType());
         transactionRQ.setResult(balanceBeanResponse.getResult());
         transactionRQ.setCommissionAmount(Double.parseDouble(map.get("commission")));
+        transactionRQ.setAmount(transactionRQ.getAmountMoved() - transactionRQ.getCommissionAmount());
         return transactionConnector.createTransaction(Mono.just(transactionRQ));
     }
 
