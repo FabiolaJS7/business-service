@@ -7,6 +7,7 @@ import com.bootcamp.business_service.model.CreateProductRQ;
 import com.bootcamp.commons.bean.customers.CustomerResponse;
 import com.bootcamp.commons.bean.products.ProductResponse;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
@@ -19,6 +20,7 @@ import java.util.List;
 @Component
 @AllArgsConstructor
 @Slf4j
+@NoArgsConstructor
 public class LogicalCreateProduct {
 
     ProductConnector productConnector;

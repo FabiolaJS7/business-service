@@ -7,6 +7,7 @@ import com.bootcamp.business_service.util.JsonTransferUtil;
 import com.bootcamp.business_service.util.NumberRandomUtil;
 import com.bootcamp.commons.bean.products.*;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 @Component
 @Slf4j
 @AllArgsConstructor
+@NoArgsConstructor
 public class ProductTransfer {
 
     private static final double CREDIT_LIMIT_CC_NEW = 3000.00;

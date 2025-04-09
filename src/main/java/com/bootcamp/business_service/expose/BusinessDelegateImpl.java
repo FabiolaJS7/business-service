@@ -19,7 +19,7 @@ import reactor.core.publisher.Mono;
 @AllArgsConstructor
 public class BusinessDelegateImpl implements ApiApiDelegate {
 
-    private final MovementService movementService;
+    MovementService movementService;
     ProductService productService;
     ReportService reportService;
 

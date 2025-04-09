@@ -1,6 +1,7 @@
 package com.bootcamp.business_service.connector;
 
 import com.bootcamp.commons.bean.customers.CustomerResponse;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -10,9 +11,11 @@ import reactor.core.publisher.Mono;
 
 @Service
 @Slf4j
+@NoArgsConstructor
 public class CustomerConnector {
 
-    private final WebClient webClient;
+
+    WebClient webClient;
 
     public CustomerConnector(@Qualifier("webClientCustomerService") WebClient webClient) {
         this.webClient = webClient;
