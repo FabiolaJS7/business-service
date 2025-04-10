@@ -15,7 +15,6 @@ import reactor.core.publisher.Mono;
 
 @Service
 @Slf4j
-@NoArgsConstructor
 public class ProductConnector {
 
      WebClient webClient;

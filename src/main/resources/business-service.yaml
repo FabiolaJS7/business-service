@@ -78,7 +78,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReportRS'
-
+  /api/business/customers:
+    post:
+      summary: Create , update or delete customer
+      operationId: managementCustomer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagementCustomerRQ'
+      responses:
+        '200':
+          description: Customer created successfull
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagementCustomerRS'
 components:
   schemas:
     CreateProductRQ:
@@ -273,3 +289,43 @@ components:
           type: string
           format: date
           description: date of movement
+
+    ManagementCustomerRQ:
+      type: object
+      properties:
+        action:
+          type: string
+          description: action CREATE, UPDATE or DELETE
+        name:
+          type: string
+          description: customer name
+        lastName:
+          type: string
+          description: customer lastName
+        typeClient:
+          type: string
+          description: indicate customer type as P (Personal), B (Business), V(Personal VIP), M(Business Mype)
+        phone:
+          type: string
+          description: customer phone
+        email:
+          type: string
+          description: customer email
+        identificationType:
+          type: string
+          description: customer identification type
+        numIdentification:
+          type: string
+          description: customer identification number
+        createdBy:
+          type: string
+          description: bank user who create customer
+
+    ManagementCustomerRS:
+      type: object
+      properties:
+        result:
+          type: boolean
+        message:
+          type: string
+          description: observations about creation

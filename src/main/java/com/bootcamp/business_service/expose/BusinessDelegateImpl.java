@@ -2,6 +2,7 @@ package com.bootcamp.business_service.expose;
 
 import com.bootcamp.business_service.api.ApiApiDelegate;
 import com.bootcamp.business_service.model.*;
+import com.bootcamp.business_service.service.CustomerService;
 import com.bootcamp.business_service.service.MovementService;
 import com.bootcamp.business_service.service.ProductService;
 import com.bootcamp.business_service.service.ReportService;
@@ -22,6 +23,7 @@ public class BusinessDelegateImpl implements ApiApiDelegate {
     MovementService movementService;
     ProductService productService;
     ReportService reportService;
+    CustomerService customerService;
 
     @Override
     public Mono<ResponseEntity<CreateProductRS>> createProduct(Mono<CreateProductRQ> createProductRQ,
@@ -74,5 +76,15 @@ public class BusinessDelegateImpl implements ApiApiDelegate {
                 .doOnError(throwable -> log.error("Request error buildReport {}", throwable.getMessage()));
     }
 
+    @Override
+    public Mono<ResponseEntity<ManagementCustomerRS>> managementCustomer(Mono<ManagementCustomerRQ> managementCustomerRQ,
+                                                                          ServerWebExchange exchange) {
+        log.info("-> Management customer RQ: {}", managementCustomerRQ);
+        return managementCustomerRQ
+                .flatMap(customer -> customerService.managementCustomer(Mono.just(customer)))
+                .map(ResponseEntity::ok)
+                .doOnError(throwable -> log.error("Request error management {}", throwable.getMessage()));
+
+    }
 
 }
