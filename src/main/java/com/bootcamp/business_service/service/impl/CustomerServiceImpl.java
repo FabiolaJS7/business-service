@@ -1,12 +1,11 @@
 package com.bootcamp.business_service.service.impl;
 
 import com.bootcamp.business_service.connector.CustomerConnector;
+import com.bootcamp.business_service.constants.ActionCustomerConstants;
 import com.bootcamp.business_service.mapper.CustomerMapperStruct;
 import com.bootcamp.business_service.model.ManagementCustomerRQ;
 import com.bootcamp.business_service.model.ManagementCustomerRS;
 import com.bootcamp.business_service.service.CustomerService;
-import com.bootcamp.business_service.util.JsonTransferUtil;
-import com.bootcamp.commons.bean.customers.CustomerRequest;
 import com.bootcamp.commons.bean.customers.CustomerResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,9 +22,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Mono<ManagementCustomerRS> managementCustomer(Mono<ManagementCustomerRQ> customerRequest) {
         return customerRequest
-                .doOnNext(c -> log.info("1. Management customer: {}", c))
+                .doOnNext(c -> log.debug("1. Management customer customerRequest: {}", c))
                 .flatMap(managementCustomerRQ -> {
-                    if (managementCustomerRQ.getAction().equalsIgnoreCase("CREATE")) {
+                    if (managementCustomerRQ.getAction().equalsIgnoreCase(ActionCustomerConstants.CREATE_CUSTOMER)) {
                         return customerConnector.createCustomer(Mono.just(CustomerMapperStruct.INSTANCE
                                 .toCustomerRequestOfManagementCustomerRq(managementCustomerRQ)));
                     } else {
@@ -38,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
                     managementCustomerRS.setMessage(customerResponse.getId());
                     return managementCustomerRS;
                 })
-                .doOnSuccess(m -> log.info("2. Management customer successfully: {}", m))
+                .doOnSuccess(m -> log.debug("2. Management customer successfully: {}", m))
                 .doOnError(e -> log.error("3. Management customer error: {}", e.getMessage()));
 
     }

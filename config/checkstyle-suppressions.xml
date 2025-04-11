@@ -5,4 +5,5 @@
 <suppressions>
     <!-- Ignorar la regla de longitud de línea en todos los archivos -->
     <suppress files=".*" checks="LineLength"/>
+    <suppress files="[\\/]target[\\/]" checks=".*"/>
 </suppressions>
