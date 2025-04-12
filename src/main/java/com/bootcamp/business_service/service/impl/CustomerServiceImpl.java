@@ -22,7 +22,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Mono<ManagementCustomerRS> managementCustomer(Mono<ManagementCustomerRQ> customerRequest) {
         return customerRequest
-                .doOnNext(c -> log.debug("1. Management customer customerRequest: {}", c))
+                .doOnNext(c -> log.info("1. Management customer customerRequest: {}", c))
                 .flatMap(managementCustomerRQ -> {
                     if (managementCustomerRQ.getAction().equalsIgnoreCase(ActionCustomerConstants.CREATE_CUSTOMER)) {
                         return customerConnector.createCustomer(Mono.just(CustomerMapperStruct.INSTANCE
@@ -37,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
                     managementCustomerRS.setMessage(customerResponse.getId());
                     return managementCustomerRS;
                 })
-                .doOnSuccess(m -> log.debug("2. Management customer successfully: {}", m))
+                .doOnSuccess(m -> log.info("2. Management customer successfully: {}", m))
                 .doOnError(e -> log.error("3. Management customer error: {}", e.getMessage()));
 
     }

@@ -50,13 +50,13 @@ public class CustomerConnector {
     // Endpoint de customer API para crear un customer
     public Mono<CustomerResponse> createCustomer(Mono<CustomerRequest> customerRequest) {
         return customerRequest
-                .doOnNext(rq -> log.debug("API createCustomer RQ: {}", JsonTransferUtil.objectToJson(rq)))
+                .doOnNext(rq -> log.info("API createCustomer RQ: {}", JsonTransferUtil.objectToJson(rq)))
                 .flatMap(rq -> webClient.post()
                         .uri("/api/customers")
                         .bodyValue(rq)
                         .retrieve()
                         .bodyToMono(CustomerResponse.class)
-                        .doOnNext(response -> log.debug("API createCustomer RS: {}",
+                        .doOnNext(response -> log.info("API createCustomer RS: {}",
                                 JsonTransferUtil.objectToJson(response)))
                         .doOnError(error -> log.error("API error createCustomer: {}", error.getMessage()))
                 );

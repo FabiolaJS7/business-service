@@ -29,13 +29,12 @@ public class BusinessDelegateImpl implements ApiApiDelegate {
     public Mono<ResponseEntity<CreateProductRS>> createProduct(Mono<CreateProductRQ> createProductRQ,
                                                                 ServerWebExchange exchange) {
         return createProductRQ
-                .doOnNext(c -> log.info("-> Init createProduct: {}", JsonTransferUtil.objectToJson(c)))
+                .doOnNext(c -> log.info("-> Init createProduct."))
                 .flatMap(c -> productService.createProduct(Mono.just(c)))
                 .map(ResponseEntity::ok)
-                .doOnSuccess(createProductRS -> log.info("success createProduct: {}",
-                        JsonTransferUtil.objectToJson(createProductRS)))
+                .doOnSuccess(createProductRS -> log.info("End createProduct."))
                 .doOnError(throwable -> log.error("Request error createProduct {}", throwable.getMessage()))
-                .onErrorResume(e -> Mono.just(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR)));
+                .onErrorResume(e -> Mono.just(new ResponseEntity<>(HttpStatus.BAD_REQUEST)));
 
     }
 
@@ -55,11 +54,12 @@ public class BusinessDelegateImpl implements ApiApiDelegate {
     @Override
     public Mono<ResponseEntity<MovementRS>> doMovement(Mono<MovementRQ> movementRQ, ServerWebExchange exchange) {
         return  movementRQ
-                .doOnNext(m -> log.info("-> Init doMovement: {}", JsonTransferUtil.objectToJson(m)))
+                .doOnNext(m -> log.info("-> Init doMovement."))
                 .flatMap(m -> movementService.doMovementToTransaction(Mono.just(m)))
                 .map(ResponseEntity::ok)
-                .doOnSuccess(movement -> log.info("success doMovement: {}", JsonTransferUtil.objectToJson(movement)))
-                .doOnError(throwable -> log.error("Request error doMovement {}", throwable.getMessage()));
+                .doOnSuccess(movement -> log.info("success doMovement."))
+                .doOnError(throwable -> log.error("Request error doMovement {}", throwable.getMessage()))
+                .onErrorResume(e -> Mono.just(new ResponseEntity<>(HttpStatus.BAD_REQUEST)));
     }
 
     @Override

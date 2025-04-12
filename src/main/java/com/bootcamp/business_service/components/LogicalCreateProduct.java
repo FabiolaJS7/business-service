@@ -7,20 +7,19 @@ import com.bootcamp.business_service.model.CreateProductRQ;
 import com.bootcamp.commons.bean.customers.CustomerResponse;
 import com.bootcamp.commons.bean.products.ProductResponse;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 @Component
 @AllArgsConstructor
 @Slf4j
-@NoArgsConstructor
 public class LogicalCreateProduct {
 
     ProductConnector productConnector;
@@ -40,10 +39,10 @@ public class LogicalCreateProduct {
                 .subscribeOn(Schedulers.parallel());
 
 
-        return Mono.zip(productResponseFlux.collectList(), customerResponseFound, createProductRQ)
+        return Mono.zip(customerResponseFound, productResponseFlux.collectList().defaultIfEmpty(new ArrayList<>()), createProductRQ)
                 .flatMap(tuple -> {
-                    List<ProductResponse> productResponses = tuple.getT1(); // Lista de productos
-                    CustomerResponse customerResponse = tuple.getT2(); // Respuesta del cliente
+                    CustomerResponse customerResponse = tuple.getT1(); // Respuesta del cliente
+                    List<ProductResponse> productResponses = tuple.getT2(); // Lista de productos
                     CreateProductRQ createProductRQ1 = tuple.getT3();
 
                     map.put("customerType", customerResponse.getTypeClient());
@@ -102,10 +101,10 @@ public class LogicalCreateProduct {
                             map.put("message", "Customer type M (Bussines Pyme) should be credit card previously to create CA (Current account)");
                         }
                     }
-
-
                     return Mono.just(map);
-                });
+                })
+                .doOnSuccess(response -> log.info("Validations to create product: {}", response))
+                .doOnError(error -> log.error("Error validate logical to create product: {}", error.getMessage()));
 
     }
 }

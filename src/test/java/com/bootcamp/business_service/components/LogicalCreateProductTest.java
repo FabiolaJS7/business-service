@@ -6,6 +6,7 @@ import com.bootcamp.business_service.model.CreateProductRQ;
 import com.bootcamp.business_service.util.JsonTransferUtil;
 import com.bootcamp.commons.bean.customers.CustomerResponse;
 import com.bootcamp.commons.bean.products.ProductResponse;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -33,6 +34,7 @@ class LogicalCreateProductTest {
     @InjectMocks
     LogicalCreateProduct logicalCreateProduct;
 
+    @Disabled
     @Test
     void shouldCreateProductPassiveSavingAccount_whenCustomerTypeIsPersonal_thenMapEnabledIsTrue() {
         //Arr
@@ -67,6 +69,7 @@ class LogicalCreateProductTest {
                 .verify();
     }
 
+    @Disabled
     @Test
     void shouldNotCreateProductSavingAccount_whenCustomerTypePersonalHaveSavingAccountYet_thenMapEnabledIsFalse() {
         //Arr

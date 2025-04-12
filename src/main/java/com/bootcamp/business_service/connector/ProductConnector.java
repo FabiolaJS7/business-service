@@ -1,5 +1,6 @@
 package com.bootcamp.business_service.connector;
 
+import com.bootcamp.business_service.util.JsonTransferUtil;
 import com.bootcamp.commons.bean.products.BalanceBeanResponse;
 import com.bootcamp.commons.bean.products.BalanceBeanRequest;
 import com.bootcamp.commons.bean.products.ProductRequest;
@@ -23,12 +24,15 @@ public class ProductConnector {
     }
 
     public Mono<String> createProduct(Mono<ProductRequest> productRequest) {
-        return webClient.post()
-                .uri("/api/products")
-                .body(productRequest, ProductRequest.class) //Enviado productRequest como body
-                .retrieve()
-                .bodyToMono(String.class)
-                .doOnError(error -> log.error("Error while create product: {}", error.getMessage()));
+        return productRequest
+                .doOnNext(rq -> log.info("API createProduct RQ:  {}", JsonTransferUtil.objectToJson(rq)))
+                .flatMap(rq ->  webClient.post()
+                        .uri("/api/products")
+                        .bodyValue(rq) //Enviado productRequest como body
+                        .retrieve()
+                        .bodyToMono(String.class)
+                        .doOnNext(s -> log.info("API createProduct RS:  {}", JsonTransferUtil.objectToJson(s)))
+                        .doOnError(error -> log.error("API error create product: {}", error.getMessage())));
     }
 
     public Flux<ProductResponse> getProductsByCustomerId(String customerId) {

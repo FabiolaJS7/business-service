@@ -35,8 +35,9 @@ public class ProductServiceImpl implements ProductService {
     public Mono<CreateProductRS> createProduct(Mono<CreateProductRQ> createProductRQ) {
 
         return createProductRQ
+                .doOnSubscribe(subscription -> log.info("Create product."))
+                .doOnNext(c -> log.info("Create product: {}", c))
                 .map(createProductRQ1 -> logicalCreateProduct.validate(Mono.just(createProductRQ1)))
-                .doOnSubscribe(subscription -> log.info("Product creation started"))
                 .flatMap(hashMapMono ->
                     hashMapMono.flatMap(attributesMainMap -> {
                         if (attributesMainMap.get("enabled").equalsIgnoreCase("true")) {
@@ -50,7 +51,9 @@ public class ProductServiceImpl implements ProductService {
                                         createProductRS.setProductId(productId); // Asignar el valor del Mono<String>
                                         createProductRS.setResult(true);
                                         return Mono.just(createProductRS);
-                                    });
+                                    })
+                                    .doOnNext(productResponse -> log.info("Create product in bd: {}",
+                                            JsonTransferUtil.objectToJson(productResponse)));
                         } else {
                             // Crear la respuesta con el mensaje de error
                             CreateProductRS createProductRS = new CreateProductRS();

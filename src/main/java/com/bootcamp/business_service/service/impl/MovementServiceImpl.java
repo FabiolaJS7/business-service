@@ -31,6 +31,9 @@ public class MovementServiceImpl implements MovementService {
     @Override
     public Mono<MovementRS> doMovementToTransaction(Mono<MovementRQ> movementRQMono) {
         return movementRQMono
+                .doOnSubscribe(subscription -> log.info("Do movement transaction"))
+                .doOnNext(movementRQ -> log.info("Do movement transaction {}",
+                        JsonTransferUtil.objectToJson(movementRQ)))
                 .flatMap(movementRQ ->
                         logicalToDoMovement.validates(movementRQMono)
                                 .flatMap(map -> this.updateMovementInBalance(map, movementRQ)

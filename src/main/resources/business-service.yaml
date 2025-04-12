@@ -7,7 +7,7 @@ servers:
   - url: http://localhost:8585
     description: local server
 paths:
-  /api/business/product:
+  /api/business/products:
     post:
       summary: Create new Product
       operationId: createProduct
