@@ -55,6 +55,7 @@ public class ProductConnector {
     }
 
     public Mono<ProductResponse> getProductById(String productId) {
+        log.info("API getProductById RQ: {}", productId);
         return webClient.get()
                 .uri("/api/products/" + productId)
                 .retrieve()

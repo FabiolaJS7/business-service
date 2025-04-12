@@ -1,5 +1,6 @@
 package com.bootcamp.business_service.connector;
 
+import com.bootcamp.business_service.util.JsonTransferUtil;
 import com.bootcamp.commons.bean.transaction.TransactionRQ;
 import com.bootcamp.commons.bean.transaction.TransactionRS;
 import lombok.extern.slf4j.Slf4j;
@@ -20,12 +21,18 @@ public class TransactionConnector {
     }
 
     public Mono<TransactionRS> createTransaction(Mono<TransactionRQ> transactionRQMono) {
-        return webClient.post()
-                .uri("/api/transactions")
-                .body(transactionRQMono, TransactionRQ.class) //Enviado transactionRQ como body
-                .retrieve()
-                .bodyToMono(TransactionRS.class)
-                .doOnError(error -> log.error("Error while create transaction: {}", error.getMessage()));
+        return transactionRQMono
+                .doOnNext(rq ->  log.info("API Create Transaction RQ{}",
+                        JsonTransferUtil.objectToJson(transactionRQMono)))
+                .flatMap(transactionRQ -> webClient.post()
+                        .uri("/api/transactions")
+                        .bodyValue(transactionRQ) //Enviado transactionRQ como body
+                        .retrieve()
+                        .bodyToMono(TransactionRS.class)
+                        .doOnNext(rs -> log.info("API Create Transaction RS{}", JsonTransferUtil.objectToJson(rs)))
+                        .doOnError(error -> log.error("Error while create transaction: {}", error.getMessage()))
+
+                );
     }
 
     public Flux<TransactionRS> getTransactionsByCustomerId(String customerId) {

@@ -14,18 +14,21 @@ import com.bootcamp.commons.bean.transaction.TransactionRQ;
 import com.bootcamp.commons.bean.transaction.TransactionRS;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.util.HashMap;
 
 @Service
-@AllArgsConstructor
 @Slf4j
 public class MovementServiceImpl implements MovementService {
 
+    @Autowired
     ProductConnector productConnector;
+    @Autowired
     LogicalToDoMovement logicalToDoMovement;
+    @Autowired
     TransactionConnector transactionConnector;
 
     @Override
@@ -34,24 +37,25 @@ public class MovementServiceImpl implements MovementService {
                 .doOnSubscribe(subscription -> log.info("Do movement transaction"))
                 .doOnNext(movementRQ -> log.info("Do movement transaction {}",
                         JsonTransferUtil.objectToJson(movementRQ)))
-                .flatMap(movementRQ ->
-                        logicalToDoMovement.validates(movementRQMono)
-                                .flatMap(map -> this.updateMovementInBalance(map, movementRQ)
-                                        .flatMap(balanceBeanResponse -> {
-                                            return this.saveTransaction(movementRQ, balanceBeanResponse, map)
-                                                    .map(transactionRS -> {
-                                                        MovementRS movementRS = new MovementRS();
-                                                        movementRS.setResult(transactionRS.getResult());
-                                                        movementRS.setMessage(transactionRS.getObservation());
-                                                        return movementRS;
-                                                    });
-                                        })
+                .flatMap(movementRQ -> logicalToDoMovement.validates(movementRQMono))
+                .flatMap(map ->
+                        movementRQMono
+                                .flatMap(movementRQ ->
+                                        this.updateMovementInBalance(map, movementRQ)
+                                                .flatMap(balanceBeanResponse -> {
+                                                    return this.saveTransaction(movementRQ, balanceBeanResponse, map)
+                                                            .map(transactionRS -> {
+                                                                MovementRS movementRS = new MovementRS();
+                                                                movementRS.setResult(transactionRS.getResult());
+                                                                movementRS.setMessage(transactionRS.getObservation());
+                                                                return movementRS;
+                                                            });
+                                                })
                                 )
+
                 )
                 .doOnSuccess(movementRS -> log.info("Transaction completed successfully: {}", movementRS))
                 .doOnError(error -> log.error("Error during transaction: {}", error.getMessage()));
-
-
     }
 
     private Mono<TransactionRS> saveTransaction(MovementRQ movementRQ, BalanceBeanResponse balanceBeanResponse,
@@ -62,8 +66,9 @@ public class MovementServiceImpl implements MovementService {
         transactionRQ.setCustomerId(movementRQ.getCustomerId());
         transactionRQ.setAmountMoved(movementRQ.getAmount());
         transactionRQ.setMovementType(movementRQ.getMovementType());
-        transactionRQ.setResult(balanceBeanResponse.getResult());
+        transactionRQ.setResult(balanceBeanResponse.getResultMovement());
         transactionRQ.setCommissionAmount(Double.parseDouble(map.get("commission")));
+        transactionRQ.setObservation(map.get("message"));
         transactionRQ.setAmount(transactionRQ.getAmountMoved() - transactionRQ.getCommissionAmount());
         return transactionConnector.createTransaction(Mono.just(transactionRQ));
     }
@@ -72,7 +77,7 @@ public class MovementServiceImpl implements MovementService {
         if (!map.get("enabled").equalsIgnoreCase("true")) {
             // Si no está habilitado, devolver una respuesta false
             BalanceBeanResponse emptyResponse = new BalanceBeanResponse();
-            emptyResponse.setResult("false");
+            emptyResponse.setResultMovement("false");
             return Mono.just(emptyResponse);
         }
 
@@ -89,6 +94,7 @@ public class MovementServiceImpl implements MovementService {
         return productConnector.updateBalance(movementRQ.getProductId(), Mono.just(balanceBeanRequest))
                 .doOnSubscribe(s -> log.info("Sending update balance: {}",
                         JsonTransferUtil.objectToJson(balanceBeanRequest)))
+                .doOnNext(balanceBeanResponse -> balanceBeanResponse.setResultMovement("true"))
                 .doOnSuccess(balanceBeanResponse -> log.info("Update balance response: {}",
                         JsonTransferUtil.objectToJson(balanceBeanResponse)))
                 .doOnError(error -> log.error("Error while updating balance: {}", error.getMessage()))

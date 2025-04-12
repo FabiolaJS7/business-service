@@ -43,13 +43,13 @@ public class ReportServiceImpl implements ReportService {
 
                                     if (ProductTypeConstants.ACTIVE_PRODUCTS.contains(productResponses.getProductType())) {
                                         productReportbean.setFamilyType("ACTIVE");
-                                        productReportbean.setCreditLimitTotal(productResponses.getActiveProduct().getCreditLimit());
-                                        productReportbean.setCreditUser(productResponses.getActiveProduct().getCreditLimitUsed());
+                                        //productReportbean.setCreditLimitTotal(productResponses.getActiveProduct().getCreditLimit());
+                                        //productReportbean.setCreditUser(productResponses.getActiveProduct().getCreditLimitUsed());
                                         productReportbean.setCreditEnabled(balanceBeanResponse.getBalanceAmount());
                                         productReportbean.setBalance(productReportbean.getCreditEnabled());
                                     } else {
                                         productReportbean.setFamilyType("PASSIVE");
-                                        productReportbean.setAccountNumber(productResponses.getPassiveProduct().getAccountNumber());
+                                        //productReportbean.setAccountNumber(productResponses.getPassiveProduct().getAccountNumber());
                                         productReportbean.setBalance(balanceBeanResponse.getBalanceAmount());
                                     }
 
