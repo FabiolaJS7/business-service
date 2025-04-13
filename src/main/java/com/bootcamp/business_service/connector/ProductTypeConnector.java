@@ -1,7 +1,6 @@
 package com.bootcamp.business_service.connector;
 
 import com.bootcamp.business_service.util.JsonTransferUtil;
-import com.bootcamp.commons.bean.products.ProductResponse;
 import com.bootcamp.commons.bean.products.ProductTypeResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;

@@ -45,7 +45,7 @@ public class LogicalToDoMovement {
                     Mono<ProductResponse> product = productConnector.getProductById(movement.getProductId())
                             .subscribeOn(Schedulers.parallel());
                     // Obtiene información del cliente
-                    Mono<CustomerResponse> customer =customerConnector.getCustomerById(movement.getCustomerId())
+                    Mono<CustomerResponse> customer = customerConnector.getCustomerById(movement.getCustomerId())
                             .subscribeOn(Schedulers.parallel());
                     // Obtiene el balance del producto
                     Mono<BalanceBeanResponse> balance = productConnector.findBalanceByProductId(movement.getProductId())

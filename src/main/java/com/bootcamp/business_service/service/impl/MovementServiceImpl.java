@@ -12,7 +12,6 @@ import com.bootcamp.commons.bean.products.BalanceBeanRequest;
 import com.bootcamp.commons.bean.products.BalanceBeanResponse;
 import com.bootcamp.commons.bean.transaction.TransactionRQ;
 import com.bootcamp.commons.bean.transaction.TransactionRS;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,8 +69,8 @@ public class MovementServiceImpl implements MovementService {
             transactionSecondTransfered.setResult(balanceBeanResponse.getResultMovement());
             transactionSecondTransfered.setCommissionAmount(0.00);
             transactionSecondTransfered.setObservation("Deposited from " + movementRQ.getProductId());
-            transactionSecondTransfered.setAmount(transactionSecondTransfered.getAmountMoved() -
-                    transactionSecondTransfered.getCommissionAmount());
+            transactionSecondTransfered.setAmount(transactionSecondTransfered.getAmountMoved()
+                    - transactionSecondTransfered.getCommissionAmount());
             // Crear la transacción de transferencia
             secondTransactionMono = transactionConnector.createTransaction(Mono.just(transactionSecondTransfered))
                     .doOnSuccess(transactionRS -> log.info("Second Transaction completed successfully: {}",
