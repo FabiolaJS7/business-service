@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
+
 @Service
 @AllArgsConstructor
 @Slf4j
@@ -39,20 +41,14 @@ public class ReportServiceImpl implements ReportService {
                                 .map(balanceBeanResponse -> {
                                     ProductReportbean productReportbean = new ProductReportbean();
                                     productReportbean.setProductId(productResponses.getId());
-                                    productReportbean.setProductType(productResponses.getProductType());
-
-                                    if (ProductTypeConstants.ACTIVE_PRODUCTS.contains(productResponses.getProductType())) {
-                                        productReportbean.setFamilyType("ACTIVE");
-                                        //productReportbean.setCreditLimitTotal(productResponses.getActiveProduct().getCreditLimit());
-                                        //productReportbean.setCreditUser(productResponses.getActiveProduct().getCreditLimitUsed());
-                                        productReportbean.setCreditEnabled(balanceBeanResponse.getBalanceAmount());
-                                        productReportbean.setBalance(productReportbean.getCreditEnabled());
-                                    } else {
-                                        productReportbean.setFamilyType("PASSIVE");
-                                        //productReportbean.setAccountNumber(productResponses.getPassiveProduct().getAccountNumber());
-                                        productReportbean.setBalance(balanceBeanResponse.getBalanceAmount());
-                                    }
-
+                                    productReportbean.setProductType(ProductTypeConstants.COMPLETE_PRODUCTS_NAME.get(productResponses.getProductType()));
+                                    productReportbean.setAccountNumber(productResponses.getAccountNumber());
+                                    productReportbean.setCustomerId(productResponses.getCustomer().getCustomerId());
+                                    productReportbean.setFamilyType(ProductTypeConstants.PASSIVE_PRODUCTS.contains(productResponses.getProductType()) ? "PASSIVE" : "ACTIVE");
+                                    productReportbean.setCreditLimitTotal(balanceBeanResponse.getCreditLimit());
+                                    productReportbean.setCreditUser(balanceBeanResponse.getCreditLimitUsed());
+                                    productReportbean.setCreditEnabled(balanceBeanResponse.getCreditEnabledToUse());
+                                    productReportbean.setBalance(balanceBeanResponse.getTotalAmountInAccount());
                                     return productReportbean;
                                 })
                 );
@@ -71,7 +67,7 @@ public class ReportServiceImpl implements ReportService {
                             .map(reportRQ1 -> {
                                 ReportRS reportRS1 = new ReportRS();
                                 reportRS1.setCustomerId(productReportBeans.get(0).getCustomerId());
-                                //reportRS1.setDateToday(LocalDate.now());
+                                reportRS1.setDateToday(LocalDate.now());
                                 reportRS1.setTypeReport(reportRQ1.getTypeReport());
                                 reportRS1.setProducts(productReportBeans);
                                 return reportRS1;
@@ -112,6 +108,7 @@ public class ReportServiceImpl implements ReportService {
                                 ReportRS reportRS1 = new ReportRS();
                                 reportRS1.setCustomerId(reportRQ1.getCustomerId());
                                 reportRS1.setMovements(movementReportbeans);
+                                reportRS1.setDateToday(LocalDate.now());
                                 reportRS1.setTypeReport(reportRQ1.getTypeReport());
                                 return reportRS1;
                             });

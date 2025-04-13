@@ -39,6 +39,7 @@ public class LogicalToDoMovement {
                     map.put("enabled", "false");
                     map.put("commission", "0");
                     map.put("message", "*");
+                    map.put("movementType", movement.getMovementType());
 
                     // Obtiene el registro del producto
                     Mono<ProductResponse> product = productConnector.getProductById(movement.getProductId())

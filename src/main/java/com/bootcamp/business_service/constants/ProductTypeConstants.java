@@ -1,6 +1,7 @@
 package com.bootcamp.business_service.constants;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ProductTypeConstants {
 
@@ -28,6 +29,18 @@ public class ProductTypeConstants {
         ACTIVE_PRODUCTS.add(CREDIT_PERSONAL);
         ACTIVE_PRODUCTS.add(CREDIT_BUSINESS);
         ACTIVE_PRODUCTS.add(CREDIT_CARD);
+    }
+
+    public static final HashMap<String, String> COMPLETE_PRODUCTS_NAME = new HashMap<>();
+
+    static {
+        COMPLETE_PRODUCTS_NAME.put(SAVING_ACCOUNT, "CUENTA DE AHORROS");
+        COMPLETE_PRODUCTS_NAME.put(CURRENT_ACCOUNT, "CUENTA CORRIENTE");
+        COMPLETE_PRODUCTS_NAME.put(FIXED_ACCOUNT, "PLAZO FIJO");
+        COMPLETE_PRODUCTS_NAME.put(CREDIT_PERSONAL, "CREDITO PERSONAL");
+        COMPLETE_PRODUCTS_NAME.put(CREDIT_BUSINESS, "CREDITO NEGOCIO");
+        COMPLETE_PRODUCTS_NAME.put(CREDIT_CARD, "TARJETA DE CREDITO");
+
     }
 
 

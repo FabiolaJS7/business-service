@@ -6,6 +6,7 @@ import com.bootcamp.commons.bean.products.BalanceBeanRequest;
 import com.bootcamp.commons.bean.products.ProductRequest;
 import com.bootcamp.commons.bean.products.ProductResponse;
 import com.bootcamp.commons.bean.products.ProductUpdateRQ;
+import io.swagger.v3.core.util.Json;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -36,10 +37,12 @@ public class ProductConnector {
     }
 
     public Flux<ProductResponse> getProductsByCustomerId(String customerId) {
+        log.info("API getProductByCustomerId RQ: {}", customerId);
         return webClient.get()
                 .uri("/api/products/customer/" + customerId)
                 .retrieve()
                 .bodyToFlux(ProductResponse.class)
+                .doOnNext(productResponse -> log.info("API getProductByCustomerId RS Successfully"))
                 .doOnError(error -> log.error("Error while getting product by customer id {}",
                         error.getMessage()));
 
@@ -72,19 +75,24 @@ public class ProductConnector {
     }
 
     public Mono<BalanceBeanResponse> updateBalance(String productId, Mono<BalanceBeanRequest> balanceBeanRequestMono) {
+        log.info("API updateBalance RQ: {}", JsonTransferUtil.objectToJson(balanceBeanRequestMono));
         return webClient.put()
                 .uri("/api/products/" + productId + "/balance")
                 .body(balanceBeanRequestMono, BalanceBeanRequest.class)
                 .retrieve()
                 .bodyToMono(BalanceBeanResponse.class)
-                .doOnError(error -> log.error("Error while update balance: {}", error.getMessage()));
+                .doOnNext(rs -> log.info("API updateBalance RS: {}", JsonTransferUtil.objectToJson(rs)))
+                .doOnError(error -> log.error("Error API while update balance: {}", error.getMessage()));
     }
 
     public Mono<ProductResponse> getProductByAccountNumber(String accountNumber) {
+        log.info("API getProductByAccountNumber RQ: {}", accountNumber);
         return webClient.get()
                 .uri("/api/products/account/" + accountNumber)
                 .retrieve()
                 .bodyToMono(ProductResponse.class)
+                .doOnNext(productResponse -> log.info("API getProductByAccountNumber RS: {} ",
+                        JsonTransferUtil.objectToJson(productResponse)))
                 .doOnError(error -> log.error("Error while getting product by account: {}", error.getMessage()));
     }
 

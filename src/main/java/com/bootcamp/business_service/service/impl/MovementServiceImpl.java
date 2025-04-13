@@ -60,6 +60,24 @@ public class MovementServiceImpl implements MovementService {
 
     private Mono<TransactionRS> saveTransaction(MovementRQ movementRQ, BalanceBeanResponse balanceBeanResponse,
                                                 HashMap<String, String> map) {
+        Mono<TransactionRS> secondTransactionMono = Mono.empty();
+        if (MovementTypeConstants.TRANSFER.equalsIgnoreCase(map.get("movementType"))) {
+            // Crear TransactionRQ y realizar la transacción
+            TransactionRQ transactionSecondTransfered = new TransactionRQ();
+            transactionSecondTransfered.setProductId(map.get("productToTransfer"));
+            transactionSecondTransfered.setAmountMoved(movementRQ.getAmount());
+            transactionSecondTransfered.setMovementType(MovementTypeConstants.DEPOSIT);
+            transactionSecondTransfered.setResult(balanceBeanResponse.getResultMovement());
+            transactionSecondTransfered.setCommissionAmount(0.00);
+            transactionSecondTransfered.setObservation("Deposited from " + movementRQ.getProductId());
+            transactionSecondTransfered.setAmount(transactionSecondTransfered.getAmountMoved() -
+                    transactionSecondTransfered.getCommissionAmount());
+            // Crear la transacción de transferencia
+            secondTransactionMono = transactionConnector.createTransaction(Mono.just(transactionSecondTransfered))
+                    .doOnSuccess(transactionRS -> log.info("Second Transaction completed successfully: {}",
+                            JsonTransferUtil.objectToJson(transactionRS)));
+        }
+
         // Crear TransactionRQ y realizar la transacción
         TransactionRQ transactionRQ = new TransactionRQ();
         transactionRQ.setProductId(movementRQ.getProductId());
@@ -70,7 +88,7 @@ public class MovementServiceImpl implements MovementService {
         transactionRQ.setCommissionAmount(Double.parseDouble(map.get("commission")));
         transactionRQ.setObservation(map.get("message"));
         transactionRQ.setAmount(transactionRQ.getAmountMoved() - transactionRQ.getCommissionAmount());
-        return transactionConnector.createTransaction(Mono.just(transactionRQ));
+        return secondTransactionMono.then(transactionConnector.createTransaction(Mono.just(transactionRQ)));
     }
 
     private Mono<BalanceBeanResponse> updateMovementInBalance(HashMap<String, String> map, MovementRQ movementRQ) {
