@@ -5,6 +5,7 @@ import com.bootcamp.business_service.components.LogicalCreateProduct;
 import com.bootcamp.business_service.connector.ProductConnector;
 
 import com.bootcamp.business_service.constants.ActionsConstants;
+import com.bootcamp.business_service.constants.ProductTypeConstants;
 import com.bootcamp.business_service.model.*;
 import com.bootcamp.business_service.service.ProductService;
 import com.bootcamp.business_service.transfer.AdditionalPersonTransfer;
@@ -105,12 +106,13 @@ public class ProductServiceImpl implements ProductService {
                     log.info("Creating Card To PassiveProduct {}", JsonTransferUtil.objectToJson(rq));
                     return productConnector.getProductById(rq.getProductIdToAssociate())
                             .flatMap(productResponse -> {
-                                if (Boolean.FALSE.equals(productResponse.getHasPlasticCard())){
+                                if (Boolean.FALSE.equals(productResponse.getHasPlasticCard() && ProductTypeConstants
+                                        .PASSIVE_PRODUCTS.contains(productResponse.getProductType()))){
                                     return updateProductWithPlasticCard(productResponse)
                                             .flatMap(this::getPlasticCardDetails);
                                 } else {
                                     CreateCardRS createCardRS = new CreateCardRS();
-                                    createCardRS.setCardId(null);
+                                    createCardRS.setCardId("El producto ya cuenta con un plastic card o no es una un producto pasivo");
                                     return Mono.just(createCardRS);
                                 }
                             });
