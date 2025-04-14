@@ -106,8 +106,8 @@ public class ProductServiceImpl implements ProductService {
                     log.info("Creating Card To PassiveProduct {}", JsonTransferUtil.objectToJson(rq));
                     return productConnector.getProductById(rq.getProductIdToAssociate())
                             .flatMap(productResponse -> {
-                                if (Boolean.FALSE.equals(productResponse.getHasPlasticCard() && ProductTypeConstants
-                                        .PASSIVE_PRODUCTS.contains(productResponse.getProductType()))){
+                                if (Boolean.FALSE.equals(productResponse.getHasPlasticCard()) && ProductTypeConstants
+                                        .PASSIVE_PRODUCTS.contains(productResponse.getProductType())){
                                     return updateProductWithPlasticCard(productResponse)
                                             .flatMap(this::getPlasticCardDetails);
                                 } else {
