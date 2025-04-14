@@ -10,6 +10,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
+import java.util.Optional;
+
 @Service
 @Slf4j
 public class TransactionConnector {
@@ -43,9 +46,16 @@ public class TransactionConnector {
                 .doOnError(error -> log.error("Error while getTransactionsByCustomerId: {}", error.getMessage()));
     }
 
-    public Flux<TransactionRS> getTransactionsByProductId(String productId) {
+    public Flux<TransactionRS> getTransactionsByProductId(String productId, LocalDate startDate, LocalDate endDate) {
+        log.info("API getTransactionsByProductId {} and dates from {}, to {}", productId, startDate, endDate);
         return webClient.get()
-                .uri("/api/transactions/products/" + productId)
+                .uri(uriBuilder -> {
+                    // Construye dinámicamente la URI con parámetros opcionales
+                    uriBuilder.path("/api/transactions/products/{productId}")
+                            .queryParamIfPresent("startDate", Optional.ofNullable(startDate))
+                            .queryParamIfPresent("endDate", Optional.ofNullable(endDate));
+                    return uriBuilder.build(productId);
+                })
                 .retrieve()
                 .bodyToFlux(TransactionRS.class)
                 .doOnError(error -> log.error("Error while getTransactionsByProductId: {}", error.getMessage()));

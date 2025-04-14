@@ -87,4 +87,14 @@ public class BusinessDelegateImpl implements ApiApiDelegate {
 
     }
 
+    @Override
+    public Mono<ResponseEntity<CreateCardRS>> createCard(Mono<CreateCardRQ> createCardRQ, ServerWebExchange exchange) {
+        log.info("-> Init createCard DEBIT to passive product");
+        return createCardRQ
+                .flatMap(rq -> productService.createCardToPassiveProduct(Mono.just(rq)))
+                .map(ResponseEntity::ok)
+                .doOnError(throwable -> log.error("Request error createCard {}", throwable.getMessage()))
+                .onErrorResume(e -> Mono.just(new ResponseEntity<>(HttpStatus.BAD_REQUEST)));
+    }
+
 }

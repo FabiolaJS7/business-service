@@ -64,7 +64,11 @@ public class MovementServiceImpl implements MovementService {
             // Crear TransactionRQ y realizar la transacción
             TransactionRQ transactionSecondTransfered = new TransactionRQ();
             transactionSecondTransfered.setProductId(map.get("productToTransfer"));
-            transactionSecondTransfered.setAmountMoved(movementRQ.getAmount());
+            if (!map.get("commission").equalsIgnoreCase("0")) {
+                transactionSecondTransfered.setAmountMoved(movementRQ.getAmount() - Double.parseDouble(map.get("commission")));
+            } else {
+                transactionSecondTransfered.setAmountMoved(movementRQ.getAmount());
+            }
             transactionSecondTransfered.setMovementType(MovementTypeConstants.DEPOSIT);
             transactionSecondTransfered.setResult(balanceBeanResponse.getResultMovement());
             transactionSecondTransfered.setCommissionAmount(0.00);

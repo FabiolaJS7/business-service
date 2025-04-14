@@ -61,7 +61,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/MovementRS'
 
-  /api/business/report:
+  /api/business/reports:
     post:
       summary: Report of BALANCE or MOVEMENT
       operationId: buildReport
@@ -95,6 +95,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ManagementCustomerRS'
+  /api/business/cards:
+    post:
+      summary: Update product PASSIVE with plastic card
+      operationId: createCard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCardRQ'
+      responses:
+        '200':
+          description: Create plastic card DEBIT associated to passive account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCardRS'
+
+
+
 components:
   schemas:
     CreateProductRQ:
@@ -206,13 +226,19 @@ components:
         productId:
           type: string
           description: product id in case typereport is MOVEMENT
+        dateFrom:
+          type: string
+          format: date
+        dateTo:
+          type: string
+          format: date
 
     ReportRS:
       type: object
       properties:
         typeReport:
           type: string
-          description: type report as BALANCE or MOVEMENT
+          description: type report as BALANCE or MOVEMENT, COMMISSION
         customerId:
           type: string
           description: customer id
@@ -220,16 +246,21 @@ components:
           type: string
           format: date
           description: date today
+        dateFrom:
+          type: string
+          format: date
+          description: date to COMMISSION
+        dateTo:
+          type: string
+          format: date
+          description: date to COMMISSION
         products:
           type: array
           description: list of products
           items:
             $ref: '#/components/schemas/ProductReportbean'
-        movements:
-          type: array
-          description: list of movements for reportType MOVEMENT
-          items:
-            $ref: '#/components/schemas/MovementReportbean'
+        resumeMovement:
+          $ref: '#/components/schemas/ResumeMovement'
 
     ProductReportbean:
       type: object
@@ -329,3 +360,57 @@ components:
         message:
           type: string
           description: observations about creation
+    ResumeMovement:
+      type: object
+      properties:
+        productId:
+          type: string
+        productType:
+          type: string
+        totalAmountDeposit:
+          type: number
+          format: double
+        totalAmountWithdraw:
+          type: number
+          format: double
+        totalAmountCommission:
+          type: number
+          format: double
+        totalAmountPayments:
+          type: number
+          format: double
+        totalAmountConsume:
+          type: number
+          format: double
+        movements:
+          type: array
+          description: list of movements for reportType MOVEMENT
+          items:
+            $ref: '#/components/schemas/MovementReportbean'
+    CreateCardRQ:
+      type: object
+      properties:
+        productIdToAssociate:
+          type: string
+          description: customer name
+    CreateCardRS:
+      type: object
+      properties:
+        productIdAssociated:
+          type: string
+          description: customer name
+        cardId:
+          type: string
+          description: card id
+        typeCard:
+          type: string
+          description: type card
+        cardNumber:
+          type: string
+          description: card number
+        expirationDate:
+          type: string
+          description: expiration date
+
+
+

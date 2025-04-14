@@ -67,9 +67,9 @@ public class LogicalToDoMovement {
                                 BalanceBeanResponse balanceBeanResponse = truple.getT3();
                                 ProductResponse productToTransferResponse = truple.getT4();
 
-                                // Obtiene la lista de transactiones realizadas para el producto
+                                // Obtiene la lista de transactiones realizadas en el mes para el producto
                                 Flux<TransactionRS> transactions = movementRQ
-                                        .flatMapMany(movementRQ1 -> transactionConnector.getTransactionsByProductId(productResponse.getId()));
+                                        .flatMapMany(movementRQ1 -> transactionConnector.getTransactionsByProductId(productResponse.getId(), null, null));
                                 Mono<ProductTypeResponse> productType = productTypeConnector.getProductTypeByCode(productResponse.getProductType());
 
                                 if (movement.getMovementType().equals(MovementTypeConstants.TRANSFER)) {

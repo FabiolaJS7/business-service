@@ -1,11 +1,7 @@
 package com.bootcamp.business_service.connector;
 
 import com.bootcamp.business_service.util.JsonTransferUtil;
-import com.bootcamp.commons.bean.products.BalanceBeanResponse;
-import com.bootcamp.commons.bean.products.BalanceBeanRequest;
-import com.bootcamp.commons.bean.products.ProductRequest;
-import com.bootcamp.commons.bean.products.ProductResponse;
-import com.bootcamp.commons.bean.products.ProductUpdateRQ;
+import com.bootcamp.commons.bean.products.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -48,12 +44,17 @@ public class ProductConnector {
     }
 
     public Mono<ProductResponse> updateProduct(String productId, Mono<ProductUpdateRQ> productUpdateRQ) {
-        return webClient.put()
-                .uri("/api/products/" + productId)
-                .body(productUpdateRQ, ProductUpdateRQ.class)
-                .retrieve()
-                .bodyToMono(ProductResponse.class)
-                .doOnError(error -> log.error("Error while update product: {}", error.getMessage()));
+        return productUpdateRQ
+                .doOnNext(rq -> log.info("API updateProduct RQ: {}", JsonTransferUtil.objectToJson(rq)))
+                .flatMap(rq -> webClient.put()
+                        .uri("/api/products/" + productId)
+                        .body(productUpdateRQ, ProductUpdateRQ.class)
+                        .retrieve()
+                        .bodyToMono(ProductResponse.class)
+                        .doOnNext(response -> log.info("API updateProduct RS: {}",
+                                JsonTransferUtil.objectToJson(response)))
+                        .doOnError(error -> log.error("Error while update product: {}", error.getMessage()))
+                );
     }
 
     public Mono<ProductResponse> getProductById(String productId) {
@@ -62,6 +63,8 @@ public class ProductConnector {
                 .uri("/api/products/" + productId)
                 .retrieve()
                 .bodyToMono(ProductResponse.class)
+                .doOnNext(response -> log.info("API getProductById RS: {}",
+                        JsonTransferUtil.objectToJson(response)))
                 .doOnError(error -> log.error("Error while getting product by id: {}", error.getMessage()));
     }
 
@@ -92,7 +95,18 @@ public class ProductConnector {
                 .bodyToMono(ProductResponse.class)
                 .doOnNext(productResponse -> log.info("API getProductByAccountNumber RS: {} ",
                         JsonTransferUtil.objectToJson(productResponse)))
-                .doOnError(error -> log.error("Error while getting product by account: {}", error.getMessage()));
+                .doOnError(error -> log.error("Error API while getting product by account: {}", error.getMessage()));
+    }
+
+    public Mono<PlasticCardBean> getPlasticCardById(String cardId) {
+        log.info("API getPlasticCardById RQ: {}", cardId);
+        return webClient.get()
+                .uri("/api/products/cards/" + cardId)
+                .retrieve()
+                .bodyToMono(PlasticCardBean.class)
+                .doOnNext(plasticCardBean -> log.info("API getPlasticCardById RS: {}",
+                        JsonTransferUtil.objectToJson(plasticCardBean)))
+                .doOnError(error -> log.error("Error API while getting product by card: {}", error.getMessage()));
     }
 
 }
