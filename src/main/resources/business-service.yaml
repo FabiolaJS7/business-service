@@ -219,7 +219,7 @@ components:
       properties:
         typeReport:
           type: string
-          description: type report as BALANCE or MOVEMENT
+          description: type report MOVEMENT_BY_PRODUCT (para ver los moviemintos de un producto) - BALANCE_BY_CUSTOMER (ver los saldos de  todos los productos de un cliente) - COMMISSION (comisiones por periodo de tiempo de un producto) - PLASTI_CARD ( reporte con los últimos 10 movimientos de la tarjeta de débito y de crédito.)
         customerId:
           type: string
           description: customer id
@@ -236,6 +236,8 @@ components:
     ReportRS:
       type: object
       properties:
+        message:
+          type: string
         typeReport:
           type: string
           description: type report as BALANCE or MOVEMENT, COMMISSION

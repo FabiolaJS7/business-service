@@ -1,6 +1,7 @@
 package com.bootcamp.business_service.expose;
 
 import com.bootcamp.business_service.api.ApiApiDelegate;
+import com.bootcamp.business_service.constants.ReportTypeConstants;
 import com.bootcamp.business_service.model.*;
 import com.bootcamp.business_service.service.CustomerService;
 import com.bootcamp.business_service.service.MovementService;
@@ -66,7 +67,7 @@ public class BusinessDelegateImpl implements ApiApiDelegate {
     public Mono<ResponseEntity<ReportRS>> buildReport(Mono<ReportRQ> reportRQ, ServerWebExchange exchange) {
         return reportRQ
                 .flatMap(reportRQ1 -> {
-                    if (reportRQ1.getTypeReport().equalsIgnoreCase("BALANCE")) {
+                    if (reportRQ1.getTypeReport().equalsIgnoreCase(ReportTypeConstants.BALANCE)) {
                         return reportService.getReportByCustomerId(Mono.just(reportRQ1));
                     } else {
                         return reportService.getMovementByProductId(Mono.just(reportRQ1));
