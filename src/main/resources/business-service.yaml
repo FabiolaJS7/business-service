@@ -112,6 +112,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateCardRS'
+  /api/business/productTypes:
+    post:
+      summary: create new product type in the bank
+      operationId: createProductType
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductTypeRQ'
+      responses:
+        '200':
+          description: Success create new product type in the bank
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductTypeRS'
 
 
 
@@ -428,6 +445,78 @@ components:
         expirationDate:
           type: string
           description: expiration date
-
-
-
+    ProductTypeRQ:
+      type: object
+      properties:
+        code:
+          type: string
+          description: code to new product
+        description:
+          type: string
+          description: description of this product
+        familyType:
+          type: string
+          description: family type ACTIVE or PASSIVE
+        isFreeMaintenanceCommission:
+          type: boolean
+          description: true if is free to apply commission per maintenance
+        isFreeNumberMovement:
+          type: boolean
+          description: true if free number of movement per months
+        isFreeCommissionPerMovement:
+          type: boolean
+          description: true if free of commission movement
+        maxMovementPerMonth:
+          type: number
+          format: int64
+          description: indicate maxime movement per month
+        dateToUniqueMovement:
+          type: string
+          description: indicate date when permit only one movement per month
+        maintenanceCommission:
+          type: number
+          format: double
+          description: indicate commission amount of maintenance
+        movementCommission:
+          type: number
+          format: double
+          description: indicate commision amount for movement
+    ProductTypeRS:
+      type: object
+      properties:
+        status:
+          type: string
+          description: status of creation
+        code:
+          type: string
+          description: code to new product
+        description:
+          type: string
+          description: description of this product
+        familyType:
+          type: string
+          description: family type ACTIVE or PASSIVE
+        isFreeMaintenanceCommission:
+          type: boolean
+          description: true if is free to apply commission per maintenance
+        isFreeNumberMovement:
+          type: boolean
+          description: true if free number of movement per months
+        isFreeCommissionPerMovement:
+          type: boolean
+          description: true if free of commission movement
+        maxMovementPerMonth:
+          type: number
+          format: int64
+          description: indicate maxime movement per month
+        dateToUniqueMovement:
+          type: string
+          description: indicate date when permit only one movement per month
+        maintenanceCommission:
+          type: number
+          format: double
+          description: indicate commission amount of maintenance
+        movementCommission:
+          type: number
+          format: double
+          description: indicate commision amount for movement
