@@ -37,7 +37,8 @@ public class ProductConnector {
                 .uri("/api/products/customer/" + customerId)
                 .retrieve()
                 .bodyToFlux(ProductResponse.class)
-                .doOnNext(productResponse -> log.info("API getProductByCustomerId RS Successfully"))
+                .doOnNext(productResponse -> log.info("API getProductByCustomerId RS Successfully {}",
+                        JsonTransferUtil.objectToJson(productResponse)))
                 .doOnError(error -> log.error("Error while getting product by customer id {}",
                         error.getMessage()));
 

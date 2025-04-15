@@ -1,7 +1,7 @@
 package com.bootcamp.business_service.service.impl;
 
 import com.bootcamp.business_service.connector.CustomerConnector;
-import com.bootcamp.business_service.constants.ActionsConstants;
+import com.bootcamp.business_service.constants.CasesUpdateConstants;
 import com.bootcamp.business_service.mapper.CustomerMapperStruct;
 import com.bootcamp.business_service.model.ManagementCustomerRQ;
 import com.bootcamp.business_service.model.ManagementCustomerRS;
@@ -24,7 +24,7 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRequest
                 .doOnNext(c -> log.info("1. Management customer customerRequest: {}", c))
                 .flatMap(managementCustomerRQ -> {
-                    if (managementCustomerRQ.getAction().equalsIgnoreCase(ActionsConstants.CREATE_CUSTOMER)) {
+                    if (managementCustomerRQ.getAction().equalsIgnoreCase(CasesUpdateConstants.CREATE_CUSTOMER)) {
                         return customerConnector.createCustomer(Mono.just(CustomerMapperStruct.INSTANCE
                                 .toCustomerRequestOfManagementCustomerRq(managementCustomerRQ)));
                     } else {

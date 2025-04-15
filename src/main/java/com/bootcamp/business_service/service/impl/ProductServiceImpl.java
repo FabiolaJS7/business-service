@@ -4,7 +4,7 @@ import com.bootcamp.business_service.components.LogicalAddPersonToProduct;
 import com.bootcamp.business_service.components.LogicalCreateProduct;
 import com.bootcamp.business_service.connector.ProductConnector;
 
-import com.bootcamp.business_service.constants.ActionsConstants;
+import com.bootcamp.business_service.constants.CasesUpdateConstants;
 import com.bootcamp.business_service.constants.ProductTypeConstants;
 import com.bootcamp.business_service.model.*;
 import com.bootcamp.business_service.service.ProductService;
@@ -19,8 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import java.util.Optional;
-
+import java.util.ArrayList;
 
 @Service
 @AllArgsConstructor
@@ -103,19 +102,39 @@ public class ProductServiceImpl implements ProductService {
     public Mono<CreateCardRS> createCardToPassiveProduct(Mono<CreateCardRQ> createCardRQ) {
         return createCardRQ
                 .flatMap(rq -> {
-                    log.info("Creating Card To PassiveProduct {}", JsonTransferUtil.objectToJson(rq));
-                    return productConnector.getProductById(rq.getProductIdToAssociate())
-                            .flatMap(productResponse -> {
-                                if (Boolean.FALSE.equals(productResponse.getHasPlasticCard()) && ProductTypeConstants
-                                        .PASSIVE_PRODUCTS.contains(productResponse.getProductType())){
-                                    return updateProductWithPlasticCard(productResponse)
-                                            .flatMap(this::getPlasticCardDetails);
-                                } else {
-                                    CreateCardRS createCardRS = new CreateCardRS();
-                                    createCardRS.setCardId("El producto ya cuenta con un plastic card o no es una un producto pasivo");
-                                    return Mono.just(createCardRS);
-                                }
-                            });
+                    if (CasesUpdateConstants.CREATE_DEBIT_CARD.equalsIgnoreCase(rq.getActionToAssociate())) {
+                        log.info("Creating Card To PassiveProduct {}", JsonTransferUtil.objectToJson(rq));
+                        return productConnector.getProductById(rq.getProductIdToAssociate())
+                                .flatMap(productResponse -> {
+                                    if (Boolean.FALSE.equals(productResponse.getHasPlasticCard()) && ProductTypeConstants
+                                            .PASSIVE_PRODUCTS.contains(productResponse.getProductType())) {
+                                        return updateProductWithPlasticCard(productResponse, rq.getActionToAssociate(), null)
+                                                .flatMap(this::getPlasticCardDetails);
+                                    } else {
+                                        CreateCardRS createCardRS = new CreateCardRS();
+                                        createCardRS.setCardId("El producto ya cuenta con un plastic card o no es una un producto pasivo");
+                                        return Mono.just(createCardRS);
+                                    }
+                                });
+                    } else if (CasesUpdateConstants.CARD_TO_ALL_ACCOUNTS.equalsIgnoreCase(rq.getActionToAssociate())) {
+                        log.info("Associating Card To  every passive product {}", JsonTransferUtil.objectToJson(rq));
+                        CreateCardRS createCardRS = new CreateCardRS();
+                        createCardRS.setCardId(rq.getCardId());
+                        createCardRS.setProductsIdAssociated(new ArrayList<>());
+                        return productConnector.getProductsByCustomerId(rq.getCustomerId())
+                                .filter(productResponse -> ProductTypeConstants.PASSIVE_PRODUCTS
+                                        .contains(productResponse.getProductType())
+                                        && Boolean.FALSE.equals(productResponse.getHasPlasticCard()))
+                                .flatMap(productResponse -> updateProductWithPlasticCard(productResponse,
+                                        rq.getActionToAssociate(), rq.getCardId())
+                                        .doOnSuccess(p -> log.info("Product to updated {}", p.getId()))
+                                        .map(p -> {
+                                            createCardRS.getProductsIdAssociated().add(p.getId());
+                                            return createCardRS;
+                                        }))
+                                .then(Mono.just(createCardRS));
+                    }
+                     return Mono.just(new CreateCardRS());
                 })
                 .doOnSuccess(response -> log.info("Created Card To PassiveProduct completed: {}",
                         JsonTransferUtil.objectToJson(response)))
@@ -123,9 +142,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     // Método para actualizar el producto con la nueva plastic card
-    private Mono<ProductResponse> updateProductWithPlasticCard(ProductResponse productResponse) {
+    private Mono<ProductResponse> updateProductWithPlasticCard(ProductResponse productResponse, String action,
+                                                               String cardId) {
         ProductUpdateRQ productUpdateRQ = new ProductUpdateRQ();
-        productUpdateRQ.setActionToUpdate(ActionsConstants.PLASTIC_CARD);
+        productUpdateRQ.setActionToUpdate(action);
+        if (CasesUpdateConstants.CARD_TO_ALL_ACCOUNTS.equalsIgnoreCase(action) && cardId != null) {
+            productUpdateRQ.setPlasticCardId(cardId);
+        }
         productUpdateRQ.setHasPlasticCard(true);
         return productConnector.updateProduct(productResponse.getId(), Mono.just(productUpdateRQ));
     }
@@ -139,7 +162,8 @@ public class ProductServiceImpl implements ProductService {
                     createCardRS.setCardNumber(plasticCardBean.getCardNumber());
                     createCardRS.setTypeCard(plasticCardBean.getCardType());
                     createCardRS.setExpirationDate(plasticCardBean.getExpirationDate());
-                    createCardRS.setProductIdAssociated(plasticCardBean.getProductIdAssociated());
+                    createCardRS.setProductsIdAssociated(new ArrayList<>());
+                    createCardRS.getProductsIdAssociated().add(plasticCardBean.getProductIdAssociated());
                     return createCardRS;
                 });
     }

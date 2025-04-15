@@ -393,12 +393,25 @@ components:
         productIdToAssociate:
           type: string
           description: customer name
+        cardId:
+          type: string
+        actionToAssociate:
+          type: string
+          description: ALL_ACCOUNTS, CREATE_DEBIT_CARD
+        customerId:
+          type: string
+
     CreateCardRS:
       type: object
       properties:
         productIdAssociated:
           type: string
           description: customer name
+        productsIdAssociated:
+          type: array
+          items:
+            type: string
+            description: list products id associated
         cardId:
           type: string
           description: card id
