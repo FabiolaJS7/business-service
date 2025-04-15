@@ -32,4 +32,8 @@ public class PlasticCardConnector {
                 .doOnError(error -> log.error("Error API while getting product by card: {}", error.getMessage()));
     }
 
+    private Mono<PlasticCardBean> fallbackGetPlasticCardById(String cardId, Throwable throwable) {
+        log.error("Fallback por fallbackGetPlasticCardById {}, {}", cardId, throwable.getMessage());
+        return Mono.just(new PlasticCardBean());
+    }
 }
