@@ -3,6 +3,7 @@ package com.bootcamp.business_service.connector;
 import com.bootcamp.business_service.util.JsonTransferUtil;
 import com.bootcamp.commons.bean.transaction.TransactionRQ;
 import com.bootcamp.commons.bean.transaction.TransactionRS;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,8 @@ public class TransactionConnector {
         this.webClient = webClient;
     }
 
+    // Endpoint de transaction API para crear una transacción
+    @CircuitBreaker(name = "transactionService", fallbackMethod = "fallCreateTransaction")
     public Mono<TransactionRS> createTransaction(Mono<TransactionRQ> transactionRQMono) {
         return transactionRQMono
                 .doOnNext(rq ->  log.info("API Create Transaction RQ{}",
@@ -46,6 +49,8 @@ public class TransactionConnector {
                 .doOnError(error -> log.error("Error while getTransactionsByCustomerId: {}", error.getMessage()));
     }
 
+    // Endpoint de transaction API para obtener las transacciones por productId
+    @CircuitBreaker(name = "transactionService", fallbackMethod = "fallBackGetTransactionsByProductId")
     public Flux<TransactionRS> getTransactionsByProductId(String productId, LocalDate startDate, LocalDate endDate) {
         log.info("API getTransactionsByProductId {} and dates from {}, to {}", productId, startDate, endDate);
         return webClient.get()
@@ -59,6 +64,17 @@ public class TransactionConnector {
                 .retrieve()
                 .bodyToFlux(TransactionRS.class)
                 .doOnError(error -> log.error("Error while getTransactionsByProductId: {}", error.getMessage()));
+    }
+
+    private Mono<TransactionRS> fallCreateTransaction(Mono<TransactionRQ> transactionRQMono, Throwable throwable) {
+        log.error("Fallback for fallCreateTransaction {}, {}", JsonTransferUtil.objectToJson(transactionRQMono), throwable.getMessage());
+        return Mono.just(new TransactionRS());
+    }
+
+    private Flux<TransactionRS> fallBackGetTransactionsByProductId(String productId, LocalDate startDate, LocalDate endDate,
+                                                          Throwable throwable) {
+        log.error("FallBack for fallBackGetTransactionsByProductId: {}, {}, {}, {}", productId, startDate, endDate, throwable.getMessage());
+        return Flux.just(new TransactionRS());
     }
 
 }
