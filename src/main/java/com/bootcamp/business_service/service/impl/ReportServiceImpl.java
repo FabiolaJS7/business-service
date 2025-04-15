@@ -97,7 +97,7 @@ public class ReportServiceImpl implements ReportService {
                                         .flatMap(plasticCardBean -> productConnector.getProductById(plasticCardBean.getProductIdAssociated()))
                                 .flatMapMany(productResponse -> {
                                     if (Boolean.TRUE.equals(productResponse.getHasPlasticCard())) {
-                                        return transactionConnector.getTransactionsByProductId(rq.getProductId(), null, null)
+                                        return transactionConnector.getTransactionsByProductId(productResponse.getId(), null, null)
                                                 .sort((m1, m2) -> m2.getDateOfTransaction()
                                                         .compareTo(m1.getDateOfTransaction())) // Ordenar por fecha desc
                                                 .take(LAST_10_MOVEMENTS); // Toma los últimos 10 registros más recientes
@@ -171,7 +171,7 @@ public class ReportServiceImpl implements ReportService {
                                             productReportbean.setCreditEnabled(balanceBeanResponse.getCreditEnabledToUse());
                                             products.add(productReportbean);
                                             reportRS1.setProducts(products);
-                                            reportRS1.setMessage("Success - Reporte últimos 10 movimientos del plastic card associated to productId"
+                                            reportRS1.setMessage("Success - Reporte últimos 10 movimientos del plastic card associated to productId "
                                                     + plasticCardBean.getProductIdAssociated());
                                             return reportRS1;
                                         }).thenReturn(reportRS1)
@@ -180,19 +180,24 @@ public class ReportServiceImpl implements ReportService {
 
                     } else {
                         return productConnector.getProductById(rq.getProductId())
-                                .map(productResponse -> {
-                                    List<ProductReportbean> products = new ArrayList<>();
-                                    ProductReportbean productReportbean = new ProductReportbean();
-                                    productReportbean.setProductId(productResponse.getId());
-                                    productReportbean.setCreditCardNumber(productResponse.getCardNumber());
-                                    productReportbean.setCustomerId(productResponse.getCustomer().getCustomerId());
-                                    productReportbean.setProductType(ProductTypeConstants.COMPLETE_PRODUCTS_NAME
-                                            .get(productResponse.getProductType()));
-                                    products.add(productReportbean);
-                                    reportRS1.setProducts(products);
-                                    reportRS1.setMessage("Success - Reporte movimientos realizados por el producto indicado");
-                                    return reportRS1;
-                                });
+                                .flatMap(productResponse -> productConnector.findBalanceByProductId(rq.getProductId())
+                                        .map(balanceBeanResponse -> {
+                                            List<ProductReportbean> products = new ArrayList<>();
+                                            ProductReportbean productReportbean = new ProductReportbean();
+                                            productReportbean.setProductId(productResponse.getId());
+                                            productReportbean.setCreditCardNumber(productResponse.getCardNumber());
+                                            productReportbean.setCustomerId(productResponse.getCustomer().getCustomerId());
+                                            productReportbean.setProductType(ProductTypeConstants.COMPLETE_PRODUCTS_NAME
+                                                    .get(productResponse.getProductType()));
+                                            productReportbean.setBalance(balanceBeanResponse.getTotalAmountInAccount());
+                                            productReportbean.setCreditEnabled(balanceBeanResponse.getCreditEnabledToUse());
+                                            productReportbean.setCreditLimitTotal(balanceBeanResponse.getCreditLimit());
+                                            productReportbean.setCreditUser(balanceBeanResponse.getCreditLimitUsed());
+                                            products.add(productReportbean);
+                                            reportRS1.setProducts(products);
+                                            reportRS1.setMessage("Success - Reporte movimientos realizados por el producto indicado");
+                                            return reportRS1;
+                                        }));
 
                     }
                 });
