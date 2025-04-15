@@ -226,6 +226,8 @@ components:
         productId:
           type: string
           description: product id in case typereport is MOVEMENT
+        plasticCardId:
+          type: string
         dateFrom:
           type: string
           format: date

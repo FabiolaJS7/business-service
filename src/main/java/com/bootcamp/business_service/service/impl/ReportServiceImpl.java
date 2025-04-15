@@ -17,6 +17,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -60,7 +61,7 @@ public class ReportServiceImpl implements ReportService {
 
                     if (productReportBeans.isEmpty()) {
                         // Manejar el caso en que no haya productos
-                        return Mono.error(new RuntimeException("No products found for the given customer"));
+                        return buildReportEmpty(reportRQ);
                     }
 
                     return reportRQ
@@ -70,6 +71,7 @@ public class ReportServiceImpl implements ReportService {
                                 reportRS1.setDateToday(LocalDate.now());
                                 reportRS1.setTypeReport(reportRQ1.getTypeReport());
                                 reportRS1.setProducts(productReportBeans);
+                                reportRS1.setMessage("Success - Reporte productos del cliente ingresado.");
                                 return reportRS1;
                             });
 
@@ -79,7 +81,7 @@ public class ReportServiceImpl implements ReportService {
 
     }
 
-    @Override
+    @Override // Ingresa a este método cuando typeReport es PLASTIC_CARD o MOVEMENT
     public Mono<ReportRS> getMovementByProductId(Mono<ReportRQ> reportRQ) {
 
         Flux<TransactionRS> transactionRSFlux = reportRQ
@@ -88,11 +90,13 @@ public class ReportServiceImpl implements ReportService {
                         return transactionConnector.getTransactionsByProductId(rq.getProductId(),
                                 rq.getDateFrom(), rq.getDateTo());
                     } else { // Condicional cuando llega type_report PLASTIC_CARD para tomar los 10 últimos movimientos de la plasticcard
-                        return productConnector.getProductById(rq.getProductId())
+                        return productConnector.getPlasticCardById(rq.getPlasticCardId())
+                                        .flatMap(plasticCardBean -> productConnector.getProductById(plasticCardBean.getProductIdAssociated()))
                                 .flatMapMany(productResponse -> {
                                     if (Boolean.TRUE.equals(productResponse.getHasPlasticCard())) {
                                         return transactionConnector.getTransactionsByProductId(rq.getProductId(), null, null)
-                                                .sort((m1, m2) -> m2.getDateOfTransaction().compareTo(m1.getDateOfTransaction())) // Ordenar por fecha desc
+                                                .sort((m1, m2) -> m2.getDateOfTransaction()
+                                                        .compareTo(m1.getDateOfTransaction())) // Ordenar por fecha desc
                                                 .take(LAST_10_MOVEMENTS); // Toma los últimos 10 registros más recientes
                                     }
 
@@ -115,51 +119,105 @@ public class ReportServiceImpl implements ReportService {
                 .collectList()
                 .flatMap(movementReportbeans -> {
                     if (movementReportbeans.isEmpty()) {
-                        return reportRQ
-                                .flatMap(rq -> {
-                                    ReportRS rs = new ReportRS();
-                                   if (rq.getTypeReport().equalsIgnoreCase(ReportTypeConstants.PLASTIC_CARD)) {
-
-                                       rs.setCustomerId(rq.getCustomerId());
-                                       rs.setDateToday(LocalDate.now());
-                                       return Mono.just(rs);
-
-                                   }
-
-                                   return Mono.just(rs);
-                                });
+                        return buildReportEmpty(reportRQ);
                     } else {
-                        return reportRQ
-                                .map(reportRQ1 -> {
-                                    ReportRS reportRS1 = new ReportRS();
-                                    reportRS1.setCustomerId(reportRQ1.getCustomerId());
-                                    reportRS1.setDateToday(LocalDate.now());
-                                    reportRS1.setTypeReport(reportRQ1.getTypeReport());
-                                    reportRS1.setMessage("success");
-                                    ResumeMovement resumeMovement = new ResumeMovement();
-                                    resumeMovement.setProductId(reportRQ1.getProductId());
-                                    resumeMovement.setTotalAmountCommission(movementReportbeans
-                                            .stream()
-                                            .map(MovementReportbean::getCommissionAmount)
-                                            .reduce(0.00, Double::sum));
-                                    resumeMovement.setTotalAmountConsume(getByConcept(movementReportbeans,
-                                            MovementTypeConstants.CONSUME));
-                                    resumeMovement.setTotalAmountDeposit(getByConcept(movementReportbeans,
-                                            MovementTypeConstants.DEPOSIT));
-                                    resumeMovement.setTotalAmountWithdraw(getByConcept(movementReportbeans,
-                                            MovementTypeConstants.WITHDRAW));
-                                    resumeMovement.setTotalAmountPayments(getByConcept(movementReportbeans,
-                                            MovementTypeConstants.PAYMENT));
-                                    resumeMovement.setMovements(movementReportbeans);
-                                    reportRS1.setResumeMovement(resumeMovement);
+                        return builtReportWhenHasMovements(reportRQ, movementReportbeans);
+                    }
+                })
+                .doOnSuccess(reportRS1 -> log.info("Report of movement successfully built {}",
+                        JsonTransferUtil.objectToJson(reportRS1)))
+                .doOnError(throwable -> log.error("Request error getMovementByProductId {}", throwable.getMessage()));
+    }
+
+    private Mono<ReportRS> builtReportWhenHasMovements(Mono<ReportRQ> reportRQ, List<MovementReportbean> movementReportbeans) {
+        return reportRQ
+                .flatMap(rq -> {
+                    ReportRS reportRS1 = new ReportRS();
+                    reportRS1.setCustomerId(rq.getCustomerId());
+                    reportRS1.setDateToday(LocalDate.now());
+                    reportRS1.setTypeReport(rq.getTypeReport());
+
+                    ResumeMovement resumeMovement = new ResumeMovement();
+                    resumeMovement.setProductId(rq.getProductId());
+                    resumeMovement.setTotalAmountCommission(movementReportbeans
+                            .stream()
+                            .map(MovementReportbean::getCommissionAmount)
+                            .reduce(0.00, Double::sum));
+                    resumeMovement.setTotalAmountConsume(getByConcept(movementReportbeans,
+                            MovementTypeConstants.CONSUME));
+                    resumeMovement.setTotalAmountDeposit(getByConcept(movementReportbeans,
+                            MovementTypeConstants.DEPOSIT));
+                    resumeMovement.setTotalAmountWithdraw(getByConcept(movementReportbeans,
+                            MovementTypeConstants.WITHDRAW));
+                    resumeMovement.setTotalAmountPayments(getByConcept(movementReportbeans,
+                            MovementTypeConstants.PAYMENT));
+                    resumeMovement.setMovements(movementReportbeans);
+                    reportRS1.setResumeMovement(resumeMovement);
+
+                    if (rq.getTypeReport().equalsIgnoreCase(ReportTypeConstants.PLASTIC_CARD)) {
+                        return productConnector.getPlasticCardById(rq.getPlasticCardId())
+                                .flatMap(plasticCardBean -> productConnector.findBalanceByProductId(plasticCardBean.getProductIdAssociated())
+                                        .map(balanceBeanResponse -> {
+                                            List<ProductReportbean> products = new ArrayList<>();
+                                            ProductReportbean productReportbean = new ProductReportbean();
+                                            productReportbean.setProductId(plasticCardBean.getProductIdAssociated());
+                                            productReportbean.setCreditCardNumber(plasticCardBean.getCardNumber());
+                                            productReportbean.setProductType(plasticCardBean.getCardType());
+                                            productReportbean.setCreditUser(balanceBeanResponse.getCreditLimitUsed());
+                                            productReportbean.setCreditLimitTotal(balanceBeanResponse.getCreditLimit());
+                                            productReportbean.setCreditEnabled(balanceBeanResponse.getCreditEnabledToUse());
+                                            products.add(productReportbean);
+                                            reportRS1.setProducts(products);
+                                            reportRS1.setMessage("Success - Reporte últimos 10 movimientos del plastic card associated to productId"
+                                                    + plasticCardBean.getProductIdAssociated());
+                                            return reportRS1;
+                                        }).thenReturn(reportRS1)
+                                );
+
+
+                    } else {
+                        return productConnector.getProductById(rq.getProductId())
+                                .map(productResponse -> {
+                                    List<ProductReportbean> products = new ArrayList<>();
+                                    ProductReportbean productReportbean = new ProductReportbean();
+                                    productReportbean.setProductId(productResponse.getId());
+                                    productReportbean.setCreditCardNumber(productResponse.getCardNumber());
+                                    productReportbean.setCustomerId(productResponse.getCustomer().getCustomerId());
+                                    productReportbean.setProductType(ProductTypeConstants.COMPLETE_PRODUCTS_NAME
+                                            .get(productResponse.getProductType()));
+                                    products.add(productReportbean);
+                                    reportRS1.setProducts(products);
+                                    reportRS1.setMessage("Success - Reporte movimientos realizados por el producto indicado");
                                     return reportRS1;
                                 });
+
+                    }
+                });
+    }
+
+    private Mono<ReportRS> buildReportEmpty(Mono<ReportRQ> reportRQ) {
+        return reportRQ
+                .map(rq -> {
+                    ReportRS rs = new ReportRS();
+                    if (rq.getTypeReport().equalsIgnoreCase(ReportTypeConstants.PLASTIC_CARD)) {
+                        rs.setMessage("La producto plastic card ingresado no cuenta con movimientos o no es una plastic card");
+                        rs.setCustomerId(rq.getCustomerId());
+                        rs.setDateToday(LocalDate.now());
+                        return rs;
+
+                    }  else if (rq.getTypeReport().equalsIgnoreCase(ReportTypeConstants.BALANCE)) {
+                        rs.setMessage("no existen productos para el cliente ingresado");
+                        rs.setCustomerId(rq.getCustomerId());
+                        rs.setDateToday(LocalDate.now());
+                        return rs;
+                    } else {
+                        rs.setMessage("El producto ingresado no cuenta con movimientos");
+                        rs.setCustomerId(rq.getCustomerId());
+                        rs.setDateToday(LocalDate.now());
+                        return rs;
                     }
 
-
-                })
-                .doOnSuccess(reportRS1 -> log.info("Report of movement successfully built {}", JsonTransferUtil.objectToJson(reportRS1)))
-                .doOnError(throwable -> log.error("Request error getMovementByProductId {}", throwable.getMessage()));
+                });
     }
 
     private Double getByConcept(List<MovementReportbean> movementReportbeans, String movementType) {
