@@ -26,6 +26,10 @@ import java.util.HashMap;
 @AllArgsConstructor
 public class LogicalToDoMovement {
 
+    private static final String ENABLED = "enabled";
+    private static final String COMMISSION = "commission";
+    private static final String MESSAGE = "message";
+
     ProductConnector productConnector;
     CustomerConnector customerConnector;
     TransactionConnector transactionConnector;
@@ -33,12 +37,14 @@ public class LogicalToDoMovement {
 
     public Mono<HashMap<String, String>> validates(Mono<MovementRQ> movementRQ) {
 
+        HashMap<String, String> map = new HashMap<>();
+        map.put(ENABLED, Boolean.FALSE.toString());
+        map.put(COMMISSION, "0");
+        map.put(MESSAGE, "*");
+
         return movementRQ
                 .flatMap(movement -> {
-                    HashMap<String, String> map = new HashMap<>();
-                    map.put("enabled", "false");
-                    map.put("commission", "0");
-                    map.put("message", "*");
+
                     map.put("movementType", movement.getMovementType());
 
                     // Obtiene el registro del producto
@@ -84,34 +90,34 @@ public class LogicalToDoMovement {
                                                             if (ProductTypeConstants.PASSIVE_PRODUCTS.contains(productResponse.getProductType())) {
                                                                 // Validación si pasa el límite máximo de movimientos por mes se asigna comisión
                                                                 if (numberOfTransctions >= productTypeResponse.getMaxMovementPerMonth().intValue()) {
-                                                                    map.put("commission", String.valueOf(productTypeResponse.getMovementCommission()));
+                                                                    map.put(COMMISSION, String.valueOf(productTypeResponse.getMovementCommission()));
                                                                 } else {
-                                                                    map.put("commission", "0.00");
+                                                                    map.put(COMMISSION, "0.00");
                                                                 }
 
                                                                 if (MovementTypeConstants.DEPOSIT.equalsIgnoreCase(movement.getMovementType())) {
-                                                                    map.put("enabled", "true");
+                                                                    map.put(ENABLED, "true");
                                                                 } else {
                                                                     // Si es retiro, validamos que el balance sea mayor al monto a retirar
                                                                     if (balanceBeanResponse.getTotalAmountInAccount() >= movement.getAmount()) {
-                                                                        map.put("enabled", "true");
+                                                                        map.put(ENABLED, "true");
                                                                     } else {
-                                                                        map.put("enabled", "false");
-                                                                        map.put("message", "No hay monto suficiente para retiro");
+                                                                        map.put(ENABLED, "false");
+                                                                        map.put(MESSAGE, "No hay monto suficiente para retiro");
                                                                     }
                                                                 }
                                                             } else {
                                                                 if (MovementTypeConstants.CONSUME.equalsIgnoreCase(movement.getMovementType())) {
                                                                     if (ProductTypeConstants.CREDIT_CARD.equalsIgnoreCase(productResponse.getProductType())
                                                                             && movement.getAmount() <= balanceBeanResponse.getCreditEnabledToUse()) {
-                                                                        map.put("enabled", "true");
+                                                                        map.put(ENABLED, "true");
                                                                     } else {
-                                                                        map.put("message", "No cuenta con fondos en la tarjeta de credito (CC)");
+                                                                        map.put(MESSAGE, "No cuenta con fondos en la tarjeta de credito (CC)");
                                                                     }
                                                                 } else if (MovementTypeConstants.PAYMENT.equalsIgnoreCase(movement.getMovementType())) {
-                                                                    map.put("enabled", "true");
+                                                                    map.put(ENABLED, "true");
                                                                 } else  {
-                                                                    map.put("message", "Cuentas de crédito no aplica para movimiento " + movement.getMovementType());
+                                                                    map.put(MESSAGE, "Cuentas de crédito no aplica para movimiento " + movement.getMovementType());
                                                                 }
 
 
@@ -123,6 +129,11 @@ public class LogicalToDoMovement {
                                         );
 
                             });
+                })
+                .onErrorResume(throwable -> {
+                    map.put(ENABLED, "false");
+                    map.put(MESSAGE, "Error occurred while consulting some service.");
+                    return Mono.just(map);
                 })
                 .doOnSuccess(stringStringHashMap -> log.info("validates: {}", stringStringHashMap));
     }
