@@ -3,6 +3,7 @@ package com.bootcamp.business_service.connector;
 import com.bootcamp.business_service.util.JsonTransferUtil;
 import com.bootcamp.commons.bean.customers.CustomerRequest;
 import com.bootcamp.commons.bean.customers.CustomerResponse;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,7 @@ public class CustomerConnector {
     }
 
     // Endpoint de customer API para traer customer by id
+    @CircuitBreaker(name = "customerService", fallbackMethod = "fallbackForGetCustomerById")
     public Mono<CustomerResponse> getCustomerById(String customerId) {
         log.info("API getCustomerById RQ: {}", customerId);
         return webClient.get()
@@ -48,6 +50,7 @@ public class CustomerConnector {
     }
 
     // Endpoint de customer API para crear un customer
+    @CircuitBreaker(name = "customerService", fallbackMethod = "fallbackForCreateCustomer")
     public Mono<CustomerResponse> createCustomer(Mono<CustomerRequest> customerRequest) {
         return customerRequest
                 .doOnNext(rq -> log.info("API createCustomer RQ: {}", JsonTransferUtil.objectToJson(rq)))
@@ -60,5 +63,17 @@ public class CustomerConnector {
                                 JsonTransferUtil.objectToJson(response)))
                         .doOnError(error -> log.error("API error createCustomer: {}", error.getMessage()))
                 );
+    }
+
+    // El fallbacks que devuelven métodos vacíos
+    private Mono<CustomerResponse> fallbackForGetCustomerById(String customerId, Throwable throwable) {
+        log.error("Fallback for getCustomerById triggered for customerId {}: {}", customerId, throwable.getMessage());
+        return Mono.just(new CustomerResponse());
+    }
+
+    // El fallback devuelve un objeto vacío
+    private Mono<CustomerResponse> fallbackForCreateCustomer(Mono<CustomerRequest> customerRequest, Throwable throwable) {
+        log.error("Fallback for createCustomer triggered: {}", throwable.getMessage());
+        return Mono.just(new CustomerResponse());
     }
 }

@@ -67,6 +67,13 @@ public class ProductServiceImpl implements ProductService {
                     })
 
                 )
+                .onErrorResume(throwable -> {
+                    CreateProductRS createProductRS = new CreateProductRS();
+                    createProductRS.setProductId(null);
+                    createProductRS.setResult(false);
+                    createProductRS.setMessage(throwable.getMessage());
+                    return Mono.just(createProductRS);
+                })
                 .doOnSuccess(createProductRS -> log.info("Product creation completed {}",
                         JsonTransferUtil.objectToJson(createProductRS)))
                 .doOnError(throwable -> log.error("Product creation failed", throwable));

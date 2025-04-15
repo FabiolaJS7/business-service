@@ -103,8 +103,13 @@ public class LogicalCreateProduct {
                     }
                     return Mono.just(map);
                 })
-                .doOnSuccess(response -> log.info("Validations to create product: {}", response))
-                .doOnError(error -> log.error("Error validate logical to create product: {}", error.getMessage()));
+                .onErrorResume(throwable -> {
+                    map.put("enabled", "false");
+                    map.put("message", "Error occurred while consulting some service.");
+                    return Mono.just(map);
+                })
+                .doOnSuccess(response -> log.info("Validations to create product: {}", response));
+
 
     }
 }

@@ -33,12 +33,20 @@ public class CustomerServiceImpl implements CustomerService {
                 })
                 .map(customerResponse -> {
                     ManagementCustomerRS managementCustomerRS = new ManagementCustomerRS();
-                    managementCustomerRS.setResult(customerResponse.getId().isEmpty() ? Boolean.FALSE : Boolean.TRUE);
-                    managementCustomerRS.setMessage(customerResponse.getId());
+                    if (!customerResponse.getId().isEmpty()) {
+                        managementCustomerRS.setResult(Boolean.TRUE);
+                        managementCustomerRS.setMessage(customerResponse.getId());
+                    }
                     return managementCustomerRS;
                 })
-                .doOnSuccess(m -> log.info("2. Management customer successfully: {}", m))
-                .doOnError(e -> log.error("3. Management customer error: {}", e.getMessage()));
-
+                .onErrorResume(e -> {
+                    log.error("3. Management customer error: {}", e.getMessage());
+                    // Devuelve un ManagementCustomerRS en falste en caso de error
+                    ManagementCustomerRS emptyResponse = new ManagementCustomerRS();
+                    emptyResponse.setResult(Boolean.FALSE);
+                    emptyResponse.setMessage("Error occurred while consulting the customer service.");
+                    return Mono.just(emptyResponse);
+                })
+                .doOnSuccess(m -> log.info("2. Management customer successfully: {}", m));
     }
 }
