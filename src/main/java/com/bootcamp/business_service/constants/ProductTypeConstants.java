@@ -9,6 +9,7 @@ public class ProductTypeConstants {
     public static final String SAVING_ACCOUNT = "SA"; //Cuenta de ahorros
     public static final String CURRENT_ACCOUNT = "CA"; //Cuenta corriente
     public static final String FIXED_ACCOUNT = "FA"; //Plazo fijo
+    public static final String CURRENT_ACCOUNT_PYME = "CAM"; //Cuenta corriente
 
     //ACTIVE PRODUCTS
     public static final String CREDIT_PERSONAL = "CP"; //Credito Personal
@@ -21,6 +22,7 @@ public class ProductTypeConstants {
         PASSIVE_PRODUCTS.add(SAVING_ACCOUNT);
         PASSIVE_PRODUCTS.add(CURRENT_ACCOUNT);
         PASSIVE_PRODUCTS.add(FIXED_ACCOUNT);
+        PASSIVE_PRODUCTS.add(CURRENT_ACCOUNT_PYME);
     }
 
     public static final ArrayList<String> ACTIVE_PRODUCTS = new ArrayList<String>();
@@ -40,6 +42,7 @@ public class ProductTypeConstants {
         COMPLETE_PRODUCTS_NAME.put(CREDIT_PERSONAL, "CREDITO PERSONAL");
         COMPLETE_PRODUCTS_NAME.put(CREDIT_BUSINESS, "CREDITO NEGOCIO");
         COMPLETE_PRODUCTS_NAME.put(CREDIT_CARD, "TARJETA DE CREDITO");
+        COMPLETE_PRODUCTS_NAME.put(CURRENT_ACCOUNT_PYME, "CURRENT ACCOUNT BUSINESS PYME");
 
     }
 

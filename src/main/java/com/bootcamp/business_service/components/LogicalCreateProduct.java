@@ -56,9 +56,10 @@ public class LogicalCreateProduct {
 
                     if (isProductAlreadyExists(productResponses, createProductRQ1.getProductType())) {
                         validatePersonalCustomer(map);
-                        validateBusinessCustomer(map);
+
                     }
 
+                    validateBusinessCustomer(map);
                     validateVipCustomer(map, productResponses);
                     validatePymeCustomer(map, productResponses);
 
@@ -85,10 +86,10 @@ public class LogicalCreateProduct {
         if (map.get(CUSTOMER_TYPE).equalsIgnoreCase(CustomerTypeConstants.PERSONAL)) {
             if (ProductTypeConstants.PASSIVE_PRODUCTS.contains(map.get(PRODUCT_TYPE))) {
                 map.put(ENABLED, Boolean.FALSE.toString());
-                map.put(MESSAGE, "Customer type P (Personal) has SA (Save Account) yet, can't create this product again");
+                map.put(MESSAGE, "Cliente tipo P (Personal) ya cuenta con un producto SA (Save Account)");
             } else if (map.get(PRODUCT_TYPE).equalsIgnoreCase(ProductTypeConstants.CREDIT_PERSONAL)) {
                 map.put(ENABLED, Boolean.FALSE.toString());
-                map.put(MESSAGE, "Customer type P (Personal) has a Credit personal yet, can't create this product again");
+                map.put(MESSAGE, "Cliete tipo P (Personal) ya cuenta con un CP (Crédito personal)");
             }
         }
     }
@@ -99,11 +100,17 @@ public class LogicalCreateProduct {
             if (map.get(PRODUCT_TYPE).equalsIgnoreCase(ProductTypeConstants.SAVING_ACCOUNT)
                     || map.get(PRODUCT_TYPE).equalsIgnoreCase(ProductTypeConstants.FIXED_ACCOUNT)) {
                 map.put(ENABLED, Boolean.FALSE.toString());
-                map.put(MESSAGE, "Customer type B (Business) can't create products SA (Save account) or FA (Fixed account)");
+                map.put(MESSAGE, "Cliente tipo B (Business) no puede tener productos SA (Save account) or FA (Fixed account)");
             } else if (map.get(PRODUCT_TYPE).equalsIgnoreCase(ProductTypeConstants.CREDIT_PERSONAL)) {
                 map.put(ENABLED, Boolean.FALSE.toString());
-                map.put(MESSAGE, "Customer type B (Business) can't create product CP (Credit personal)");
+                map.put(MESSAGE, "Cliente type B (Business) no puede puede tener un producto CP (Credit personal)");
             }
+        } else if (map.get(CUSTOMER_TYPE).equalsIgnoreCase(CustomerTypeConstants.BUSINESS_PYME) &&
+                map.get(PRODUCT_TYPE).equalsIgnoreCase(ProductTypeConstants.CURRENT_ACCOUNT)) {
+            map.put(ENABLED, Boolean.FALSE.toString());
+            map.put(MESSAGE, "Cliente tipo M (Pyme) no puede tener productos CA (Current account) " +
+                    "debe crearse un producto CAM (Current account Pyme) previamente tener una credit card");
+
         }
     }
 
@@ -116,7 +123,7 @@ public class LogicalCreateProduct {
                 && map.get(CUSTOMER_TYPE).equalsIgnoreCase(CustomerTypeConstants.PERSONAL_VIP)) {
             if (!hasCreditCard) {
                 map.put(ENABLED, Boolean.FALSE.toString());
-                map.put(MESSAGE, "Customer type V (Personal VIP) should have a credit card previously to create SA (Save account)");
+                map.put(MESSAGE, "Cliente tipo V (Personal VIP) debe tener un credit card antes de tener el producto SA (Save account)");
             }
         }
     }
@@ -126,11 +133,11 @@ public class LogicalCreateProduct {
         boolean hasCreditCard = productResponses.stream()
                 .anyMatch(productResponse -> productResponse.getProductType().equalsIgnoreCase(ProductTypeConstants.CREDIT_CARD));
 
-        if (map.get(PRODUCT_TYPE).equalsIgnoreCase(ProductTypeConstants.CURRENT_ACCOUNT)
+        if (map.get(PRODUCT_TYPE).equalsIgnoreCase(ProductTypeConstants.CURRENT_ACCOUNT_PYME)
                 && map.get(CUSTOMER_TYPE).equalsIgnoreCase(CustomerTypeConstants.BUSINESS_PYME)) {
             if (!hasCreditCard) {
                 map.put(ENABLED, Boolean.FALSE.toString());
-                map.put(MESSAGE, "Customer type M (Business Pyme) should have a credit card previously to create CA (Current account)");
+                map.put(MESSAGE, "Cliente tipo M (Business Pyme) debe tener un credit card antes de tener el producto CA (Current account)");
             }
         }
     }

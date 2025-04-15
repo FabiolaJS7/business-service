@@ -2,6 +2,7 @@ package com.bootcamp.business_service.service.impl;
 
 import com.bootcamp.business_service.components.LogicalAddPersonToProduct;
 import com.bootcamp.business_service.components.LogicalCreateProduct;
+import com.bootcamp.business_service.connector.PlasticCardConnector;
 import com.bootcamp.business_service.connector.ProductConnector;
 
 import com.bootcamp.business_service.constants.CasesUpdateConstants;
@@ -32,6 +33,7 @@ public class ProductServiceImpl implements ProductService {
     LogicalAddPersonToProduct logicalAddPersonToProduct;
     ProductTransfer productTransfer;
     AdditionalPersonTransfer additionalPersonTransfer;
+    PlasticCardConnector plasticCardConnector;
 
     @Override
     public Mono<CreateProductRS> createProduct(Mono<CreateProductRQ> createProductRQ) {
@@ -162,7 +164,7 @@ public class ProductServiceImpl implements ProductService {
 
     // Método para setear en el createCardRS los detalles de la tarjeta nueva asociada al producto
     private Mono<CreateCardRS> getPlasticCardDetails(ProductResponse productResponseUpdated) {
-        return productConnector.getPlasticCardById(productResponseUpdated.getCardNumber())
+        return plasticCardConnector.getPlasticCardById(productResponseUpdated.getCardNumber())
                 .map(plasticCardBean -> {
                     CreateCardRS createCardRS = new CreateCardRS();
                     createCardRS.setCardId(plasticCardBean.getId());

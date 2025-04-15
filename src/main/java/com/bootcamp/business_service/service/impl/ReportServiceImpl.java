@@ -1,5 +1,6 @@
 package com.bootcamp.business_service.service.impl;
 
+import com.bootcamp.business_service.connector.PlasticCardConnector;
 import com.bootcamp.business_service.connector.ProductConnector;
 import com.bootcamp.business_service.connector.TransactionConnector;
 import com.bootcamp.business_service.constants.MovementTypeConstants;
@@ -26,8 +27,10 @@ import java.util.List;
 public class ReportServiceImpl implements ReportService {
 
     private static final int LAST_10_MOVEMENTS = 10;
+
     TransactionConnector transactionConnector;
     ProductConnector productConnector;
+    PlasticCardConnector plasticCardConnector;
 
     @Override
     public Mono<ReportRS> getReportByCustomerId(Mono<ReportRQ> reportRQ) {
@@ -90,7 +93,7 @@ public class ReportServiceImpl implements ReportService {
                         return transactionConnector.getTransactionsByProductId(rq.getProductId(),
                                 rq.getDateFrom(), rq.getDateTo());
                     } else { // Condicional cuando llega type_report PLASTIC_CARD para tomar los 10 últimos movimientos de la plasticcard
-                        return productConnector.getPlasticCardById(rq.getPlasticCardId())
+                        return plasticCardConnector.getPlasticCardById(rq.getPlasticCardId())
                                         .flatMap(plasticCardBean -> productConnector.getProductById(plasticCardBean.getProductIdAssociated()))
                                 .flatMapMany(productResponse -> {
                                     if (Boolean.TRUE.equals(productResponse.getHasPlasticCard())) {
@@ -155,7 +158,7 @@ public class ReportServiceImpl implements ReportService {
                     reportRS1.setResumeMovement(resumeMovement);
 
                     if (rq.getTypeReport().equalsIgnoreCase(ReportTypeConstants.PLASTIC_CARD)) {
-                        return productConnector.getPlasticCardById(rq.getPlasticCardId())
+                        return plasticCardConnector.getPlasticCardById(rq.getPlasticCardId())
                                 .flatMap(plasticCardBean -> productConnector.findBalanceByProductId(plasticCardBean.getProductIdAssociated())
                                         .map(balanceBeanResponse -> {
                                             List<ProductReportbean> products = new ArrayList<>();
