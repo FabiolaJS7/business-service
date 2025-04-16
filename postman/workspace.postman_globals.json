@@ -1,0 +1,39 @@
+{
+	"id": "0f0bc8c4-d45d-4d9d-8f7c-c13d191f9ee3",
+	"values": [
+		{
+			"key": "port-dev-customer",
+			"value": "8282",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "srv-dev",
+			"value": "http://localhost",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "port-dev-product",
+			"value": "8383",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "port-dev-transaction",
+			"value": "8484",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "port-dev-business",
+			"value": "8585",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2025-04-16T01:26:10.512Z",
+	"_postman_exported_using": "Postman/11.40.2-250409-1302"
+}
