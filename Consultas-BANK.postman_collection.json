@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "d9001d18-e1d8-458c-a913-93af56388d73",
+		"name": "Consultas - BANK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10981861"
+	},
+	"item": [
+		{
+			"name": "Business Logic",
+			"item": [
+				{
+					"name": "Crear producto para un cliente",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "// Creación de un nuevo producto\r\n{\r\n  \"customerId\": \"67ec1a63fabf6d0f4ada9866\",  // CustomerId del cliente previamente registrado.\r\n  \"productType\": \"CA\", // Tipo de producto = PASSIVE -> SA  (SA-Saving account, CA-Current Account, FA-Fixed Account), \r\n                                        //   ACTIVE (CC-CreditCard, CB-CreditBussines, CP-PersonalCredit)\r\n  \"openAmount\": 1000 // En caso sea un producto PASSIVE (cuentas bancarias) se puede ingresar un monto de apertura\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{srv-dev}}:{{port-dev-business}}/api/business/products",
+							"host": [
+								"{{srv-dev}}"
+							],
+							"port": "{{port-dev-business}}",
+							"path": [
+								"api",
+								"business",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar titular o firmante autorizado",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "// Agregar persona como titular o firmante autorizado para un producto\r\n{\r\n  \"typeAdditional\": \"HOLD\", // HOLD = para agregar titular , SIGN = para agregar firmante\r\n  \"productId\": \"67fec9835c652468edc457d0\",\r\n  \"fullName\": \"ABRAHAM  BERMEJO\",\r\n  \"identificationNum\": \"444\",\r\n  \"identificationType\": \"DNI\",\r\n  \"email\": \"mail@gmail.commmm\",\r\n  \"phone\": \"11111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{srv-dev}}:{{port-dev-business}}/api/business/persons",
+							"host": [
+								"{{srv-dev}}"
+							],
+							"port": "{{port-dev-business}}",
+							"path": [
+								"api",
+								"business",
+								"persons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hacer un movimiento bancario",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "// Hacer un movimieno bancario\r\n{\r\n  \"customerId\": \"67fec9835c652468edc457d0\", // customerid de quien está haciendo el movimiento\r\n  \"productId\": \"67fec9835c652468edc457d0\", // productoid desde donde se está haciendo el movimiento\r\n  \"movementType\": \"TRANSFER\",    // DEPOSIT (deposito a cuenta de ahorros) , \r\n                                // WITHDRAW\" (retiro de cuenta de ahorros), \r\n                                // TRANSFER (entre cuentas de ahorros - agregar accountNumberToTransfer),\r\n                                // CONSUME  (consumo de CC) \r\n                                // PAYMENT (pago de CC, CP, CB)\r\n   \"accountNumberToTransfer\" :\"SA01-3755826271\", \r\n  \"amount\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{srv-dev}}:{{port-dev-business}}/api/business/transactions",
+							"host": [
+								"{{srv-dev}}"
+							],
+							"port": "{{port-dev-business}}",
+							"path": [
+								"api",
+								"business",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reporte de una tarjeta débito o crédito",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "// Reporte de un producto tarjeta de crédito o débito\r\n// También indica los saldos de la cuenta principal asociad a la tarjeta\r\n{\r\n  \"typeReport\": \"PLASTIC_CARD\", // Reporte con los últimos 10 movimientos de la tarjeta de débito y de crédito.)\r\n  \"customerId\": \"67ec1a41fabf6d0f4ada9865\",\r\n  \"plasticCardId\": \"67fd811bc1328463019a244c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{srv-dev}}:{{port-dev-business}}/api/business/reports",
+							"host": [
+								"{{srv-dev}}"
+							],
+							"port": "{{port-dev-business}}",
+							"path": [
+								"api",
+								"business",
+								"reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reporte saldos de productos por cliente",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "// Consultar saldo de productos por cliente\r\n{\r\n  \"typeReport\": \"BALANCE\",  // BALANCE (para saldos de productos por cliente) \r\n  \"customerId\":\"67ec1a41fabf6d0f4ada9865\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{srv-dev}}:{{port-dev-business}}/api/business/reports",
+							"host": [
+								"{{srv-dev}}"
+							],
+							"port": "{{port-dev-business}}",
+							"path": [
+								"api",
+								"business",
+								"reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reporte saldos y  movimientos de un producto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "// Consultar movimientos y saldos de un producto. \r\n// Si no se indica fecha trae lo de  el último mes\r\n// Sumará el monto total de cada tipo de movimiento realizado\r\n{\r\n  \"typeReport\": \"MOVEMENT\", \r\n  \"productId\": \"67fabf94ec8287214a828c9c\",\r\n  \"dateFrom\":\"2025-01-01\",\r\n  \"dateTo\":\"2025-04-13\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{srv-dev}}:{{port-dev-business}}/api/business/reports",
+							"host": [
+								"{{srv-dev}}"
+							],
+							"port": "{{port-dev-business}}",
+							"path": [
+								"api",
+								"business",
+								"reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear cliente",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "//Creación de cliente\r\n{\r\n  \"name\": \"CARLA\",\r\n  \"action\": \"CREATE\", //CREATE, UPDATE\r\n  \"lastName\": \"GARCIA\",\r\n  \"typeClient\": \"M\", //P = Personañ , B = Business, V = Personal VIP, M = Business MYPE \r\n  \"phone\": \"98998577\",\r\n  \"email\": \"carla@MAIL.COM\",\r\n  \"createdBy\": \"admin@bank.com\",\r\n  \"identificationType\": \"RUC\",\r\n  \"numIdentification\": \"10459777998\"\r\n  }\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{srv-dev}}:{{port-dev-business}}/api/business/customers",
+							"host": [
+								"{{srv-dev}}"
+							],
+							"port": "{{port-dev-business}}",
+							"path": [
+								"api",
+								"business",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear y/o asociar plastic card a una cuenta",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productIdToAssociate\": \"\",\r\n  \"cardId\":\"67fd7f29c1328463019a244a\",\r\n  \"actionToAssociate\": \"CARD_TO_ALL_ACCOUNTS\", //CARD_TO_ALL_ACCOUNTS, CREATE_DEBIT_CARD,\r\n  \"customerId\":\"67ec1a41fabf6d0f4ada9865\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{srv-dev}}:{{port-dev-business}}/api/business/cards",
+							"host": [
+								"{{srv-dev}}"
+							],
+							"port": "{{port-dev-business}}",
+							"path": [
+								"api",
+								"business",
+								"cards"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reportes de movimientos y productos",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// Consultar reportes\r\n{\r\n  \"typeReport\": \"PLASTIC_CARD\", // Indicar tipo de reporte \r\n                                // MOVEMENT_BY_PRODUCT (para ver los moviemintos de un producto) \r\n                                // BALANCE_BY_CUSTOMER (ver los saldos de  todos los productos de un cliente) \r\n                                // COMMISSION (comisiones por periodo de tiempo de un producto) \r\n                                // PLASTI_CARD ( reporte con los últimos 10 movimientos de la tarjeta de débito y de crédito.)\r\n  \"customerId\": \"67ec1a41fabf6d0f4ada9865\", \r\n  \"productId\": \"67fabf94ec8287214a828c9c\",\r\n  \"plasticCardId\": \"67fd811bc1328463019a244c\",\r\n  \"dateFrom\":\"\",\r\n  \"dateTo\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{srv-dev}}:{{port-dev-business}}/api/business/reports",
+					"host": [
+						"{{srv-dev}}"
+					],
+					"port": "{{port-dev-business}}",
+					"path": [
+						"api",
+						"business",
+						"reports"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
