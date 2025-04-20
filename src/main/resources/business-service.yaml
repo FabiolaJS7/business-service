@@ -298,7 +298,7 @@ components:
         familyType:
           type: string
           description:  family type of product PASSIVE or ACTIVE
-        balance:
+        totalAmountPassiveProduct:
           type: number
           format: double
           description:  amount total of balance of passive product
@@ -312,7 +312,7 @@ components:
           type: number
           format: double
           description: credit limit of CC( credit card)
-        creditUser:
+        creditUsed:
           type: number
           format: double
           description: credit userd of CC
@@ -320,6 +320,10 @@ components:
           type: number
           format: double
           description: amount enabled to consume in case CC
+        averageBalanceOfMonth:
+          type: number
+          format: double
+          description: saldo promedio del mes
 
 
     MovementReportbean:

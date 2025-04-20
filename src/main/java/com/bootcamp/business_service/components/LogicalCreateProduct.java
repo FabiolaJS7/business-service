@@ -105,11 +105,11 @@ public class LogicalCreateProduct {
                 map.put(ENABLED, Boolean.FALSE.toString());
                 map.put(MESSAGE, "Cliente type B (Business) no puede puede tener un producto CP (Credit personal)");
             }
-        } else if (map.get(CUSTOMER_TYPE).equalsIgnoreCase(CustomerTypeConstants.BUSINESS_PYME) &&
-                map.get(PRODUCT_TYPE).equalsIgnoreCase(ProductTypeConstants.CURRENT_ACCOUNT)) {
+        } else if (map.get(CUSTOMER_TYPE).equalsIgnoreCase(CustomerTypeConstants.BUSINESS_PYME)
+                && map.get(PRODUCT_TYPE).equalsIgnoreCase(ProductTypeConstants.CURRENT_ACCOUNT)) {
             map.put(ENABLED, Boolean.FALSE.toString());
-            map.put(MESSAGE, "Cliente tipo M (Pyme) no puede tener productos CA (Current account) " +
-                    "debe crearse un producto CAM (Current account Pyme) previamente tener una credit card");
+            map.put(MESSAGE, "Cliente tipo M (Pyme) no puede tener productos CA (Current account) "
+                    + "debe crearse un producto CAM (Current account Pyme) previamente tener una credit card");
 
         }
     }

@@ -5,5 +5,5 @@ import com.bootcamp.business_service.model.ProductTypeRS;
 import reactor.core.publisher.Mono;
 
 public interface ProductTypeService {
-    Mono<ProductTypeRS> createProductType (Mono<ProductTypeRQ> productTypeRQ);
+    Mono<ProductTypeRS> createProductType(Mono<ProductTypeRQ> productTypeRQ);
 }

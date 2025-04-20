@@ -1,5 +1,6 @@
 package com.bootcamp.business_service.service.impl;
 
+import com.bootcamp.business_service.connector.FinanceConnector;
 import com.bootcamp.business_service.connector.PlasticCardConnector;
 import com.bootcamp.business_service.connector.ProductConnector;
 import com.bootcamp.business_service.connector.TransactionConnector;
@@ -20,6 +21,8 @@ import reactor.core.publisher.Mono;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+
 
 @Service
 @AllArgsConstructor
@@ -27,22 +30,24 @@ import java.util.List;
 public class ReportServiceImpl implements ReportService {
 
     private static final int LAST_10_MOVEMENTS = 10;
+    private static  final LocalDate NOW = LocalDate.now();
 
     TransactionConnector transactionConnector;
     ProductConnector productConnector;
     PlasticCardConnector plasticCardConnector;
+    FinanceConnector financeConnector;
 
     @Override
     public Mono<ReportRS> getReportByCustomerId(Mono<ReportRQ> reportRQ) {
 
         Flux<ProductResponse> productResponseFlux = reportRQ
-                .flatMapMany(reportRQ1 -> productConnector.getProductsByCustomerId(reportRQ1.getCustomerId()));
+                .flatMapMany(rq -> productConnector.getProductsByCustomerId(rq.getCustomerId()));
 
         Flux<ProductReportbean> productReportbeanFlux = productResponseFlux
                 .flatMap(productResponses ->
 
                         productConnector.findBalanceByProductId(productResponses.getId())
-                                .map(balanceBeanResponse -> {
+                                .flatMap(balanceBeanResponse -> {
                                     ProductReportbean productReportbean = new ProductReportbean();
                                     productReportbean.setProductId(productResponses.getId());
                                     productReportbean.setProductType(ProductTypeConstants.COMPLETE_PRODUCTS_NAME.get(productResponses.getProductType()));
@@ -50,10 +55,14 @@ public class ReportServiceImpl implements ReportService {
                                     productReportbean.setCustomerId(productResponses.getCustomer().getCustomerId());
                                     productReportbean.setFamilyType(ProductTypeConstants.PASSIVE_PRODUCTS.contains(productResponses.getProductType()) ? "PASSIVE" : "ACTIVE");
                                     productReportbean.setCreditLimitTotal(balanceBeanResponse.getCreditLimit());
-                                    productReportbean.setCreditUser(balanceBeanResponse.getCreditLimitUsed());
+                                    productReportbean.setCreditUsed(balanceBeanResponse.getCreditLimitUsed());
                                     productReportbean.setCreditEnabled(balanceBeanResponse.getCreditEnabledToUse());
-                                    productReportbean.setBalance(balanceBeanResponse.getTotalAmountInAccount());
-                                    return productReportbean;
+                                    productReportbean.setTotalAmountPassiveProduct(balanceBeanResponse.getTotalAmountInAccount());
+                                    return getAverage(productReportbean.getProductId(), productResponses.getProductType())
+                                            .map(d -> {
+                                                productReportbean.setAverageBalanceOfMonth(d);
+                                                return productReportbean;
+                                            });
                                 })
                 );
 
@@ -81,6 +90,19 @@ public class ReportServiceImpl implements ReportService {
                 })
                 .doOnSuccess(reportRS1 -> log.info("Report successfully built {}", JsonTransferUtil.objectToJson(reportRS1)))
                 .doOnError(throwable -> log.error("Request error getReportByCustomerId {}", throwable.getMessage()));
+
+    }
+
+    private Mono<Double> getAverage(String productId, String productType) {
+
+        return financeConnector.getResumesByProductId(productId, NOW.withDayOfMonth(1), NOW.withDayOfMonth(NOW.lengthOfMonth()))
+                .doOnSubscribe(resumeResponse -> log.info("Getting average of product {}", productId))
+                .map(resumeResponse -> ProductTypeConstants.PASSIVE_PRODUCTS.contains(productType)
+                        ? resumeResponse.getTotalAmountInAccount() : resumeResponse.getCreditEnabledToUse())
+                .collectList()
+                .map(list -> list.stream().mapToDouble(Double::doubleValue).average().orElse(0.0))
+                .doOnNext(average -> log.info("Average of product id {}, is {}", productId, average));
+
 
     }
 
@@ -166,7 +188,7 @@ public class ReportServiceImpl implements ReportService {
                                             productReportbean.setProductId(plasticCardBean.getProductIdAssociated());
                                             productReportbean.setCreditCardNumber(plasticCardBean.getCardNumber());
                                             productReportbean.setProductType(plasticCardBean.getCardType());
-                                            productReportbean.setCreditUser(balanceBeanResponse.getCreditLimitUsed());
+                                            productReportbean.setCreditUsed(balanceBeanResponse.getCreditLimitUsed());
                                             productReportbean.setCreditLimitTotal(balanceBeanResponse.getCreditLimit());
                                             productReportbean.setCreditEnabled(balanceBeanResponse.getCreditEnabledToUse());
                                             products.add(productReportbean);
@@ -189,10 +211,10 @@ public class ReportServiceImpl implements ReportService {
                                             productReportbean.setCustomerId(productResponse.getCustomer().getCustomerId());
                                             productReportbean.setProductType(ProductTypeConstants.COMPLETE_PRODUCTS_NAME
                                                     .get(productResponse.getProductType()));
-                                            productReportbean.setBalance(balanceBeanResponse.getTotalAmountInAccount());
+                                            productReportbean.setTotalAmountPassiveProduct(balanceBeanResponse.getTotalAmountInAccount());
                                             productReportbean.setCreditEnabled(balanceBeanResponse.getCreditEnabledToUse());
                                             productReportbean.setCreditLimitTotal(balanceBeanResponse.getCreditLimit());
-                                            productReportbean.setCreditUser(balanceBeanResponse.getCreditLimitUsed());
+                                            productReportbean.setCreditUsed(balanceBeanResponse.getCreditLimitUsed());
                                             products.add(productReportbean);
                                             reportRS1.setProducts(products);
                                             reportRS1.setMessage("Success - Reporte movimientos realizados por el producto indicado");

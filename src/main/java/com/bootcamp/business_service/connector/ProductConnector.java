@@ -148,7 +148,7 @@ public class ProductConnector {
     }
 
     private Mono<BalanceBeanResponse> fallbackUpdateBalance(String productId,
-                                                            Mono<BalanceBeanRequest> balanceBeanRequestMono,Throwable throwable) {
+                                                            Mono<BalanceBeanRequest> balanceBeanRequestMono, Throwable throwable) {
         log.error("Fallback for updateBalance {}, {}, {}", productId,
                 JsonTransferUtil.objectToJson(balanceBeanRequestMono), throwable.getMessage());
         return Mono.just(new BalanceBeanResponse());
