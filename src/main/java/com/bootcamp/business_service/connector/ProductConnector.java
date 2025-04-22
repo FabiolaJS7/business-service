@@ -17,7 +17,7 @@ public class ProductConnector {
     public static final String MAIN_PATH_PRODUCT = "/api/products/";
     WebClient webClient;
 
-    public ProductConnector(@Qualifier("webClientProductService") WebClient webClient) {
+    public ProductConnector(@Qualifier("webClientService") WebClient webClient) {
         this.webClient = webClient;
     }
 

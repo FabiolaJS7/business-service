@@ -16,7 +16,7 @@ public class ProductTypeConnector {
 
     WebClient webClient;
 
-    public ProductTypeConnector(@Qualifier("webClientProductService") WebClient webClient) {
+    public ProductTypeConnector(@Qualifier("webClientService") WebClient webClient) {
         this.webClient = webClient;
     }
 

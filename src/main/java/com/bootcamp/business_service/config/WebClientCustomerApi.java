@@ -12,16 +12,19 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class WebClientCustomerApi {
 
-    @Value("${client.customer.service}")
+   /*** @Value("${client.customer.service}")
     String clientCustomer;
 
     @Value("${client.product.service}")
     String clientProduct;
 
     @Value("${client.transaction.service}")
-    String clientTransaction;
+    String clientTransaction; **/
 
-    @Bean(name = "webClientCustomerService")
+    @Value("${client.api.gateway}")
+    String client;
+
+    /*** @Bean(name = "webClientCustomerService")
     public WebClient webClientCustomerService(WebClient.Builder builder) {
         return builder.baseUrl(clientCustomer)
                 .filter(logRequest()) // Filtro para registrar la solicitud
@@ -40,6 +43,14 @@ public class WebClientCustomerApi {
     @Bean(name = "webClientTransactionService")
     public WebClient webClientTransactionService(WebClient.Builder builder) {
         return builder.baseUrl(clientTransaction)
+                .filter(logRequest()) // Filtro para registrar la solicitud
+                .filter(logResponse()) // Filtro para registrar la respuesta
+                .build();
+    } */
+
+    @Bean(name = "webClientService")
+    public WebClient webClientService(WebClient.Builder builder) {
+        return builder.baseUrl(client)
                 .filter(logRequest()) // Filtro para registrar la solicitud
                 .filter(logResponse()) // Filtro para registrar la respuesta
                 .build();

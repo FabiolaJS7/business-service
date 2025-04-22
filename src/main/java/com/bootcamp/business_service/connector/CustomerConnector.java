@@ -18,7 +18,7 @@ public class CustomerConnector {
 
     WebClient webClient;
 
-    public CustomerConnector(@Qualifier("webClientCustomerService") WebClient webClient) {
+    public CustomerConnector(@Qualifier("webClientService") WebClient webClient) {
         this.webClient = webClient;
     }
 

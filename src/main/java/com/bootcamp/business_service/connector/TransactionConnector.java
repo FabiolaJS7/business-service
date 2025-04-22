@@ -20,7 +20,7 @@ public class TransactionConnector {
 
     private final WebClient webClient;
 
-    public TransactionConnector(@Qualifier("webClientTransactionService") WebClient webClient) {
+    public TransactionConnector(@Qualifier("webClientService") WebClient webClient) {
         this.webClient = webClient;
     }
 

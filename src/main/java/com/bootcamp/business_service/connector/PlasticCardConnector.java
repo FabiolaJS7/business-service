@@ -16,7 +16,7 @@ public class PlasticCardConnector {
     public static final String MAIN_PATH_PRODUCT = "/api/products/";
     WebClient webClient;
 
-    public PlasticCardConnector(@Qualifier("webClientProductService") WebClient webClient) {
+    public PlasticCardConnector(@Qualifier("webClientService") WebClient webClient) {
         this.webClient = webClient;
     }
 

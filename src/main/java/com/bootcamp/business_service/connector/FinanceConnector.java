@@ -19,7 +19,7 @@ public class FinanceConnector {
 
     WebClient webClient;
 
-    public FinanceConnector(@Qualifier("webClientFinanceService") WebClient webClient) {
+    public FinanceConnector(@Qualifier("webClientService") WebClient webClient) {
         this.webClient = webClient;
     }
 
