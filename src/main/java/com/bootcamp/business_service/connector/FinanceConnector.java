@@ -1,14 +1,11 @@
 package com.bootcamp.business_service.connector;
 
-import com.bootcamp.business_service.util.JsonTransferUtil;
-import com.bootcamp.commons.bean.finance.ResumeRequest;
 import com.bootcamp.commons.bean.finance.ResumeResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.time.LocalDate;
 import java.util.Optional;
