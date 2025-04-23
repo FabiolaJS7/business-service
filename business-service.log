@@ -1,0 +1,1494 @@
+2025-04-21 21:40:15-476 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final 
+2025-04-21 21:40:15-575 [main] INFO  c.b.b.BusinessServiceApplication - Starting BusinessServiceApplication using Java 17.0.12 with PID 24112 (C:\Users\mgarcsar\Documents\Bootcamp\etregables\business-service\target\classes started by mgarcsar in C:\Users\mgarcsar\Documents\Bootcamp\etregables\business-service) 
+2025-04-21 21:40:15-577 [main] INFO  c.b.b.BusinessServiceApplication - The following 1 profile is active: "local" 
+2025-04-21 21:40:15-673 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Fetching config from server at : http://localhost:8888 
+2025-04-21 21:40:15-676 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Located environment: name=business-service, profiles=[default], label=null, version=5948961345ff92c7a8feec89a952e9773d3de713, state= 
+2025-04-21 21:40:15-676 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Fetching config from server at : http://localhost:8888 
+2025-04-21 21:40:15-677 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Located environment: name=business-service, profiles=[local], label=null, version=5948961345ff92c7a8feec89a952e9773d3de713, state= 
+2025-04-21 21:40:23-109 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3a22edfb-ee61-33fe-94a2-bcf8fbe89c21 
+2025-04-21 21:40:32-622 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoints beneath base path '/actuator' 
+2025-04-21 21:40:35-496 [main] INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate. 
+2025-04-21 21:40:35-839 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath. 
+2025-04-21 21:40:36-033 [main] INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING 
+2025-04-21 21:40:36-108 [main] INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1 
+2025-04-21 21:40:36-122 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 21:40:36-153 [main] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false 
+2025-04-21 21:40:36-154 [main] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null 
+2025-04-21 21:40:36-154 [main] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false 
+2025-04-21 21:40:36-154 [main] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false 
+2025-04-21 21:40:36-154 [main] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true 
+2025-04-21 21:40:36-154 [main] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true 
+2025-04-21 21:40:36-154 [main] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server 
+2025-04-21 21:40:36-802 [main] INFO  c.netflix.discovery.DiscoveryClient - The response status is 200 
+2025-04-21 21:40:36-807 [main] INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30 
+2025-04-21 21:40:36-813 [main] INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4 
+2025-04-21 21:40:36-816 [main] INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1745289636816 with initial instances count: 2 
+2025-04-21 21:40:36-848 [main] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application BUSINESS-SERVICE with eureka with status UP 
+2025-04-21 21:40:36-849 [main] INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1745289636849, current=UP, previous=STARTING] 
+2025-04-21 21:40:36-854 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585: registering service... 
+2025-04-21 21:40:36-943 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585 - registration status: 204 
+2025-04-21 21:40:37-496 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 8585 (http) 
+2025-04-21 21:40:37-497 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8585 
+2025-04-21 21:40:38-463 [main] INFO  c.b.b.BusinessServiceApplication - Started BusinessServiceApplication in 30.146 seconds (process running for 32.615) 
+2025-04-21 21:44:46-718 [SpringApplicationShutdownHook] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Unregistering application BUSINESS-SERVICE with eureka with status DOWN 
+2025-04-21 21:44:46-719 [SpringApplicationShutdownHook] INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1745289886719, current=DOWN, previous=UP] 
+2025-04-21 21:44:46-719 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585: registering service... 
+2025-04-21 21:44:46-725 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.netty.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete 
+2025-04-21 21:44:46-733 [netty-shutdown] INFO  o.s.b.w.e.netty.GracefulShutdown - Graceful shutdown complete 
+2025-04-21 21:44:46-748 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585 - registration status: 204 
+2025-04-21 21:45:00-438 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final 
+2025-04-21 21:45:00-624 [main] INFO  c.b.b.BusinessServiceApplication - Starting BusinessServiceApplication using Java 17.0.12 with PID 14128 (C:\Users\mgarcsar\Documents\Bootcamp\etregables\business-service\target\classes started by mgarcsar in C:\Users\mgarcsar\Documents\Bootcamp\etregables\business-service) 
+2025-04-21 21:45:00-627 [main] INFO  c.b.b.BusinessServiceApplication - The following 1 profile is active: "local" 
+2025-04-21 21:45:00-777 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Fetching config from server at : http://localhost:8888 
+2025-04-21 21:45:00-778 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Located environment: name=business-service, profiles=[default], label=null, version=5948961345ff92c7a8feec89a952e9773d3de713, state= 
+2025-04-21 21:45:00-779 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Fetching config from server at : http://localhost:8888 
+2025-04-21 21:45:00-780 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Located environment: name=business-service, profiles=[local], label=null, version=5948961345ff92c7a8feec89a952e9773d3de713, state= 
+2025-04-21 21:45:06-354 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3a22edfb-ee61-33fe-94a2-bcf8fbe89c21 
+2025-04-21 21:45:16-352 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoints beneath base path '/actuator' 
+2025-04-21 21:45:18-241 [main] INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate. 
+2025-04-21 21:45:18-598 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath. 
+2025-04-21 21:45:18-824 [main] INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING 
+2025-04-21 21:45:18-896 [main] INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1 
+2025-04-21 21:45:18-908 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 21:45:18-941 [main] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false 
+2025-04-21 21:45:18-942 [main] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null 
+2025-04-21 21:45:18-943 [main] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false 
+2025-04-21 21:45:18-943 [main] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false 
+2025-04-21 21:45:18-943 [main] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true 
+2025-04-21 21:45:18-943 [main] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true 
+2025-04-21 21:45:18-944 [main] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server 
+2025-04-21 21:45:19-723 [main] INFO  c.netflix.discovery.DiscoveryClient - The response status is 200 
+2025-04-21 21:45:19-728 [main] INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30 
+2025-04-21 21:45:19-733 [main] INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4 
+2025-04-21 21:45:19-736 [main] INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1745289919736 with initial instances count: 3 
+2025-04-21 21:45:19-763 [main] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application BUSINESS-SERVICE with eureka with status UP 
+2025-04-21 21:45:19-763 [main] INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1745289919763, current=UP, previous=STARTING] 
+2025-04-21 21:45:19-767 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585: registering service... 
+2025-04-21 21:45:19-843 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585 - registration status: 204 
+2025-04-21 21:45:20-383 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 8585 (http) 
+2025-04-21 21:45:20-385 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8585 
+2025-04-21 21:45:21-192 [main] INFO  c.b.b.BusinessServiceApplication - Started BusinessServiceApplication in 27.64 seconds (process running for 30.317) 
+2025-04-21 21:50:18-956 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 21:55:18-979 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 22:00:18-990 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 22:05:18-999 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 22:05:51-293 [DiscoveryClient-HeartbeatExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585 - Re-registering apps/BUSINESS-SERVICE 
+2025-04-21 22:05:51-294 [DiscoveryClient-HeartbeatExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585: registering service... 
+2025-04-21 22:05:51-622 [DiscoveryClient-HeartbeatExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585 - registration status: 204 
+2025-04-21 22:06:21-188 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false 
+2025-04-21 22:06:21-189 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null 
+2025-04-21 22:06:21-190 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false 
+2025-04-21 22:06:21-190 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false 
+2025-04-21 22:06:21-190 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true 
+2025-04-21 22:06:21-190 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: false 
+2025-04-21 22:06:21-190 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server 
+2025-04-21 22:06:21-210 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient - The response status is 200 
+2025-04-21 22:10:19-008 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 22:15:19-020 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 22:16:49-119 [reactor-http-nio-1] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init createProduct. 
+2025-04-21 22:16:49-125 [reactor-http-nio-1] INFO  c.b.b.s.impl.ProductServiceImpl - Create product. 
+2025-04-21 22:16:49-126 [reactor-http-nio-1] INFO  c.b.b.s.impl.ProductServiceImpl - Create product: class CreateProductRQ {
+    customerId: 67ec1a63fabf6d0f4ada9866
+    productType: CA
+    familyProduct: null
+    openAmount: 1000.0
+    userBank: null
+} 
+2025-04-21 22:16:49-240 [parallel-1] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:16:49-242 [parallel-2] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:16:49-300 [parallel-1] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8181/api/customers/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:16:49-300 [parallel-2] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8383/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:16:49-560 [reactor-http-nio-3] ERROR c.b.b.connector.ProductConnector - Error API while getProductByCustomerId id Connection refused: no further information: localhost/127.0.0.1:8383 
+2025-04-21 22:16:49-560 [reactor-http-nio-2] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: Connection refused: no further information: localhost/127.0.0.1:8181 
+2025-04-21 22:16:49-571 [reactor-http-nio-3] ERROR c.b.b.connector.ProductConnector - Fallback for getProductsByCustomerId 67ec1a63fabf6d0f4ada9866, Connection refused: no further information: localhost/127.0.0.1:8383 
+2025-04-21 22:16:49-571 [reactor-http-nio-2] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId 67ec1a63fabf6d0f4ada9866: Connection refused: no further information: localhost/127.0.0.1:8181 
+2025-04-21 22:16:49-573 [reactor-http-nio-2] INFO  c.b.b.c.LogicalCreateProduct - Validations to create product: {customerType=null, message=Error occurred while consulting some service., enabled=false, productType=CA} 
+2025-04-21 22:16:49-580 [reactor-http-nio-2] INFO  c.b.b.s.impl.ProductServiceImpl - Product creation completed {"result":false,"message":"Error occurred while consulting some service."} 
+2025-04-21 22:16:49-581 [reactor-http-nio-2] INFO  c.b.b.expose.BusinessDelegateImpl - End createProduct. 
+2025-04-21 22:17:04-168 [reactor-http-nio-4] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init createProduct. 
+2025-04-21 22:17:04-169 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Create product. 
+2025-04-21 22:17:04-170 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Create product: class CreateProductRQ {
+    customerId: 67ec1a63fabf6d0f4ada9866
+    productType: CA
+    familyProduct: null
+    openAmount: 1000.0
+    userBank: null
+} 
+2025-04-21 22:17:04-176 [parallel-3] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:17:04-176 [parallel-4] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:17:04-179 [parallel-4] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8383/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:17:04-179 [parallel-3] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8181/api/customers/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:17:04-192 [reactor-http-nio-5] ERROR c.b.b.connector.ProductConnector - Error API while getProductByCustomerId id Connection refused: no further information: localhost/127.0.0.1:8383 
+2025-04-21 22:17:04-193 [reactor-http-nio-6] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: Connection refused: no further information: localhost/127.0.0.1:8181 
+2025-04-21 22:17:04-194 [reactor-http-nio-5] ERROR c.b.b.connector.ProductConnector - Fallback for getProductsByCustomerId 67ec1a63fabf6d0f4ada9866, Connection refused: no further information: localhost/127.0.0.1:8383 
+2025-04-21 22:17:04-195 [reactor-http-nio-6] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId 67ec1a63fabf6d0f4ada9866: Connection refused: no further information: localhost/127.0.0.1:8181 
+2025-04-21 22:17:04-197 [reactor-http-nio-6] INFO  c.b.b.c.LogicalCreateProduct - Validations to create product: {customerType=null, message=Error occurred while consulting some service., enabled=false, productType=CA} 
+2025-04-21 22:17:04-200 [reactor-http-nio-6] INFO  c.b.b.s.impl.ProductServiceImpl - Product creation completed {"result":false,"message":"Error occurred while consulting some service."} 
+2025-04-21 22:17:04-201 [reactor-http-nio-6] INFO  c.b.b.expose.BusinessDelegateImpl - End createProduct. 
+2025-04-21 22:17:35-145 [reactor-http-nio-4] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init createProduct. 
+2025-04-21 22:17:35-146 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Create product. 
+2025-04-21 22:17:35-147 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Create product: class CreateProductRQ {
+    customerId: 67ec1a63fabf6d0f4ada9866
+    productType: CA
+    familyProduct: null
+    openAmount: 1000.0
+    userBank: null
+} 
+2025-04-21 22:17:35-157 [parallel-6] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:17:35-158 [parallel-5] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:17:35-160 [parallel-5] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8181/api/customers/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:17:35-160 [parallel-6] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8383/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:17:35-170 [reactor-http-nio-8] ERROR c.b.b.connector.ProductConnector - Error API while getProductByCustomerId id Connection refused: no further information: localhost/127.0.0.1:8383 
+2025-04-21 22:17:35-170 [reactor-http-nio-7] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: Connection refused: no further information: localhost/127.0.0.1:8181 
+2025-04-21 22:17:35-193 [reactor-http-nio-7] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId 67ec1a63fabf6d0f4ada9866: Connection refused: no further information: localhost/127.0.0.1:8181 
+2025-04-21 22:17:35-193 [reactor-http-nio-8] ERROR c.b.b.connector.ProductConnector - Fallback for getProductsByCustomerId 67ec1a63fabf6d0f4ada9866, Connection refused: no further information: localhost/127.0.0.1:8383 
+2025-04-21 22:17:35-195 [reactor-http-nio-8] INFO  c.b.b.c.LogicalCreateProduct - Validations to create product: {customerType=null, message=Error occurred while consulting some service., enabled=false, productType=CA} 
+2025-04-21 22:17:35-198 [reactor-http-nio-8] INFO  c.b.b.s.impl.ProductServiceImpl - Product creation completed {"result":false,"message":"Error occurred while consulting some service."} 
+2025-04-21 22:17:35-198 [reactor-http-nio-8] INFO  c.b.b.expose.BusinessDelegateImpl - End createProduct. 
+2025-04-21 22:20:19-024 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 22:25:28-845 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final 
+2025-04-21 22:25:28-970 [main] INFO  c.b.b.BusinessServiceApplication - Starting BusinessServiceApplication using Java 17.0.12 with PID 12424 (C:\Users\mgarcsar\Documents\Bootcamp\etregables\business-service\target\classes started by mgarcsar in C:\Users\mgarcsar\Documents\Bootcamp\etregables\business-service) 
+2025-04-21 22:25:28-972 [main] INFO  c.b.b.BusinessServiceApplication - The following 1 profile is active: "local" 
+2025-04-21 22:25:29-068 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Fetching config from server at : http://localhost:8888 
+2025-04-21 22:25:29-069 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Located environment: name=business-service, profiles=[default], label=null, version=12283b2c9ddc58944bb54471e829cf5419133ea3, state= 
+2025-04-21 22:25:29-069 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Fetching config from server at : http://localhost:8888 
+2025-04-21 22:25:29-069 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Located environment: name=business-service, profiles=[local], label=null, version=12283b2c9ddc58944bb54471e829cf5419133ea3, state= 
+2025-04-21 22:25:32-369 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=f76717b0-82ad-3d48-b101-6aeb4d3e8f30 
+2025-04-21 22:25:39-270 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoints beneath base path '/actuator' 
+2025-04-21 22:25:41-536 [main] INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate. 
+2025-04-21 22:25:41-923 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath. 
+2025-04-21 22:25:42-141 [main] INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING 
+2025-04-21 22:25:42-208 [main] INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1 
+2025-04-21 22:25:42-220 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 22:25:42-257 [main] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false 
+2025-04-21 22:25:42-257 [main] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null 
+2025-04-21 22:25:42-258 [main] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false 
+2025-04-21 22:25:42-258 [main] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false 
+2025-04-21 22:25:42-259 [main] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true 
+2025-04-21 22:25:42-259 [main] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true 
+2025-04-21 22:25:42-260 [main] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server 
+2025-04-21 22:25:42-944 [main] INFO  c.netflix.discovery.DiscoveryClient - The response status is 200 
+2025-04-21 22:25:42-951 [main] INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30 
+2025-04-21 22:25:42-958 [main] INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4 
+2025-04-21 22:25:42-960 [main] INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1745292342960 with initial instances count: 3 
+2025-04-21 22:25:42-988 [main] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application BUSINESS-SERVICE with eureka with status UP 
+2025-04-21 22:25:42-989 [main] INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1745292342989, current=UP, previous=STARTING] 
+2025-04-21 22:25:42-993 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585: registering service... 
+2025-04-21 22:25:43-062 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585 - registration status: 204 
+2025-04-21 22:25:43-553 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 8585 (http) 
+2025-04-21 22:25:43-556 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8585 
+2025-04-21 22:25:44-584 [main] INFO  c.b.b.BusinessServiceApplication - Started BusinessServiceApplication in 22.96 seconds (process running for 25.253) 
+2025-04-21 22:28:38-977 [reactor-http-nio-4] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init createProduct. 
+2025-04-21 22:28:38-980 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Create product. 
+2025-04-21 22:28:38-981 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Create product: class CreateProductRQ {
+    customerId: 67ec1a63fabf6d0f4ada9866
+    productType: CA
+    familyProduct: null
+    openAmount: 1000.0
+    userBank: null
+} 
+2025-04-21 22:28:39-024 [parallel-1] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:28:39-024 [parallel-2] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:28:39-071 [parallel-1] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8181/api/customers/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:28:39-071 [parallel-2] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:28:39-271 [reactor-http-nio-5] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: Connection refused: no further information: localhost/127.0.0.1:8181 
+2025-04-21 22:28:39-278 [reactor-http-nio-5] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId 67ec1a63fabf6d0f4ada9866: Connection refused: no further information: localhost/127.0.0.1:8181 
+2025-04-21 22:28:39-790 [reactor-http-nio-6] INFO  c.b.b.config.WebClientCustomerApi - Response status: 503 SERVICE_UNAVAILABLE 
+2025-04-21 22:28:39-832 [reactor-http-nio-6] ERROR c.b.b.connector.ProductConnector - Error API while getProductByCustomerId id 503 Service Unavailable from GET http://localhost:8989/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:28:39-833 [reactor-http-nio-6] ERROR c.b.b.connector.ProductConnector - Fallback for getProductsByCustomerId 67ec1a63fabf6d0f4ada9866, 503 Service Unavailable from GET http://localhost:8989/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:28:39-835 [reactor-http-nio-6] INFO  c.b.b.c.LogicalCreateProduct - Validations to create product: {customerType=null, message=Error occurred while consulting some service., enabled=false, productType=CA} 
+2025-04-21 22:28:39-839 [reactor-http-nio-6] INFO  c.b.b.s.impl.ProductServiceImpl - Product creation completed {"result":false,"message":"Error occurred while consulting some service."} 
+2025-04-21 22:28:39-839 [reactor-http-nio-6] INFO  c.b.b.expose.BusinessDelegateImpl - End createProduct. 
+2025-04-21 22:30:32-791 [reactor-http-nio-8] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init createProduct. 
+2025-04-21 22:30:32-793 [reactor-http-nio-8] INFO  c.b.b.s.impl.ProductServiceImpl - Create product. 
+2025-04-21 22:30:32-794 [reactor-http-nio-8] INFO  c.b.b.s.impl.ProductServiceImpl - Create product: class CreateProductRQ {
+    customerId: 67ec1a63fabf6d0f4ada9866
+    productType: CA
+    familyProduct: null
+    openAmount: 1000.0
+    userBank: null
+} 
+2025-04-21 22:30:32-799 [parallel-3] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:30:32-799 [parallel-4] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:30:32-801 [parallel-3] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8181/api/customers/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:30:32-801 [parallel-4] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:30:32-814 [reactor-http-nio-1] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: Connection refused: no further information: localhost/127.0.0.1:8181 
+2025-04-21 22:30:32-817 [reactor-http-nio-1] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId 67ec1a63fabf6d0f4ada9866: Connection refused: no further information: localhost/127.0.0.1:8181 
+2025-04-21 22:30:32-872 [reactor-http-nio-6] INFO  c.b.b.config.WebClientCustomerApi - Response status: 503 SERVICE_UNAVAILABLE 
+2025-04-21 22:30:32-879 [reactor-http-nio-6] ERROR c.b.b.connector.ProductConnector - Error API while getProductByCustomerId id 503 Service Unavailable from GET http://localhost:8989/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:30:32-880 [reactor-http-nio-6] ERROR c.b.b.connector.ProductConnector - Fallback for getProductsByCustomerId 67ec1a63fabf6d0f4ada9866, 503 Service Unavailable from GET http://localhost:8989/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:30:32-882 [reactor-http-nio-6] INFO  c.b.b.c.LogicalCreateProduct - Validations to create product: {customerType=null, message=Error occurred while consulting some service., enabled=false, productType=CA} 
+2025-04-21 22:30:32-884 [reactor-http-nio-6] INFO  c.b.b.s.impl.ProductServiceImpl - Product creation completed {"result":false,"message":"Error occurred while consulting some service."} 
+2025-04-21 22:30:32-886 [reactor-http-nio-6] INFO  c.b.b.expose.BusinessDelegateImpl - End createProduct. 
+2025-04-21 22:30:42-281 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 22:32:16-417 [reactor-http-nio-3] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init createProduct. 
+2025-04-21 22:32:16-417 [reactor-http-nio-3] INFO  c.b.b.s.impl.ProductServiceImpl - Create product. 
+2025-04-21 22:32:16-419 [reactor-http-nio-3] INFO  c.b.b.s.impl.ProductServiceImpl - Create product: class CreateProductRQ {
+    customerId: 67ec1a63fabf6d0f4ada9866
+    productType: CA
+    familyProduct: null
+    openAmount: 1000.0
+    userBank: null
+} 
+2025-04-21 22:32:16-423 [parallel-5] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:32:16-424 [parallel-6] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:32:16-427 [parallel-6] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:32:16-427 [parallel-5] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8181/api/customers/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:32:16-439 [reactor-http-nio-4] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: Connection refused: no further information: localhost/127.0.0.1:8181 
+2025-04-21 22:32:16-457 [reactor-http-nio-6] INFO  c.b.b.config.WebClientCustomerApi - Response status: 503 SERVICE_UNAVAILABLE 
+2025-04-21 22:32:16-459 [reactor-http-nio-4] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId 67ec1a63fabf6d0f4ada9866: Connection refused: no further information: localhost/127.0.0.1:8181 
+2025-04-21 22:32:16-462 [reactor-http-nio-6] ERROR c.b.b.connector.ProductConnector - Error API while getProductByCustomerId id 503 Service Unavailable from GET http://localhost:8989/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:32:16-464 [reactor-http-nio-6] ERROR c.b.b.connector.ProductConnector - Fallback for getProductsByCustomerId 67ec1a63fabf6d0f4ada9866, 503 Service Unavailable from GET http://localhost:8989/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:32:16-466 [reactor-http-nio-6] INFO  c.b.b.c.LogicalCreateProduct - Validations to create product: {customerType=null, message=Error occurred while consulting some service., enabled=false, productType=CA} 
+2025-04-21 22:32:16-469 [reactor-http-nio-6] INFO  c.b.b.s.impl.ProductServiceImpl - Product creation completed {"result":false,"message":"Error occurred while consulting some service."} 
+2025-04-21 22:32:16-470 [reactor-http-nio-6] INFO  c.b.b.expose.BusinessDelegateImpl - End createProduct. 
+2025-04-21 22:34:25-740 [reactor-http-nio-6] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init createProduct. 
+2025-04-21 22:34:25-742 [reactor-http-nio-6] INFO  c.b.b.s.impl.ProductServiceImpl - Create product. 
+2025-04-21 22:34:25-742 [reactor-http-nio-6] INFO  c.b.b.s.impl.ProductServiceImpl - Create product: class CreateProductRQ {
+    customerId: 67ec1a63fabf6d0f4ada9866
+    productType: CA
+    familyProduct: null
+    openAmount: 1000.0
+    userBank: null
+} 
+2025-04-21 22:34:25-744 [parallel-7] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:34:25-744 [parallel-8] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:34:25-747 [parallel-8] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:34:25-747 [parallel-7] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8181/api/customers/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:34:25-758 [reactor-http-nio-7] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: Connection refused: no further information: localhost/127.0.0.1:8181 
+2025-04-21 22:34:25-760 [reactor-http-nio-7] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId 67ec1a63fabf6d0f4ada9866: Connection refused: no further information: localhost/127.0.0.1:8181 
+2025-04-21 22:34:25-789 [reactor-http-nio-6] INFO  c.b.b.config.WebClientCustomerApi - Response status: 200 OK 
+2025-04-21 22:34:25-817 [reactor-http-nio-6] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RS {"id":"67fec9835c652468edc457d0","productType":"CA","amountOfOpen":1000.0,"accountNumber":"CA01-3433862793","hasPlasticCard":false,"createdDate":[2025,4,15],"customer":{"customerId":"67ec1a63fabf6d0f4ada9866"},"holders":[{"fullName":"ABRAHAM  BERMEJO","email":"mail@gmail.commmm","phone":"11111","identification":{"typeIdentification":"DNI","numberIdentification":"444"}}],"authorizedSignatories":[{"fullName":"VERONICA ARANGO YAMASHIRO","email":"mail@gmail.commmm","phone":"2222222","identification":{"typeIdentification":"DNI","numberIdentification":"22222"}}]} 
+2025-04-21 22:34:25-819 [reactor-http-nio-6] INFO  c.b.b.c.LogicalCreateProduct - Validations to create product: {customerType=null, message=Error occurred while consulting some service., enabled=false, productType=CA} 
+2025-04-21 22:34:25-820 [reactor-http-nio-6] INFO  c.b.b.s.impl.ProductServiceImpl - Product creation completed {"result":false,"message":"Error occurred while consulting some service."} 
+2025-04-21 22:34:25-820 [reactor-http-nio-6] INFO  c.b.b.expose.BusinessDelegateImpl - End createProduct. 
+2025-04-21 22:34:37-928 [reactor-http-nio-6] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init createProduct. 
+2025-04-21 22:34:37-929 [reactor-http-nio-6] INFO  c.b.b.s.impl.ProductServiceImpl - Create product. 
+2025-04-21 22:34:37-929 [reactor-http-nio-6] INFO  c.b.b.s.impl.ProductServiceImpl - Create product: class CreateProductRQ {
+    customerId: 67ec1a63fabf6d0f4ada9866
+    productType: CA
+    familyProduct: null
+    openAmount: 1000.0
+    userBank: null
+} 
+2025-04-21 22:34:37-931 [parallel-2] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:34:37-931 [parallel-1] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:34:37-933 [parallel-1] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8181/api/customers/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:34:37-933 [parallel-2] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:34:37-944 [reactor-http-nio-8] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: Connection refused: no further information: localhost/127.0.0.1:8181 
+2025-04-21 22:34:37-945 [reactor-http-nio-8] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId 67ec1a63fabf6d0f4ada9866: Connection refused: no further information: localhost/127.0.0.1:8181 
+2025-04-21 22:34:37-986 [reactor-http-nio-6] INFO  c.b.b.config.WebClientCustomerApi - Response status: 200 OK 
+2025-04-21 22:34:37-997 [reactor-http-nio-6] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RS {"id":"67fec9835c652468edc457d0","productType":"CA","amountOfOpen":1000.0,"accountNumber":"CA01-3433862793","hasPlasticCard":false,"createdDate":[2025,4,15],"customer":{"customerId":"67ec1a63fabf6d0f4ada9866"},"holders":[{"fullName":"ABRAHAM  BERMEJO","email":"mail@gmail.commmm","phone":"11111","identification":{"typeIdentification":"DNI","numberIdentification":"444"}}],"authorizedSignatories":[{"fullName":"VERONICA ARANGO YAMASHIRO","email":"mail@gmail.commmm","phone":"2222222","identification":{"typeIdentification":"DNI","numberIdentification":"22222"}}]} 
+2025-04-21 22:34:38-000 [reactor-http-nio-6] INFO  c.b.b.c.LogicalCreateProduct - Validations to create product: {customerType=null, message=Error occurred while consulting some service., enabled=false, productType=CA} 
+2025-04-21 22:34:38-002 [reactor-http-nio-6] INFO  c.b.b.s.impl.ProductServiceImpl - Product creation completed {"result":false,"message":"Error occurred while consulting some service."} 
+2025-04-21 22:34:38-002 [reactor-http-nio-6] INFO  c.b.b.expose.BusinessDelegateImpl - End createProduct. 
+2025-04-21 22:35:42-290 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 22:40:42-301 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 22:43:06-947 [SpringApplicationShutdownHook] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Unregistering application BUSINESS-SERVICE with eureka with status DOWN 
+2025-04-21 22:43:06-947 [SpringApplicationShutdownHook] INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1745293386947, current=DOWN, previous=UP] 
+2025-04-21 22:43:06-948 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585: registering service... 
+2025-04-21 22:43:06-959 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.netty.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete 
+2025-04-21 22:43:06-970 [netty-shutdown] INFO  o.s.b.w.e.netty.GracefulShutdown - Graceful shutdown complete 
+2025-04-21 22:43:06-974 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585 - registration status: 204 
+2025-04-21 22:43:25-797 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final 
+2025-04-21 22:43:25-921 [main] INFO  c.b.b.BusinessServiceApplication - Starting BusinessServiceApplication using Java 17.0.12 with PID 21972 (C:\Users\mgarcsar\Documents\Bootcamp\etregables\business-service\target\classes started by mgarcsar in C:\Users\mgarcsar\Documents\Bootcamp\etregables\business-service) 
+2025-04-21 22:43:25-923 [main] INFO  c.b.b.BusinessServiceApplication - The following 1 profile is active: "local" 
+2025-04-21 22:43:25-989 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Fetching config from server at : http://localhost:8888 
+2025-04-21 22:43:25-989 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Located environment: name=business-service, profiles=[default], label=null, version=12283b2c9ddc58944bb54471e829cf5419133ea3, state= 
+2025-04-21 22:43:25-989 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Fetching config from server at : http://localhost:8888 
+2025-04-21 22:43:25-989 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Located environment: name=business-service, profiles=[local], label=null, version=12283b2c9ddc58944bb54471e829cf5419133ea3, state= 
+2025-04-21 22:43:29-304 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=bcb4b232-1d76-3c1a-a7d9-313b2d1d8fa1 
+2025-04-21 22:43:36-268 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoints beneath base path '/actuator' 
+2025-04-21 22:43:38-712 [main] INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate. 
+2025-04-21 22:43:39-164 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath. 
+2025-04-21 22:43:39-454 [main] INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING 
+2025-04-21 22:43:39-500 [main] INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1 
+2025-04-21 22:43:39-507 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 22:43:39-524 [main] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false 
+2025-04-21 22:43:39-525 [main] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null 
+2025-04-21 22:43:39-525 [main] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false 
+2025-04-21 22:43:39-525 [main] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false 
+2025-04-21 22:43:39-525 [main] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true 
+2025-04-21 22:43:39-526 [main] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true 
+2025-04-21 22:43:39-526 [main] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server 
+2025-04-21 22:43:40-060 [main] INFO  c.netflix.discovery.DiscoveryClient - The response status is 200 
+2025-04-21 22:43:40-068 [main] INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30 
+2025-04-21 22:43:40-076 [main] INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4 
+2025-04-21 22:43:40-082 [main] INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1745293420080 with initial instances count: 4 
+2025-04-21 22:43:40-127 [main] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application BUSINESS-SERVICE with eureka with status UP 
+2025-04-21 22:43:40-128 [main] INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1745293420127, current=UP, previous=STARTING] 
+2025-04-21 22:43:40-134 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585: registering service... 
+2025-04-21 22:43:40-252 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585 - registration status: 204 
+2025-04-21 22:43:40-948 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 8585 (http) 
+2025-04-21 22:43:40-951 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8585 
+2025-04-21 22:43:41-653 [main] INFO  c.b.b.BusinessServiceApplication - Started BusinessServiceApplication in 21.583 seconds (process running for 23.783) 
+2025-04-21 22:45:13-744 [reactor-http-nio-4] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init createProduct. 
+2025-04-21 22:45:13-754 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Create product. 
+2025-04-21 22:45:13-755 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Create product: class CreateProductRQ {
+    customerId: 67ec1a63fabf6d0f4ada9866
+    productType: CA
+    familyProduct: null
+    openAmount: 1000.0
+    userBank: null
+} 
+2025-04-21 22:45:13-832 [parallel-1] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:13-832 [parallel-2] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:13-896 [parallel-1] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/customers/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:13-897 [parallel-2] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:14-241 [reactor-http-nio-6] INFO  c.b.b.config.WebClientCustomerApi - Response status: 404 NOT_FOUND 
+2025-04-21 22:45:14-321 [reactor-http-nio-6] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: 404 Not Found from GET http://localhost:8989/api/customers/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:14-334 [reactor-http-nio-6] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId 67ec1a63fabf6d0f4ada9866: 404 Not Found from GET http://localhost:8989/api/customers/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:14-355 [reactor-http-nio-5] INFO  c.b.b.config.WebClientCustomerApi - Response status: 200 OK 
+2025-04-21 22:45:14-457 [reactor-http-nio-5] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RS {"id":"67fec9835c652468edc457d0","productType":"CA","amountOfOpen":1000.0,"accountNumber":"CA01-3433862793","hasPlasticCard":false,"createdDate":[2025,4,15],"customer":{"customerId":"67ec1a63fabf6d0f4ada9866"},"holders":[{"fullName":"ABRAHAM  BERMEJO","email":"mail@gmail.commmm","phone":"11111","identification":{"typeIdentification":"DNI","numberIdentification":"444"}}],"authorizedSignatories":[{"fullName":"VERONICA ARANGO YAMASHIRO","email":"mail@gmail.commmm","phone":"2222222","identification":{"typeIdentification":"DNI","numberIdentification":"22222"}}]} 
+2025-04-21 22:45:14-464 [reactor-http-nio-5] INFO  c.b.b.c.LogicalCreateProduct - Validations to create product: {customerType=null, message=Error occurred while consulting some service., enabled=false, productType=CA} 
+2025-04-21 22:45:14-467 [reactor-http-nio-5] INFO  c.b.b.s.impl.ProductServiceImpl - Product creation completed {"result":false,"message":"Error occurred while consulting some service."} 
+2025-04-21 22:45:14-468 [reactor-http-nio-5] INFO  c.b.b.expose.BusinessDelegateImpl - End createProduct. 
+2025-04-21 22:45:32-744 [reactor-http-nio-4] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init createProduct. 
+2025-04-21 22:45:32-745 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Create product. 
+2025-04-21 22:45:32-746 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Create product: class CreateProductRQ {
+    customerId: 67ec1a63fabf6d0f4ada9866
+    productType: SA
+    familyProduct: null
+    openAmount: 1000.0
+    userBank: null
+} 
+2025-04-21 22:45:32-749 [parallel-3] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:32-750 [parallel-4] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:32-751 [parallel-3] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/customers/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:32-752 [parallel-4] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:32-778 [reactor-http-nio-6] INFO  c.b.b.config.WebClientCustomerApi - Response status: 404 NOT_FOUND 
+2025-04-21 22:45:32-784 [reactor-http-nio-6] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: 404 Not Found from GET http://localhost:8989/api/customers/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:32-785 [reactor-http-nio-6] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId 67ec1a63fabf6d0f4ada9866: 404 Not Found from GET http://localhost:8989/api/customers/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:32-809 [reactor-http-nio-5] INFO  c.b.b.config.WebClientCustomerApi - Response status: 200 OK 
+2025-04-21 22:45:32-821 [reactor-http-nio-5] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RS {"id":"67fec9835c652468edc457d0","productType":"CA","amountOfOpen":1000.0,"accountNumber":"CA01-3433862793","hasPlasticCard":false,"createdDate":[2025,4,15],"customer":{"customerId":"67ec1a63fabf6d0f4ada9866"},"holders":[{"fullName":"ABRAHAM  BERMEJO","email":"mail@gmail.commmm","phone":"11111","identification":{"typeIdentification":"DNI","numberIdentification":"444"}}],"authorizedSignatories":[{"fullName":"VERONICA ARANGO YAMASHIRO","email":"mail@gmail.commmm","phone":"2222222","identification":{"typeIdentification":"DNI","numberIdentification":"22222"}}]} 
+2025-04-21 22:45:32-824 [reactor-http-nio-5] INFO  c.b.b.c.LogicalCreateProduct - Validations to create product: {customerType=null, message=Error occurred while consulting some service., enabled=false, productType=SA} 
+2025-04-21 22:45:32-828 [reactor-http-nio-5] INFO  c.b.b.s.impl.ProductServiceImpl - Product creation completed {"result":false,"message":"Error occurred while consulting some service."} 
+2025-04-21 22:45:32-829 [reactor-http-nio-5] INFO  c.b.b.expose.BusinessDelegateImpl - End createProduct. 
+2025-04-21 22:45:40-929 [reactor-http-nio-4] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init createProduct. 
+2025-04-21 22:45:40-930 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Create product. 
+2025-04-21 22:45:40-930 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Create product: class CreateProductRQ {
+    customerId: 67ec1a63fabf6d0f4ada9866
+    productType: CC
+    familyProduct: null
+    openAmount: 1000.0
+    userBank: null
+} 
+2025-04-21 22:45:40-934 [parallel-5] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:40-936 [parallel-6] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:40-936 [parallel-5] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/customers/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:40-938 [parallel-6] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:40-957 [reactor-http-nio-6] INFO  c.b.b.config.WebClientCustomerApi - Response status: 404 NOT_FOUND 
+2025-04-21 22:45:40-963 [reactor-http-nio-6] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: 404 Not Found from GET http://localhost:8989/api/customers/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:40-982 [reactor-http-nio-6] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId 67ec1a63fabf6d0f4ada9866: 404 Not Found from GET http://localhost:8989/api/customers/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:40-996 [reactor-http-nio-5] INFO  c.b.b.config.WebClientCustomerApi - Response status: 200 OK 
+2025-04-21 22:45:41-008 [reactor-http-nio-5] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RS {"id":"67fec9835c652468edc457d0","productType":"CA","amountOfOpen":1000.0,"accountNumber":"CA01-3433862793","hasPlasticCard":false,"createdDate":[2025,4,15],"customer":{"customerId":"67ec1a63fabf6d0f4ada9866"},"holders":[{"fullName":"ABRAHAM  BERMEJO","email":"mail@gmail.commmm","phone":"11111","identification":{"typeIdentification":"DNI","numberIdentification":"444"}}],"authorizedSignatories":[{"fullName":"VERONICA ARANGO YAMASHIRO","email":"mail@gmail.commmm","phone":"2222222","identification":{"typeIdentification":"DNI","numberIdentification":"22222"}}]} 
+2025-04-21 22:45:41-011 [reactor-http-nio-5] INFO  c.b.b.c.LogicalCreateProduct - Validations to create product: {customerType=null, message=Error occurred while consulting some service., enabled=false, productType=CC} 
+2025-04-21 22:45:41-014 [reactor-http-nio-5] INFO  c.b.b.s.impl.ProductServiceImpl - Product creation completed {"result":false,"message":"Error occurred while consulting some service."} 
+2025-04-21 22:45:41-014 [reactor-http-nio-5] INFO  c.b.b.expose.BusinessDelegateImpl - End createProduct. 
+2025-04-21 22:45:47-555 [reactor-http-nio-4] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init createProduct. 
+2025-04-21 22:45:47-556 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Create product. 
+2025-04-21 22:45:47-556 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Create product: class CreateProductRQ {
+    customerId: 67ec1a63fabf6d0f4ada9866
+    productType: CC
+    familyProduct: null
+    openAmount: 1000.0
+    userBank: null
+} 
+2025-04-21 22:45:47-558 [parallel-8] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:47-558 [parallel-7] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: 67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:47-560 [parallel-8] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/products/customer/67ec1a63fabf6d0f4ada9866 
+2025-04-21 22:45:47-561 [parallel-7] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId 67ec1a63fabf6d0f4ada9866: CircuitBreaker 'customerService' is OPEN and does not permit further calls 
+2025-04-21 22:45:47-624 [reactor-http-nio-6] INFO  c.b.b.config.WebClientCustomerApi - Response status: 200 OK 
+2025-04-21 22:45:47-634 [reactor-http-nio-6] INFO  c.b.b.connector.ProductConnector - API getProductByCustomerId RS {"id":"67fec9835c652468edc457d0","productType":"CA","amountOfOpen":1000.0,"accountNumber":"CA01-3433862793","hasPlasticCard":false,"createdDate":[2025,4,15],"customer":{"customerId":"67ec1a63fabf6d0f4ada9866"},"holders":[{"fullName":"ABRAHAM  BERMEJO","email":"mail@gmail.commmm","phone":"11111","identification":{"typeIdentification":"DNI","numberIdentification":"444"}}],"authorizedSignatories":[{"fullName":"VERONICA ARANGO YAMASHIRO","email":"mail@gmail.commmm","phone":"2222222","identification":{"typeIdentification":"DNI","numberIdentification":"22222"}}]} 
+2025-04-21 22:45:47-637 [reactor-http-nio-6] INFO  c.b.b.c.LogicalCreateProduct - Validations to create product: {customerType=null, message=Error occurred while consulting some service., enabled=false, productType=CC} 
+2025-04-21 22:45:47-640 [reactor-http-nio-6] INFO  c.b.b.s.impl.ProductServiceImpl - Product creation completed {"result":false,"message":"Error occurred while consulting some service."} 
+2025-04-21 22:45:47-641 [reactor-http-nio-6] INFO  c.b.b.expose.BusinessDelegateImpl - End createProduct. 
+2025-04-21 22:46:02-061 [reactor-http-nio-4] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init additionalPerson: {"typeAdditional":"HOLD","productId":"67fec9835c652468edc457d0","fullName":"ANA  BERMEJO","identificationNum":"444","identificationType":"DNI","email":"mail@gmail.commmm","phone":"11111"} 
+2025-04-21 22:46:02-064 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Updating addition person 
+2025-04-21 22:46:02-065 [parallel-1] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: null 
+2025-04-21 22:46:02-066 [parallel-2] INFO  c.b.b.connector.ProductConnector - API getProductById RQ: 67fec9835c652468edc457d0 
+2025-04-21 22:46:02-067 [parallel-1] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/customers/null 
+2025-04-21 22:46:02-067 [parallel-2] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/products/67fec9835c652468edc457d0 
+2025-04-21 22:46:02-077 [reactor-http-nio-5] INFO  c.b.b.config.WebClientCustomerApi - Response status: 404 NOT_FOUND 
+2025-04-21 22:46:02-080 [reactor-http-nio-5] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: 404 Not Found from GET http://localhost:8989/api/customers/null 
+2025-04-21 22:46:02-081 [reactor-http-nio-5] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId null: 404 Not Found from GET http://localhost:8989/api/customers/null 
+2025-04-21 22:46:02-230 [reactor-http-nio-6] INFO  c.b.b.config.WebClientCustomerApi - Response status: 200 OK 
+2025-04-21 22:46:02-235 [reactor-http-nio-6] INFO  c.b.b.connector.ProductConnector - API getProductById RS: {"id":"67fec9835c652468edc457d0","productType":"CA","amountOfOpen":1000.0,"accountNumber":"CA01-3433862793","hasPlasticCard":false,"createdDate":[2025,4,15],"customer":{"customerId":"67ec1a63fabf6d0f4ada9866"},"holders":[{"fullName":"ABRAHAM  BERMEJO","email":"mail@gmail.commmm","phone":"11111","identification":{"typeIdentification":"DNI","numberIdentification":"444"}}],"authorizedSignatories":[{"fullName":"VERONICA ARANGO YAMASHIRO","email":"mail@gmail.commmm","phone":"2222222","identification":{"typeIdentification":"DNI","numberIdentification":"22222"}}]} 
+2025-04-21 22:46:02-240 [reactor-http-nio-6] INFO  c.b.b.s.impl.ProductServiceImpl - Update completed: {"result":false} 
+2025-04-21 22:46:02-251 [reactor-http-nio-6] INFO  c.b.b.expose.BusinessDelegateImpl - success update additionalperson {"body":{"result":false},"statusCodeValue":200,"statusCode":"OK"} 
+2025-04-21 22:46:56-330 [reactor-http-nio-4] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init additionalPerson: {"typeAdditional":"HOLD","productId":"67f9cc806e374c0902dcdb73","fullName":"ANA  BERMEJO","identificationNum":"444","identificationType":"DNI","email":"mail@gmail.commmm","phone":"11111"} 
+2025-04-21 22:46:56-331 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Updating addition person 
+2025-04-21 22:46:56-332 [parallel-3] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: null 
+2025-04-21 22:46:56-332 [parallel-4] INFO  c.b.b.connector.ProductConnector - API getProductById RQ: 67f9cc806e374c0902dcdb73 
+2025-04-21 22:46:56-333 [parallel-3] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/customers/null 
+2025-04-21 22:46:56-334 [parallel-4] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/products/67f9cc806e374c0902dcdb73 
+2025-04-21 22:46:56-353 [reactor-http-nio-5] INFO  c.b.b.config.WebClientCustomerApi - Response status: 404 NOT_FOUND 
+2025-04-21 22:46:56-357 [reactor-http-nio-5] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: 404 Not Found from GET http://localhost:8989/api/customers/null 
+2025-04-21 22:46:56-358 [reactor-http-nio-5] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId null: 404 Not Found from GET http://localhost:8989/api/customers/null 
+2025-04-21 22:46:56-409 [reactor-http-nio-6] INFO  c.b.b.config.WebClientCustomerApi - Response status: 200 OK 
+2025-04-21 22:46:56-419 [reactor-http-nio-6] INFO  c.b.b.connector.ProductConnector - API getProductById RS: {"id":"67f9cc806e374c0902dcdb73","productType":"SA","amountOfOpen":10.0,"accountNumber":"SA01-7689199523","hasPlasticCard":true,"cardNumber":"67fd7f29c1328463019a244a","createdDate":[2025,4,12],"customer":{"customerId":"67ec1a41fabf6d0f4ada9865"}} 
+2025-04-21 22:46:56-430 [reactor-http-nio-6] INFO  c.b.b.connector.ProductConnector - API updateProduct RQ: {"actionToUpdate":"CHANGE_HOLDERS","holders":[{"fullName":"ANA  BERMEJO","email":"mail@gmail.commmm","phone":"11111","identification":{"typeIdentification":"DNI","numberIdentification":"444"}}]} 
+2025-04-21 22:46:56-434 [reactor-http-nio-6] INFO  c.b.b.config.WebClientCustomerApi - Request: PUT,  http://localhost:8989/api/products/67f9cc806e374c0902dcdb73 
+2025-04-21 22:46:56-777 [reactor-http-nio-5] INFO  c.b.b.config.WebClientCustomerApi - Response status: 200 OK 
+2025-04-21 22:46:56-785 [reactor-http-nio-5] INFO  c.b.b.connector.ProductConnector - API updateProduct RS: {"id":"67f9cc806e374c0902dcdb73","productType":"SA","amountOfOpen":10.0,"accountNumber":"SA01-7689199523","hasPlasticCard":true,"cardNumber":"67fd7f29c1328463019a244a","createdDate":[2025,4,12],"customer":{"customerId":"67ec1a41fabf6d0f4ada9865"},"holders":[{"fullName":"ANA  BERMEJO","email":"mail@gmail.commmm","phone":"11111","identification":{"typeIdentification":"DNI","numberIdentification":"444"}}]} 
+2025-04-21 22:46:56-788 [reactor-http-nio-5] INFO  c.b.b.s.impl.ProductServiceImpl - Update completed: {"result":true} 
+2025-04-21 22:46:56-796 [reactor-http-nio-5] INFO  c.b.b.expose.BusinessDelegateImpl - success update additionalperson {"body":{"result":true},"statusCodeValue":200,"statusCode":"OK"} 
+2025-04-21 22:47:15-856 [reactor-http-nio-4] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init additionalPerson: {"typeAdditional":"HOLD","productId":"67f9cc806e374c0902dcdb73","fullName":"ANA  BERMEJO","identificationNum":"444","identificationType":"DNI","email":"mail@gmail.commmm","phone":"11111"} 
+2025-04-21 22:47:15-857 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Updating addition person 
+2025-04-21 22:47:15-859 [parallel-5] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: null 
+2025-04-21 22:47:15-859 [parallel-6] INFO  c.b.b.connector.ProductConnector - API getProductById RQ: 67f9cc806e374c0902dcdb73 
+2025-04-21 22:47:15-862 [parallel-5] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/customers/null 
+2025-04-21 22:47:15-862 [parallel-6] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/products/67f9cc806e374c0902dcdb73 
+2025-04-21 22:47:15-879 [reactor-http-nio-5] INFO  c.b.b.config.WebClientCustomerApi - Response status: 404 NOT_FOUND 
+2025-04-21 22:47:15-885 [reactor-http-nio-5] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: 404 Not Found from GET http://localhost:8989/api/customers/null 
+2025-04-21 22:47:15-887 [reactor-http-nio-5] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId null: 404 Not Found from GET http://localhost:8989/api/customers/null 
+2025-04-21 22:47:15-912 [reactor-http-nio-6] INFO  c.b.b.config.WebClientCustomerApi - Response status: 200 OK 
+2025-04-21 22:47:15-917 [reactor-http-nio-6] INFO  c.b.b.connector.ProductConnector - API getProductById RS: {"id":"67f9cc806e374c0902dcdb73","productType":"SA","amountOfOpen":10.0,"accountNumber":"SA01-7689199523","hasPlasticCard":true,"cardNumber":"67fd7f29c1328463019a244a","createdDate":[2025,4,12],"customer":{"customerId":"67ec1a41fabf6d0f4ada9865"},"holders":[{"fullName":"ANA  BERMEJO","email":"mail@gmail.commmm","phone":"11111","identification":{"typeIdentification":"DNI","numberIdentification":"444"}}]} 
+2025-04-21 22:47:15-918 [reactor-http-nio-6] INFO  c.b.b.s.impl.ProductServiceImpl - Update completed: {"result":false} 
+2025-04-21 22:47:15-922 [reactor-http-nio-6] INFO  c.b.b.expose.BusinessDelegateImpl - success update additionalperson {"body":{"result":false},"statusCodeValue":200,"statusCode":"OK"} 
+2025-04-21 22:48:39-539 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 22:49:20-261 [SpringApplicationShutdownHook] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Unregistering application BUSINESS-SERVICE with eureka with status DOWN 
+2025-04-21 22:49:20-261 [SpringApplicationShutdownHook] INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1745293760261, current=DOWN, previous=UP] 
+2025-04-21 22:49:20-261 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585: registering service... 
+2025-04-21 22:49:20-267 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.netty.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete 
+2025-04-21 22:49:20-270 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585 - registration status: 204 
+2025-04-21 22:49:20-272 [netty-shutdown] INFO  o.s.b.w.e.netty.GracefulShutdown - Graceful shutdown complete 
+2025-04-21 22:53:05-849 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final 
+2025-04-21 22:53:05-949 [main] INFO  c.b.b.BusinessServiceApplication - Starting BusinessServiceApplication using Java 17.0.12 with PID 6408 (C:\Users\mgarcsar\Documents\Bootcamp\etregables\business-service\target\classes started by mgarcsar in C:\Users\mgarcsar\Documents\Bootcamp\etregables\business-service) 
+2025-04-21 22:53:05-950 [main] INFO  c.b.b.BusinessServiceApplication - The following 1 profile is active: "local" 
+2025-04-21 22:53:06-013 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Fetching config from server at : http://localhost:8888 
+2025-04-21 22:53:06-014 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Located environment: name=business-service, profiles=[default], label=null, version=8484cc7235c0e140ede01f1eab20da652c65fd2f, state= 
+2025-04-21 22:53:06-014 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Fetching config from server at : http://localhost:8888 
+2025-04-21 22:53:06-014 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - Located environment: name=business-service, profiles=[local], label=null, version=8484cc7235c0e140ede01f1eab20da652c65fd2f, state= 
+2025-04-21 22:53:09-459 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=bcb4b232-1d76-3c1a-a7d9-313b2d1d8fa1 
+2025-04-21 22:53:17-602 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoints beneath base path '/actuator' 
+2025-04-21 22:53:20-164 [main] INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate. 
+2025-04-21 22:53:20-452 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath. 
+2025-04-21 22:53:20-719 [main] INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING 
+2025-04-21 22:53:20-792 [main] INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1 
+2025-04-21 22:53:20-805 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 22:53:20-835 [main] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false 
+2025-04-21 22:53:20-836 [main] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null 
+2025-04-21 22:53:20-836 [main] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false 
+2025-04-21 22:53:20-837 [main] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false 
+2025-04-21 22:53:20-837 [main] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true 
+2025-04-21 22:53:20-837 [main] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true 
+2025-04-21 22:53:20-837 [main] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server 
+2025-04-21 22:53:21-695 [main] INFO  c.netflix.discovery.DiscoveryClient - The response status is 200 
+2025-04-21 22:53:21-702 [main] INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30 
+2025-04-21 22:53:21-716 [main] INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4 
+2025-04-21 22:53:21-724 [main] INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1745294001722 with initial instances count: 3 
+2025-04-21 22:53:21-766 [main] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application BUSINESS-SERVICE with eureka with status UP 
+2025-04-21 22:53:21-768 [main] INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1745294001768, current=UP, previous=STARTING] 
+2025-04-21 22:53:21-774 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585: registering service... 
+2025-04-21 22:53:21-865 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585 - registration status: 204 
+2025-04-21 22:53:22-337 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 8585 (http) 
+2025-04-21 22:53:22-339 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8585 
+2025-04-21 22:53:23-183 [main] INFO  c.b.b.BusinessServiceApplication - Started BusinessServiceApplication in 23.33 seconds (process running for 25.611) 
+2025-04-21 22:53:35-996 [reactor-http-nio-4] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init additionalPerson: {"typeAdditional":"HOLD","productId":"67f9cc806e374c0902dcdb73","fullName":"ANA  BERMEJO","identificationNum":"444","identificationType":"DNI","email":"mail@gmail.commmm","phone":"11111"} 
+2025-04-21 22:53:36-009 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Updating addition person 
+2025-04-21 22:53:36-053 [parallel-1] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: null 
+2025-04-21 22:53:36-053 [parallel-2] INFO  c.b.b.connector.ProductConnector - API getProductById RQ: 67f9cc806e374c0902dcdb73 
+2025-04-21 22:53:36-093 [parallel-1] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/customers/null 
+2025-04-21 22:53:36-093 [parallel-2] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/products/67f9cc806e374c0902dcdb73 
+2025-04-21 22:53:36-517 [reactor-http-nio-6] INFO  c.b.b.config.WebClientCustomerApi - Response status: 404 NOT_FOUND 
+2025-04-21 22:53:36-517 [reactor-http-nio-5] INFO  c.b.b.config.WebClientCustomerApi - Response status: 404 NOT_FOUND 
+2025-04-21 22:53:36-556 [reactor-http-nio-6] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: 404 Not Found from GET http://localhost:8989/api/customers/null 
+2025-04-21 22:53:36-556 [reactor-http-nio-5] ERROR c.b.b.connector.ProductConnector - Error API while getting product by id: 404 Not Found from GET http://localhost:8989/api/products/67f9cc806e374c0902dcdb73 
+2025-04-21 22:53:36-562 [reactor-http-nio-5] ERROR c.b.b.connector.ProductConnector - Fallback for getProductById 67f9cc806e374c0902dcdb73, 404 Not Found from GET http://localhost:8989/api/products/67f9cc806e374c0902dcdb73 
+2025-04-21 22:53:36-562 [reactor-http-nio-6] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId null: 404 Not Found from GET http://localhost:8989/api/customers/null 
+2025-04-21 22:53:36-565 [reactor-http-nio-6] INFO  c.b.b.s.impl.ProductServiceImpl - Error updating additional person 
+java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because the return value of "com.bootcamp.commons.bean.products.ProductResponse.getHolders()" is null
+	at com.bootcamp.business_service.components.LogicalAddPersonToProduct.lambda$validate$4(LogicalAddPersonToProduct.java:41)
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Assembly trace from producer [reactor.core.publisher.MonoFlatMap] :
+	reactor.core.publisher.Mono.flatMap(Mono.java:3179)
+	com.bootcamp.business_service.components.LogicalAddPersonToProduct.lambda$validate$6(LogicalAddPersonToProduct.java:38)
+Error has been observed at the following site(s):
+	*________Mono.flatMap ⇢ at com.bootcamp.business_service.components.LogicalAddPersonToProduct.lambda$validate$6(LogicalAddPersonToProduct.java:38)
+	|_       Mono.flatMap ⇢ at com.bootcamp.business_service.components.LogicalAddPersonToProduct.lambda$validate$6(LogicalAddPersonToProduct.java:50)
+	*________Mono.flatMap ⇢ at com.bootcamp.business_service.components.LogicalAddPersonToProduct.validate(LogicalAddPersonToProduct.java:33)
+	|_       Mono.flatMap ⇢ at com.bootcamp.business_service.service.impl.ProductServiceImpl.lambda$updateAdditionalPerson$13(ProductServiceImpl.java:89)
+	*________Mono.flatMap ⇢ at com.bootcamp.business_service.service.impl.ProductServiceImpl.updateAdditionalPerson(ProductServiceImpl.java:88)
+	|_ Mono.doOnSubscribe ⇢ at com.bootcamp.business_service.service.impl.ProductServiceImpl.updateAdditionalPerson(ProductServiceImpl.java:105)
+	|_   Mono.doOnSuccess ⇢ at com.bootcamp.business_service.service.impl.ProductServiceImpl.updateAdditionalPerson(ProductServiceImpl.java:106)
+Original Stack Trace:
+		at com.bootcamp.business_service.components.LogicalAddPersonToProduct.lambda$validate$4(LogicalAddPersonToProduct.java:41)
+		at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:153)
+		at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53)
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:63)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165)
+		at reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297)
+		at reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478)
+		at reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.onNext(MonoSubscribeOn.java:146)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79)
+		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571)
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onSubscribe(FluxOnErrorResume.java:74)
+		at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55)
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103)
+		at io.github.resilience4j.reactor.circuitbreaker.operator.CircuitBreakerSubscriber.hookOnError(CircuitBreakerSubscriber.java:86)
+		at reactor.core.publisher.BaseSubscriber.onError(BaseSubscriber.java:180)
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onError(MonoPeekTerminal.java:258)
+		at reactor.core.publisher.FluxPeekFuseable$PeekFuseableConditionalSubscriber.onError(FluxPeekFuseable.java:553)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.secondError(MonoFlatMap.java:241)
+		at reactor.core.publisher.MonoFlatMap$FlatMapInner.onError(MonoFlatMap.java:315)
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onError(Operators.java:2236)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onError(MonoFlatMap.java:180)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:106)
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onError(MonoIgnoreThen.java:280)
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:232)
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onComplete(MonoIgnoreThen.java:204)
+		at reactor.core.publisher.FluxOnErrorReturn$ReturnSubscriber.onComplete(FluxOnErrorReturn.java:169)
+		at reactor.core.publisher.MonoIgnoreElements$IgnoreElementsSubscriber.onComplete(MonoIgnoreElements.java:89)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onComplete(FluxMapFuseable.java:152)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onComplete(FluxMapFuseable.java:152)
+		at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onComplete(FluxPeekFuseable.java:277)
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+		at reactor.core.publisher.Operators.complete(Operators.java:137)
+		at reactor.netty.channel.FluxReceive.startReceiver(FluxReceive.java:179)
+		at reactor.netty.channel.FluxReceive.subscribe(FluxReceive.java:145)
+		at reactor.core.publisher.InternalFluxOperator.subscribe(InternalFluxOperator.java:68)
+		at reactor.netty.ByteBufFlux.subscribe(ByteBufFlux.java:340)
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265)
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51)
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.secondError(MonoFlatMap.java:241)
+		at reactor.core.publisher.MonoFlatMap$FlatMapInner.onError(MonoFlatMap.java:315)
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onError(MonoIgnoreThen.java:280)
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:232)
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onComplete(MonoIgnoreThen.java:204)
+		at reactor.core.publisher.FluxOnErrorReturn$ReturnSubscriber.onComplete(FluxOnErrorReturn.java:169)
+		at reactor.core.publisher.MonoIgnoreElements$IgnoreElementsSubscriber.onComplete(MonoIgnoreElements.java:89)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onComplete(FluxMapFuseable.java:152)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onComplete(FluxMapFuseable.java:152)
+		at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onComplete(FluxPeekFuseable.java:277)
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+		at reactor.core.publisher.Operators.complete(Operators.java:137)
+		at reactor.netty.channel.FluxReceive.startReceiver(FluxReceive.java:179)
+		at reactor.netty.channel.FluxReceive.subscribe(FluxReceive.java:145)
+		at reactor.core.publisher.InternalFluxOperator.subscribe(InternalFluxOperator.java:68)
+		at reactor.netty.ByteBufFlux.subscribe(ByteBufFlux.java:340)
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265)
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51)
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129)
+		at reactor.core.publisher.FluxOnErrorReturn$ReturnSubscriber.onNext(FluxOnErrorReturn.java:162)
+		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:122)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onNext(FluxContextWrite.java:107)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onNext(FluxMapFuseable.java:299)
+		at reactor.core.publisher.FluxFilterFuseable$FilterFuseableConditionalSubscriber.onNext(FluxFilterFuseable.java:337)
+		at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2097)
+		at reactor.core.publisher.MonoCollect$CollectSubscriber.onComplete(MonoCollect.java:145)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onComplete(FluxMapFuseable.java:152)
+		at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onComplete(FluxPeekFuseable.java:277)
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+		at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:413)
+		at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:455)
+		at reactor.netty.channel.ChannelOperations.terminate(ChannelOperations.java:509)
+		at reactor.netty.http.client.HttpClientOperations.onInboundNext(HttpClientOperations.java:824)
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:115)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:107)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436)
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346)
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318)
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1357)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:868)
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:796)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:732)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:658)
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:842)
+2025-04-21 22:53:36-574 [reactor-http-nio-6] ERROR c.b.b.expose.BusinessDelegateImpl - Request error updateAdditionalPerson Cannot invoke "java.util.List.stream()" because the return value of "com.bootcamp.commons.bean.products.ProductResponse.getHolders()" is null 
+2025-04-21 22:53:51-740 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.n.d.s.t.d.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/} exception=I/O error on GET request for "http://localhost:8761/eureka/apps/delta": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on GET request for "http://localhost:8761/eureka/apps/delta": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:926)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:906)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:841)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:702)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.getApplicationsInternal(RestTemplateEurekaHttpClient.java:174)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.getDelta(RestTemplateEurekaHttpClient.java:186)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$7.execute(EurekaHttpClientDecorator.java:152)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:91)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getDelta(EurekaHttpClientDecorator.java:149)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$7.execute(EurekaHttpClientDecorator.java:152)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getDelta(EurekaHttpClientDecorator.java:149)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$7.execute(EurekaHttpClientDecorator.java:152)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getDelta(EurekaHttpClientDecorator.java:149)
+	at com.netflix.discovery.DiscoveryClient.getAndUpdateDelta(DiscoveryClient.java:1080)
+	at com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:963)
+	at com.netflix.discovery.DiscoveryClient.refreshRegistry(DiscoveryClient.java:1473)
+	at com.netflix.discovery.DiscoveryClient$CacheRefreshThread.run(DiscoveryClient.java:1441)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
+	at --- Async.Stack.Trace --- (captured by IntelliJ IDEA debugger)
+	at java.base/java.util.concurrent.FutureTask.<init>(FutureTask.java:151)
+	at java.base/java.util.concurrent.AbstractExecutorService.newTaskFor(AbstractExecutorService.java:98)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:122)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:63)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
+	at --- Async.Stack.Trace --- (captured by IntelliJ IDEA debugger)
+	at java.base/java.util.concurrent.FutureTask.<init>(FutureTask.java:151)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.<init>(ScheduledThreadPoolExecutor.java:215)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor.schedule(ScheduledThreadPoolExecutor.java:561)
+	at com.netflix.discovery.DiscoveryClient.initScheduledTasks(DiscoveryClient.java:1258)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:445)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:245)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:240)
+	at org.springframework.cloud.netflix.eureka.CloudEurekaClient.<init>(CloudEurekaClient.java:68)
+	at org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$RefreshableEurekaClientConfiguration.eurekaClient(EurekaClientAutoConfiguration.java:324)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:171)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:88)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:168)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$1(AbstractBeanFactory.java:378)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.getBean(GenericScope.java:375)
+	at org.springframework.cloud.context.scope.GenericScope.get(GenericScope.java:179)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:375)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.aop.target.SimpleBeanTargetSource.getTarget(SimpleBeanTargetSource.java:35)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getTargetObject(EurekaRegistration.java:128)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getEurekaClient(EurekaRegistration.java:116)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:281)
+	at org.springframework.cloud.context.scope.GenericScope$LockedScopedProxyFactoryBean.invoke(GenericScope.java:482)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration$$SpringCGLIB$$0.getEurekaClient(<generated>)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.maybeInitializeClient(EurekaServiceRegistry.java:83)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.register(EurekaServiceRegistry.java:66)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration.start(EurekaAutoServiceRegistration.java:89)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:323)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:510)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:295)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:240)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:1006)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:630)
+	at org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext.refresh(ReactiveWebServerApplicationContext.java:66)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.bootcamp.business_service.BusinessServiceApplication.main(BusinessServiceApplication.java:10)
+Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:547)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:633)
+	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:216)
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:490)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:164)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:174)
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:144)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:192)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:150)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:113)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:174)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
+	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:99)
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:71)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:117)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$2(RestTemplateTransportClientFactory.java:145)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:88)
+	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:72)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:900)
+	... 85 more
+ 
+2025-04-21 22:53:51-741 [DiscoveryClient-CacheRefreshExecutor-%d] WARN  c.n.d.s.t.d.RetryableEurekaHttpClient - Request execution failed with message: I/O error on GET request for "http://localhost:8761/eureka/apps/delta": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information 
+2025-04-21 22:53:51-743 [DiscoveryClient-HeartbeatExecutor-%d] INFO  c.n.d.s.t.d.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/} exception=I/O error on PUT request for "http://localhost:8761/eureka/apps/BUSINESS-SERVICE/business-service:8585": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on PUT request for "http://localhost:8761/eureka/apps/BUSINESS-SERVICE/business-service:8585": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:926)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:906)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:841)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:702)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.sendHeartBeat(RestTemplateEurekaHttpClient.java:119)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:91)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
+	at com.netflix.discovery.DiscoveryClient.renew(DiscoveryClient.java:845)
+	at com.netflix.discovery.DiscoveryClient$HeartbeatThread.run(DiscoveryClient.java:1402)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
+	at --- Async.Stack.Trace --- (captured by IntelliJ IDEA debugger)
+	at java.base/java.util.concurrent.FutureTask.<init>(FutureTask.java:151)
+	at java.base/java.util.concurrent.AbstractExecutorService.newTaskFor(AbstractExecutorService.java:98)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:122)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:63)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
+	at --- Async.Stack.Trace --- (captured by IntelliJ IDEA debugger)
+	at java.base/java.util.concurrent.FutureTask.<init>(FutureTask.java:151)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.<init>(ScheduledThreadPoolExecutor.java:215)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor.schedule(ScheduledThreadPoolExecutor.java:561)
+	at com.netflix.discovery.DiscoveryClient.initScheduledTasks(DiscoveryClient.java:1278)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:445)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:245)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:240)
+	at org.springframework.cloud.netflix.eureka.CloudEurekaClient.<init>(CloudEurekaClient.java:68)
+	at org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$RefreshableEurekaClientConfiguration.eurekaClient(EurekaClientAutoConfiguration.java:324)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:171)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:88)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:168)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$1(AbstractBeanFactory.java:378)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.getBean(GenericScope.java:375)
+	at org.springframework.cloud.context.scope.GenericScope.get(GenericScope.java:179)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:375)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.aop.target.SimpleBeanTargetSource.getTarget(SimpleBeanTargetSource.java:35)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getTargetObject(EurekaRegistration.java:128)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getEurekaClient(EurekaRegistration.java:116)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:281)
+	at org.springframework.cloud.context.scope.GenericScope$LockedScopedProxyFactoryBean.invoke(GenericScope.java:482)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration$$SpringCGLIB$$0.getEurekaClient(<generated>)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.maybeInitializeClient(EurekaServiceRegistry.java:83)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.register(EurekaServiceRegistry.java:66)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration.start(EurekaAutoServiceRegistration.java:89)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:323)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:510)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:295)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:240)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:1006)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:630)
+	at org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext.refresh(ReactiveWebServerApplicationContext.java:66)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.bootcamp.business_service.BusinessServiceApplication.main(BusinessServiceApplication.java:10)
+Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:547)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:633)
+	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:216)
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:490)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:164)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:174)
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:144)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:192)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:150)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:113)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:174)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
+	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:99)
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:71)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:117)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$2(RestTemplateTransportClientFactory.java:145)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:88)
+	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:72)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:900)
+	... 82 more
+ 
+2025-04-21 22:53:51-744 [DiscoveryClient-HeartbeatExecutor-%d] WARN  c.n.d.s.t.d.RetryableEurekaHttpClient - Request execution failed with message: I/O error on PUT request for "http://localhost:8761/eureka/apps/BUSINESS-SERVICE/business-service:8585": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information 
+2025-04-21 22:53:51-774 [DiscoveryClient-HeartbeatExecutor-%d] INFO  c.n.d.s.t.d.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=I/O error on PUT request for "http://localhost:8761/eureka/apps/BUSINESS-SERVICE/business-service:8585": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on PUT request for "http://localhost:8761/eureka/apps/BUSINESS-SERVICE/business-service:8585": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:926)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:906)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:841)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:702)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.sendHeartBeat(RestTemplateEurekaHttpClient.java:119)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
+	at com.netflix.discovery.DiscoveryClient.renew(DiscoveryClient.java:845)
+	at com.netflix.discovery.DiscoveryClient$HeartbeatThread.run(DiscoveryClient.java:1402)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
+	at --- Async.Stack.Trace --- (captured by IntelliJ IDEA debugger)
+	at java.base/java.util.concurrent.FutureTask.<init>(FutureTask.java:151)
+	at java.base/java.util.concurrent.AbstractExecutorService.newTaskFor(AbstractExecutorService.java:98)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:122)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:63)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
+	at --- Async.Stack.Trace --- (captured by IntelliJ IDEA debugger)
+	at java.base/java.util.concurrent.FutureTask.<init>(FutureTask.java:151)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.<init>(ScheduledThreadPoolExecutor.java:215)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor.schedule(ScheduledThreadPoolExecutor.java:561)
+	at com.netflix.discovery.DiscoveryClient.initScheduledTasks(DiscoveryClient.java:1278)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:445)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:245)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:240)
+	at org.springframework.cloud.netflix.eureka.CloudEurekaClient.<init>(CloudEurekaClient.java:68)
+	at org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$RefreshableEurekaClientConfiguration.eurekaClient(EurekaClientAutoConfiguration.java:324)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:171)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:88)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:168)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$1(AbstractBeanFactory.java:378)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.getBean(GenericScope.java:375)
+	at org.springframework.cloud.context.scope.GenericScope.get(GenericScope.java:179)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:375)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.aop.target.SimpleBeanTargetSource.getTarget(SimpleBeanTargetSource.java:35)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getTargetObject(EurekaRegistration.java:128)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getEurekaClient(EurekaRegistration.java:116)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:281)
+	at org.springframework.cloud.context.scope.GenericScope$LockedScopedProxyFactoryBean.invoke(GenericScope.java:482)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration$$SpringCGLIB$$0.getEurekaClient(<generated>)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.maybeInitializeClient(EurekaServiceRegistry.java:83)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.register(EurekaServiceRegistry.java:66)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration.start(EurekaAutoServiceRegistration.java:89)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:323)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:510)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:295)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:240)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:1006)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:630)
+	at org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext.refresh(ReactiveWebServerApplicationContext.java:66)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.bootcamp.business_service.BusinessServiceApplication.main(BusinessServiceApplication.java:10)
+Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:547)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:633)
+	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:216)
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:490)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:164)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:174)
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:144)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:192)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:150)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:113)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:174)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
+	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:99)
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:71)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:117)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$2(RestTemplateTransportClientFactory.java:145)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:88)
+	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:72)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:900)
+	... 83 more
+ 
+2025-04-21 22:53:51-775 [DiscoveryClient-HeartbeatExecutor-%d] WARN  c.n.d.s.t.d.RetryableEurekaHttpClient - Request execution failed with message: I/O error on PUT request for "http://localhost:8761/eureka/apps/BUSINESS-SERVICE/business-service:8585": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information 
+2025-04-21 22:53:51-776 [DiscoveryClient-HeartbeatExecutor-%d] ERROR c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585 - was unable to send heartbeat! 
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
+	at com.netflix.discovery.DiscoveryClient.renew(DiscoveryClient.java:845)
+	at com.netflix.discovery.DiscoveryClient$HeartbeatThread.run(DiscoveryClient.java:1402)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2025-04-21 22:53:51-781 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.n.d.s.t.d.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=I/O error on GET request for "http://localhost:8761/eureka/apps/delta": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on GET request for "http://localhost:8761/eureka/apps/delta": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:926)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:906)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:841)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:702)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.getApplicationsInternal(RestTemplateEurekaHttpClient.java:174)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.getDelta(RestTemplateEurekaHttpClient.java:186)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$7.execute(EurekaHttpClientDecorator.java:152)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getDelta(EurekaHttpClientDecorator.java:149)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$7.execute(EurekaHttpClientDecorator.java:152)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getDelta(EurekaHttpClientDecorator.java:149)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$7.execute(EurekaHttpClientDecorator.java:152)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getDelta(EurekaHttpClientDecorator.java:149)
+	at com.netflix.discovery.DiscoveryClient.getAndUpdateDelta(DiscoveryClient.java:1080)
+	at com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:963)
+	at com.netflix.discovery.DiscoveryClient.refreshRegistry(DiscoveryClient.java:1473)
+	at com.netflix.discovery.DiscoveryClient$CacheRefreshThread.run(DiscoveryClient.java:1441)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
+	at --- Async.Stack.Trace --- (captured by IntelliJ IDEA debugger)
+	at java.base/java.util.concurrent.FutureTask.<init>(FutureTask.java:151)
+	at java.base/java.util.concurrent.AbstractExecutorService.newTaskFor(AbstractExecutorService.java:98)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:122)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:63)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
+	at --- Async.Stack.Trace --- (captured by IntelliJ IDEA debugger)
+	at java.base/java.util.concurrent.FutureTask.<init>(FutureTask.java:151)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.<init>(ScheduledThreadPoolExecutor.java:215)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor.schedule(ScheduledThreadPoolExecutor.java:561)
+	at com.netflix.discovery.DiscoveryClient.initScheduledTasks(DiscoveryClient.java:1258)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:445)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:245)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:240)
+	at org.springframework.cloud.netflix.eureka.CloudEurekaClient.<init>(CloudEurekaClient.java:68)
+	at org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$RefreshableEurekaClientConfiguration.eurekaClient(EurekaClientAutoConfiguration.java:324)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:171)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:88)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:168)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$1(AbstractBeanFactory.java:378)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.getBean(GenericScope.java:375)
+	at org.springframework.cloud.context.scope.GenericScope.get(GenericScope.java:179)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:375)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.aop.target.SimpleBeanTargetSource.getTarget(SimpleBeanTargetSource.java:35)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getTargetObject(EurekaRegistration.java:128)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getEurekaClient(EurekaRegistration.java:116)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:281)
+	at org.springframework.cloud.context.scope.GenericScope$LockedScopedProxyFactoryBean.invoke(GenericScope.java:482)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration$$SpringCGLIB$$0.getEurekaClient(<generated>)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.maybeInitializeClient(EurekaServiceRegistry.java:83)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.register(EurekaServiceRegistry.java:66)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration.start(EurekaAutoServiceRegistration.java:89)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:323)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:510)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:295)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:240)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:1006)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:630)
+	at org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext.refresh(ReactiveWebServerApplicationContext.java:66)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.bootcamp.business_service.BusinessServiceApplication.main(BusinessServiceApplication.java:10)
+Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:547)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:633)
+	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:216)
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:490)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:164)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:174)
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:144)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:192)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:150)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:113)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:174)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
+	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:99)
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:71)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:117)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$2(RestTemplateTransportClientFactory.java:145)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:88)
+	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:72)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:900)
+	... 86 more
+ 
+2025-04-21 22:53:51-782 [DiscoveryClient-CacheRefreshExecutor-%d] WARN  c.n.d.s.t.d.RetryableEurekaHttpClient - Request execution failed with message: I/O error on GET request for "http://localhost:8761/eureka/apps/delta": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information 
+2025-04-21 22:53:51-783 [DiscoveryClient-CacheRefreshExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585 - was unable to refresh its cache! This periodic background refresh will be retried in 30 seconds. status = Cannot execute request on any known server stacktrace = com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getDelta(EurekaHttpClientDecorator.java:149)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$7.execute(EurekaHttpClientDecorator.java:152)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getDelta(EurekaHttpClientDecorator.java:149)
+	at com.netflix.discovery.DiscoveryClient.getAndUpdateDelta(DiscoveryClient.java:1080)
+	at com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:963)
+	at com.netflix.discovery.DiscoveryClient.refreshRegistry(DiscoveryClient.java:1473)
+	at com.netflix.discovery.DiscoveryClient$CacheRefreshThread.run(DiscoveryClient.java:1441)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
+	at --- Async.Stack.Trace --- (captured by IntelliJ IDEA debugger)
+	at java.base/java.util.concurrent.FutureTask.<init>(FutureTask.java:151)
+	at java.base/java.util.concurrent.AbstractExecutorService.newTaskFor(AbstractExecutorService.java:98)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:122)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:63)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
+	at --- Async.Stack.Trace --- (captured by IntelliJ IDEA debugger)
+	at java.base/java.util.concurrent.FutureTask.<init>(FutureTask.java:151)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.<init>(ScheduledThreadPoolExecutor.java:215)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor.schedule(ScheduledThreadPoolExecutor.java:561)
+	at com.netflix.discovery.DiscoveryClient.initScheduledTasks(DiscoveryClient.java:1258)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:445)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:245)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:240)
+	at org.springframework.cloud.netflix.eureka.CloudEurekaClient.<init>(CloudEurekaClient.java:68)
+	at org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$RefreshableEurekaClientConfiguration.eurekaClient(EurekaClientAutoConfiguration.java:324)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:171)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:88)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:168)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$1(AbstractBeanFactory.java:378)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.getBean(GenericScope.java:375)
+	at org.springframework.cloud.context.scope.GenericScope.get(GenericScope.java:179)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:375)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.aop.target.SimpleBeanTargetSource.getTarget(SimpleBeanTargetSource.java:35)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getTargetObject(EurekaRegistration.java:128)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getEurekaClient(EurekaRegistration.java:116)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:281)
+	at org.springframework.cloud.context.scope.GenericScope$LockedScopedProxyFactoryBean.invoke(GenericScope.java:482)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration$$SpringCGLIB$$0.getEurekaClient(<generated>)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.maybeInitializeClient(EurekaServiceRegistry.java:83)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.register(EurekaServiceRegistry.java:66)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration.start(EurekaAutoServiceRegistration.java:89)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:323)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:510)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:295)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:240)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:1006)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:630)
+	at org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext.refresh(ReactiveWebServerApplicationContext.java:66)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.bootcamp.business_service.BusinessServiceApplication.main(BusinessServiceApplication.java:10)
+ 
+2025-04-21 22:54:21-846 [DiscoveryClient-HeartbeatExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585 - Re-registering apps/BUSINESS-SERVICE 
+2025-04-21 22:54:21-846 [DiscoveryClient-HeartbeatExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585: registering service... 
+2025-04-21 22:54:21-868 [DiscoveryClient-HeartbeatExecutor-%d] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_BUSINESS-SERVICE/business-service:8585 - registration status: 204 
+2025-04-21 22:54:31-275 [reactor-http-nio-4] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init additionalPerson: {"typeAdditional":"HOLD","productId":"67f9cc806e374c0902dcdb73","fullName":"ANA  BERMEJO","identificationNum":"444","identificationType":"DNI","email":"mail@gmail.commmm","phone":"11111"} 
+2025-04-21 22:54:31-276 [reactor-http-nio-4] INFO  c.b.b.s.impl.ProductServiceImpl - Updating addition person 
+2025-04-21 22:54:31-281 [parallel-4] INFO  c.b.b.connector.ProductConnector - API getProductById RQ: 67f9cc806e374c0902dcdb73 
+2025-04-21 22:54:31-281 [parallel-3] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: null 
+2025-04-21 22:54:31-285 [parallel-3] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/customers/null 
+2025-04-21 22:54:31-285 [parallel-4] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/products/67f9cc806e374c0902dcdb73 
+2025-04-21 22:54:31-923 [reactor-http-nio-7] INFO  c.b.b.config.WebClientCustomerApi - Response status: 404 NOT_FOUND 
+2025-04-21 22:54:31-924 [reactor-http-nio-8] INFO  c.b.b.config.WebClientCustomerApi - Response status: 404 NOT_FOUND 
+2025-04-21 22:54:31-929 [reactor-http-nio-8] ERROR c.b.b.connector.ProductConnector - Error API while getting product by id: 404 Not Found from GET http://localhost:8989/api/products/67f9cc806e374c0902dcdb73 
+2025-04-21 22:54:31-929 [reactor-http-nio-7] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: 404 Not Found from GET http://localhost:8989/api/customers/null 
+2025-04-21 22:54:31-932 [reactor-http-nio-8] ERROR c.b.b.connector.ProductConnector - Fallback for getProductById 67f9cc806e374c0902dcdb73, 404 Not Found from GET http://localhost:8989/api/products/67f9cc806e374c0902dcdb73 
+2025-04-21 22:54:31-932 [reactor-http-nio-7] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId null: 404 Not Found from GET http://localhost:8989/api/customers/null 
+2025-04-21 22:54:31-934 [reactor-http-nio-7] INFO  c.b.b.s.impl.ProductServiceImpl - Error updating additional person 
+java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because the return value of "com.bootcamp.commons.bean.products.ProductResponse.getHolders()" is null
+	at com.bootcamp.business_service.components.LogicalAddPersonToProduct.lambda$validate$4(LogicalAddPersonToProduct.java:41)
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Assembly trace from producer [reactor.core.publisher.MonoFlatMap] :
+	reactor.core.publisher.Mono.flatMap(Mono.java:3179)
+	com.bootcamp.business_service.components.LogicalAddPersonToProduct.lambda$validate$6(LogicalAddPersonToProduct.java:38)
+Error has been observed at the following site(s):
+	*________Mono.flatMap ⇢ at com.bootcamp.business_service.components.LogicalAddPersonToProduct.lambda$validate$6(LogicalAddPersonToProduct.java:38)
+	|_       Mono.flatMap ⇢ at com.bootcamp.business_service.components.LogicalAddPersonToProduct.lambda$validate$6(LogicalAddPersonToProduct.java:50)
+	*________Mono.flatMap ⇢ at com.bootcamp.business_service.components.LogicalAddPersonToProduct.validate(LogicalAddPersonToProduct.java:33)
+	|_       Mono.flatMap ⇢ at com.bootcamp.business_service.service.impl.ProductServiceImpl.lambda$updateAdditionalPerson$13(ProductServiceImpl.java:89)
+	*________Mono.flatMap ⇢ at com.bootcamp.business_service.service.impl.ProductServiceImpl.updateAdditionalPerson(ProductServiceImpl.java:88)
+	|_ Mono.doOnSubscribe ⇢ at com.bootcamp.business_service.service.impl.ProductServiceImpl.updateAdditionalPerson(ProductServiceImpl.java:105)
+	|_   Mono.doOnSuccess ⇢ at com.bootcamp.business_service.service.impl.ProductServiceImpl.updateAdditionalPerson(ProductServiceImpl.java:106)
+Original Stack Trace:
+		at com.bootcamp.business_service.components.LogicalAddPersonToProduct.lambda$validate$4(LogicalAddPersonToProduct.java:41)
+		at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:153)
+		at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53)
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:63)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165)
+		at reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297)
+		at reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478)
+		at reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.onNext(MonoSubscribeOn.java:146)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79)
+		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571)
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onSubscribe(FluxOnErrorResume.java:74)
+		at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55)
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103)
+		at io.github.resilience4j.reactor.circuitbreaker.operator.CircuitBreakerSubscriber.hookOnError(CircuitBreakerSubscriber.java:86)
+		at reactor.core.publisher.BaseSubscriber.onError(BaseSubscriber.java:180)
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onError(MonoPeekTerminal.java:258)
+		at reactor.core.publisher.FluxPeekFuseable$PeekFuseableConditionalSubscriber.onError(FluxPeekFuseable.java:553)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.secondError(MonoFlatMap.java:241)
+		at reactor.core.publisher.MonoFlatMap$FlatMapInner.onError(MonoFlatMap.java:315)
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onError(Operators.java:2236)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onError(MonoFlatMap.java:180)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:106)
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onError(MonoIgnoreThen.java:280)
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:232)
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onComplete(MonoIgnoreThen.java:204)
+		at reactor.core.publisher.FluxOnErrorReturn$ReturnSubscriber.onComplete(FluxOnErrorReturn.java:169)
+		at reactor.core.publisher.MonoIgnoreElements$IgnoreElementsSubscriber.onComplete(MonoIgnoreElements.java:89)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onComplete(FluxMapFuseable.java:152)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onComplete(FluxMapFuseable.java:152)
+		at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onComplete(FluxPeekFuseable.java:277)
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+		at reactor.core.publisher.Operators.complete(Operators.java:137)
+		at reactor.netty.channel.FluxReceive.startReceiver(FluxReceive.java:179)
+		at reactor.netty.channel.FluxReceive.subscribe(FluxReceive.java:145)
+		at reactor.core.publisher.InternalFluxOperator.subscribe(InternalFluxOperator.java:68)
+		at reactor.netty.ByteBufFlux.subscribe(ByteBufFlux.java:340)
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265)
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51)
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.secondError(MonoFlatMap.java:241)
+		at reactor.core.publisher.MonoFlatMap$FlatMapInner.onError(MonoFlatMap.java:315)
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onError(MonoIgnoreThen.java:280)
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:232)
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onComplete(MonoIgnoreThen.java:204)
+		at reactor.core.publisher.FluxOnErrorReturn$ReturnSubscriber.onComplete(FluxOnErrorReturn.java:169)
+		at reactor.core.publisher.MonoIgnoreElements$IgnoreElementsSubscriber.onComplete(MonoIgnoreElements.java:89)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onComplete(FluxMapFuseable.java:152)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onComplete(FluxMapFuseable.java:152)
+		at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onComplete(FluxPeekFuseable.java:277)
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+		at reactor.core.publisher.Operators.complete(Operators.java:137)
+		at reactor.netty.channel.FluxReceive.startReceiver(FluxReceive.java:179)
+		at reactor.netty.channel.FluxReceive.subscribe(FluxReceive.java:145)
+		at reactor.core.publisher.InternalFluxOperator.subscribe(InternalFluxOperator.java:68)
+		at reactor.netty.ByteBufFlux.subscribe(ByteBufFlux.java:340)
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265)
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51)
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129)
+		at reactor.core.publisher.FluxOnErrorReturn$ReturnSubscriber.onNext(FluxOnErrorReturn.java:162)
+		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:122)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onNext(FluxContextWrite.java:107)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onNext(FluxMapFuseable.java:299)
+		at reactor.core.publisher.FluxFilterFuseable$FilterFuseableConditionalSubscriber.onNext(FluxFilterFuseable.java:337)
+		at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2097)
+		at reactor.core.publisher.MonoCollect$CollectSubscriber.onComplete(MonoCollect.java:145)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onComplete(FluxMapFuseable.java:152)
+		at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onComplete(FluxPeekFuseable.java:277)
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+		at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:413)
+		at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:455)
+		at reactor.netty.channel.ChannelOperations.terminate(ChannelOperations.java:509)
+		at reactor.netty.http.client.HttpClientOperations.onInboundNext(HttpClientOperations.java:824)
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:115)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:107)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436)
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346)
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318)
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1357)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:868)
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:796)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:732)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:658)
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:842)
+2025-04-21 22:54:31-941 [reactor-http-nio-7] ERROR c.b.b.expose.BusinessDelegateImpl - Request error updateAdditionalPerson Cannot invoke "java.util.List.stream()" because the return value of "com.bootcamp.commons.bean.products.ProductResponse.getHolders()" is null 
+2025-04-21 22:58:20-854 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 22:58:39-155 [reactor-http-nio-2] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init additionalPerson: {"typeAdditional":"HOLD","productId":"67f9cc806e374c0902dcdb73","fullName":"ANA  BERMEJO","identificationNum":"444","identificationType":"DNI","email":"mail@gmail.commmm","phone":"11111"} 
+2025-04-21 22:58:39-156 [reactor-http-nio-2] INFO  c.b.b.s.impl.ProductServiceImpl - Updating addition person 
+2025-04-21 22:58:39-157 [parallel-5] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: null 
+2025-04-21 22:58:39-157 [parallel-6] INFO  c.b.b.connector.ProductConnector - API getProductById RQ: 67f9cc806e374c0902dcdb73 
+2025-04-21 22:58:39-158 [parallel-6] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/products/67f9cc806e374c0902dcdb73 
+2025-04-21 22:58:39-158 [parallel-5] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/customers/null 
+2025-04-21 22:58:39-319 [reactor-http-nio-4] INFO  c.b.b.config.WebClientCustomerApi - Response status: 404 NOT_FOUND 
+2025-04-21 22:58:39-322 [reactor-http-nio-4] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: 404 Not Found from GET http://localhost:8989/api/customers/null 
+2025-04-21 22:58:39-329 [reactor-http-nio-4] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId null: 404 Not Found from GET http://localhost:8989/api/customers/null 
+2025-04-21 22:58:39-517 [reactor-http-nio-3] INFO  c.b.b.config.WebClientCustomerApi - Response status: 200 OK 
+2025-04-21 22:58:39-527 [reactor-http-nio-3] INFO  c.b.b.connector.ProductConnector - API getProductById RS: {"id":"67f9cc806e374c0902dcdb73","productType":"SA","amountOfOpen":10.0,"accountNumber":"SA01-7689199523","hasPlasticCard":true,"cardNumber":"67fd7f29c1328463019a244a","createdDate":[2025,4,12],"customer":{"customerId":"67ec1a41fabf6d0f4ada9865"},"holders":[{"fullName":"ANA  BERMEJO","email":"mail@gmail.commmm","phone":"11111","identification":{"typeIdentification":"DNI","numberIdentification":"444"}}]} 
+2025-04-21 22:58:39-530 [reactor-http-nio-3] INFO  c.b.b.s.impl.ProductServiceImpl - Update completed: {"result":false} 
+2025-04-21 22:58:39-535 [reactor-http-nio-3] INFO  c.b.b.expose.BusinessDelegateImpl - success update additionalperson {"body":{"result":false},"statusCode":"OK","statusCodeValue":200} 
+2025-04-21 23:03:20-868 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 23:08:20-877 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 23:13:20-887 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 23:18:20-900 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 23:23:20-920 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 23:28:20-936 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+2025-04-21 23:30:02-895 [reactor-http-nio-6] INFO  c.b.b.expose.BusinessDelegateImpl - -> Init additionalPerson: {"typeAdditional":"HOLD","productId":"67f9cc806e374c0902dcdb73","fullName":"ANA  BERMEJO","identificationNum":"444","identificationType":"DNI","email":"mail@gmail.commmm","phone":"11111"} 
+2025-04-21 23:30:02-897 [reactor-http-nio-6] INFO  c.b.b.s.impl.ProductServiceImpl - Updating addition person 
+2025-04-21 23:30:02-902 [parallel-8] INFO  c.b.b.connector.ProductConnector - API getProductById RQ: 67f9cc806e374c0902dcdb73 
+2025-04-21 23:30:02-902 [parallel-7] INFO  c.b.b.connector.CustomerConnector - API getCustomerById RQ: null 
+2025-04-21 23:30:02-909 [parallel-8] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/products/67f9cc806e374c0902dcdb73 
+2025-04-21 23:30:02-909 [parallel-7] INFO  c.b.b.config.WebClientCustomerApi - Request: GET,  http://localhost:8989/api/customers/null 
+2025-04-21 23:30:03-097 [reactor-http-nio-8] ERROR c.b.b.connector.CustomerConnector - API error getCustomerById: Connection refused: no further information: localhost/127.0.0.1:8989 
+2025-04-21 23:30:03-098 [reactor-http-nio-7] ERROR c.b.b.connector.ProductConnector - Error API while getting product by id: Connection refused: no further information: localhost/127.0.0.1:8989 
+2025-04-21 23:30:03-098 [reactor-http-nio-7] ERROR c.b.b.connector.ProductConnector - Fallback for getProductById 67f9cc806e374c0902dcdb73, Connection refused: no further information: localhost/127.0.0.1:8989 
+2025-04-21 23:30:03-098 [reactor-http-nio-8] ERROR c.b.b.connector.CustomerConnector - Fallback for getCustomerById triggered for customerId null: Connection refused: no further information: localhost/127.0.0.1:8989 
+2025-04-21 23:30:03-104 [reactor-http-nio-8] INFO  c.b.b.s.impl.ProductServiceImpl - Error updating additional person 
+java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because the return value of "com.bootcamp.commons.bean.products.ProductResponse.getHolders()" is null
+	at com.bootcamp.business_service.components.LogicalAddPersonToProduct.lambda$validate$4(LogicalAddPersonToProduct.java:41)
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Assembly trace from producer [reactor.core.publisher.MonoFlatMap] :
+	reactor.core.publisher.Mono.flatMap(Mono.java:3179)
+	com.bootcamp.business_service.components.LogicalAddPersonToProduct.lambda$validate$6(LogicalAddPersonToProduct.java:38)
+Error has been observed at the following site(s):
+	*________Mono.flatMap ⇢ at com.bootcamp.business_service.components.LogicalAddPersonToProduct.lambda$validate$6(LogicalAddPersonToProduct.java:38)
+	|_       Mono.flatMap ⇢ at com.bootcamp.business_service.components.LogicalAddPersonToProduct.lambda$validate$6(LogicalAddPersonToProduct.java:50)
+	*________Mono.flatMap ⇢ at com.bootcamp.business_service.components.LogicalAddPersonToProduct.validate(LogicalAddPersonToProduct.java:33)
+	|_       Mono.flatMap ⇢ at com.bootcamp.business_service.service.impl.ProductServiceImpl.lambda$updateAdditionalPerson$13(ProductServiceImpl.java:89)
+	*________Mono.flatMap ⇢ at com.bootcamp.business_service.service.impl.ProductServiceImpl.updateAdditionalPerson(ProductServiceImpl.java:88)
+	|_ Mono.doOnSubscribe ⇢ at com.bootcamp.business_service.service.impl.ProductServiceImpl.updateAdditionalPerson(ProductServiceImpl.java:105)
+	|_   Mono.doOnSuccess ⇢ at com.bootcamp.business_service.service.impl.ProductServiceImpl.updateAdditionalPerson(ProductServiceImpl.java:106)
+Original Stack Trace:
+		at com.bootcamp.business_service.components.LogicalAddPersonToProduct.lambda$validate$4(LogicalAddPersonToProduct.java:41)
+		at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:153)
+		at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53)
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:63)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165)
+		at reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297)
+		at reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478)
+		at reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.onNext(MonoSubscribeOn.java:146)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79)
+		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571)
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onSubscribe(FluxOnErrorResume.java:74)
+		at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55)
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103)
+		at io.github.resilience4j.reactor.circuitbreaker.operator.CircuitBreakerSubscriber.hookOnError(CircuitBreakerSubscriber.java:86)
+		at reactor.core.publisher.BaseSubscriber.onError(BaseSubscriber.java:180)
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onError(MonoPeekTerminal.java:258)
+		at reactor.core.publisher.FluxPeekFuseable$PeekFuseableConditionalSubscriber.onError(FluxPeekFuseable.java:553)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onError(MonoFlatMap.java:180)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onError(FluxContextWrite.java:121)
+		at reactor.core.publisher.FluxDoFinally$DoFinallySubscriber.onError(FluxDoFinally.java:119)
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onError(MonoPeekTerminal.java:258)
+		at reactor.core.publisher.FluxPeekFuseable$PeekFuseableConditionalSubscriber.onError(FluxPeekFuseable.java:553)
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onError(Operators.java:2236)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onError(MonoFlatMap.java:180)
+		at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onError(FluxPeekFuseable.java:234)
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onError(FluxMapFuseable.java:142)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:106)
+		at reactor.core.publisher.Operators.error(Operators.java:198)
+		at reactor.core.publisher.MonoErrorSupplied.subscribe(MonoErrorSupplied.java:56)
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103)
+		at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onError(FluxPeekFuseable.java:234)
+		at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onError(FluxPeekFuseable.java:234)
+		at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onError(FluxPeekFuseable.java:234)
+		at reactor.core.publisher.MonoNext$NextSubscriber.onError(MonoNext.java:93)
+		at reactor.core.publisher.MonoFlatMapMany$FlatMapManyMain.onError(MonoFlatMapMany.java:205)
+		at reactor.core.publisher.SerializedSubscriber.onError(SerializedSubscriber.java:124)
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.whenError(FluxRetryWhen.java:229)
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenOtherSubscriber.onError(FluxRetryWhen.java:279)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onError(FluxContextWrite.java:121)
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.maybeOnError(FluxConcatMapNoPrefetch.java:327)
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onNext(FluxConcatMapNoPrefetch.java:212)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onNext(FluxContextWrite.java:107)
+		at reactor.core.publisher.SinkManyEmitterProcessor.drain(SinkManyEmitterProcessor.java:476)
+		at reactor.core.publisher.SinkManyEmitterProcessor$EmitterInner.drainParent(SinkManyEmitterProcessor.java:620)
+		at reactor.core.publisher.FluxPublish$PubSubInner.request(FluxPublish.java:874)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.request(FluxContextWrite.java:136)
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:337)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.request(FluxContextWrite.java:136)
+		at reactor.core.publisher.Operators$DeferredSubscription.request(Operators.java:1743)
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.onError(FluxRetryWhen.java:196)
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:205)
+		at reactor.netty.http.client.HttpClientConnect$MonoHttpConnect$ClientTransportSubscriber.onError(HttpClientConnect.java:323)
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:205)
+		at reactor.netty.resources.DefaultPooledConnectionProvider$DisposableAcquire.onError(DefaultPooledConnectionProvider.java:174)
+		at reactor.netty.internal.shaded.reactor.pool.AbstractPool$Borrower.fail(AbstractPool.java:479)
+		at reactor.netty.internal.shaded.reactor.pool.SimpleDequePool.lambda$drainLoop$9(SimpleDequePool.java:443)
+		at reactor.core.publisher.FluxDoOnEach$DoOnEachSubscriber.onError(FluxDoOnEach.java:186)
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:205)
+		at reactor.netty.resources.DefaultPooledConnectionProvider$PooledConnectionAllocator$PooledConnectionInitializer.onError(DefaultPooledConnectionProvider.java:593)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.secondError(MonoFlatMap.java:241)
+		at reactor.core.publisher.MonoFlatMap$FlatMapInner.onError(MonoFlatMap.java:315)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:106)
+		at reactor.core.publisher.Operators.error(Operators.java:198)
+		at reactor.core.publisher.MonoError.subscribe(MonoError.java:53)
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103)
+		at reactor.netty.transport.TransportConnector$MonoChannelPromise.tryFailure(TransportConnector.java:576)
+		at reactor.netty.transport.TransportConnector$MonoChannelPromise.setFailure(TransportConnector.java:522)
+		at reactor.netty.transport.TransportConnector.lambda$doConnect$7(TransportConnector.java:261)
+		at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:590)
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners0(DefaultPromise.java:583)
+		at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:559)
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:492)
+		at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:636)
+		at io.netty.util.concurrent.DefaultPromise.setFailure0(DefaultPromise.java:629)
+		at io.netty.util.concurrent.DefaultPromise.tryFailure(DefaultPromise.java:118)
+		at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.fulfillConnectPromise(AbstractNioChannel.java:326)
+		at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:342)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:784)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:732)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:658)
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:842)
+2025-04-21 23:30:03-115 [reactor-http-nio-8] ERROR c.b.b.expose.BusinessDelegateImpl - Request error updateAdditionalPerson Cannot invoke "java.util.List.stream()" because the return value of "com.bootcamp.commons.bean.products.ProductResponse.getHolders()" is null 

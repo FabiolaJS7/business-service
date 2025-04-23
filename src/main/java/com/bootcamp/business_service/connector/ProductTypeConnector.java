@@ -15,9 +15,11 @@ import reactor.core.publisher.Mono;
 public class ProductTypeConnector {
 
     WebClient webClient;
+    AuthConnector authConnector;
 
-    public ProductTypeConnector(@Qualifier("webClientService") WebClient webClient) {
+    public ProductTypeConnector(@Qualifier("webClientService") WebClient webClient, AuthConnector authConnector) {
         this.webClient = webClient;
+        this.authConnector = authConnector;
     }
 
     // Endpoint de product API para crear un nuevo tipo de producto
@@ -41,14 +43,17 @@ public class ProductTypeConnector {
     @CircuitBreaker(name = "productTypeService", fallbackMethod = "fallbackGetProductTypeByCode")
     public Mono<ProductTypeResponse> getProductTypeByCode(String productTypeCode) {
         log.info("API getProductByCustomerId RQ: {}", productTypeCode);
-        return webClient.get()
-                .uri("/api/products/types/" + productTypeCode)
-                .retrieve()
-                .bodyToMono(ProductTypeResponse.class)
-                .doOnNext(productTypeResponse -> log.info("API getProductTypeByCode RQ: {}",
-                        JsonTransferUtil.objectToJson(productTypeResponse)))
-                .doOnError(throwable -> log.error("API error getProductTypeByCode: {}",
-                        throwable.getMessage()));
+        return authConnector.getAuthToken()
+                .flatMap(token -> webClient.get()
+                        .uri("/api/products/types/" + productTypeCode)
+                                .header("Authorization", token)
+                        .retrieve()
+                        .bodyToMono(ProductTypeResponse.class)
+                        .doOnNext(productTypeResponse -> log.info("API getProductTypeByCode RQ: {}",
+                                JsonTransferUtil.objectToJson(productTypeResponse)))
+                        .doOnError(throwable -> log.error("API error getProductTypeByCode: {}",
+                                throwable.getMessage()))
+                );
     }
 
     // El fallback que devuelve objeto vacíos

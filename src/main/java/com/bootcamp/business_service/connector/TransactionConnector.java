@@ -19,25 +19,29 @@ import java.util.Optional;
 public class TransactionConnector {
 
     private final WebClient webClient;
+    AuthConnector authConnector;
 
-    public TransactionConnector(@Qualifier("webClientService") WebClient webClient) {
+    public TransactionConnector(@Qualifier("webClientService") WebClient webClient, AuthConnector authConnector) {
         this.webClient = webClient;
+        this.authConnector = authConnector;
     }
 
     // Endpoint de transaction API para crear una transacción
     @CircuitBreaker(name = "transactionService", fallbackMethod = "fallCreateTransaction")
     public Mono<TransactionRS> createTransaction(Mono<TransactionRQ> transactionRQMono) {
-        return transactionRQMono
-                .doOnNext(rq ->  log.info("API Create Transaction RQ{}",
-                        JsonTransferUtil.objectToJson(transactionRQMono)))
-                .flatMap(transactionRQ -> webClient.post()
-                        .uri("/api/transactions")
-                        .bodyValue(transactionRQ) //Enviado transactionRQ como body
-                        .retrieve()
-                        .bodyToMono(TransactionRS.class)
-                        .doOnNext(rs -> log.info("API Create Transaction RS{}", JsonTransferUtil.objectToJson(rs)))
-                        .doOnError(error -> log.error("Error while create transaction: {}", error.getMessage()))
-
+        return authConnector.getAuthToken()
+                .flatMap(token ->  transactionRQMono
+                        .doOnNext(rq ->  log.info("API Create Transaction RQ{}",
+                                JsonTransferUtil.objectToJson(transactionRQMono)))
+                        .flatMap(transactionRQ -> webClient.post()
+                                .uri("/api/transactions")
+                                .header("Authorization", token)
+                                .bodyValue(transactionRQ) //Enviado transactionRQ como body
+                                .retrieve()
+                                .bodyToMono(TransactionRS.class)
+                                .doOnNext(rs -> log.info("API Create Transaction RS{}", JsonTransferUtil.objectToJson(rs)))
+                                .doOnError(error -> log.error("Error while create transaction: {}", error.getMessage()))
+                        )
                 );
     }
 
@@ -53,17 +57,20 @@ public class TransactionConnector {
     @CircuitBreaker(name = "transactionService", fallbackMethod = "fallBackGetTransactionsByProductId")
     public Flux<TransactionRS> getTransactionsByProductId(String productId, LocalDate startDate, LocalDate endDate) {
         log.info("API getTransactionsByProductId {} and dates from {}, to {}", productId, startDate, endDate);
-        return webClient.get()
-                .uri(uriBuilder -> {
-                    // Construye dinámicamente la URI con parámetros opcionales
-                    uriBuilder.path("/api/transactions/products/{productId}")
-                            .queryParamIfPresent("startDate", Optional.ofNullable(startDate))
-                            .queryParamIfPresent("endDate", Optional.ofNullable(endDate));
-                    return uriBuilder.build(productId);
-                })
-                .retrieve()
-                .bodyToFlux(TransactionRS.class)
-                .doOnError(error -> log.error("Error while getTransactionsByProductId: {}", error.getMessage()));
+        return authConnector.getAuthToken()
+                .flatMapMany(token -> webClient.get()
+                        .uri(uriBuilder -> {
+                            // Construye dinámicamente la URI con parámetros opcionales
+                            uriBuilder.path("/api/transactions/products/{productId}")
+                                    .queryParamIfPresent("startDate", Optional.ofNullable(startDate))
+                                    .queryParamIfPresent("endDate", Optional.ofNullable(endDate));
+                            return uriBuilder.build(productId);
+                        })
+                        .header("Authorization", token)
+                        .retrieve()
+                        .bodyToFlux(TransactionRS.class)
+                        .doOnError(error -> log.error("Error while getTransactionsByProductId: {}", error.getMessage()))
+                );
     }
 
     private Mono<TransactionRS> fallCreateTransaction(Mono<TransactionRQ> transactionRQMono, Throwable throwable) {

@@ -15,21 +15,26 @@ public class PlasticCardConnector {
 
     public static final String MAIN_PATH_PRODUCT = "/api/products/";
     WebClient webClient;
+    AuthConnector authConnector;
 
-    public PlasticCardConnector(@Qualifier("webClientService") WebClient webClient) {
+    public PlasticCardConnector(@Qualifier("webClientService") WebClient webClient, AuthConnector authConnector) {
         this.webClient = webClient;
+        this.authConnector = authConnector;
     }
 
     @CircuitBreaker(name = "plasticCardService", fallbackMethod = "fallbackGetPlasticCardById")
     public Mono<PlasticCardBean> getPlasticCardById(String cardId) {
         log.info("API getPlasticCardById RQ: {}", cardId);
-        return webClient.get()
-                .uri(MAIN_PATH_PRODUCT + "cards/" + cardId)
-                .retrieve()
-                .bodyToMono(PlasticCardBean.class)
-                .doOnNext(plasticCardBean -> log.info("API getPlasticCardById RS: {}",
-                        JsonTransferUtil.objectToJson(plasticCardBean)))
-                .doOnError(error -> log.error("Error API while getting product by card: {}", error.getMessage()));
+        return authConnector.getAuthToken()
+                .flatMap(token -> webClient.get()
+                        .uri(MAIN_PATH_PRODUCT + "cards/" + cardId)
+                        .header("Authorization",  token)
+                        .retrieve()
+                        .bodyToMono(PlasticCardBean.class)
+                        .doOnNext(plasticCardBean -> log.info("API getPlasticCardById RS: {}",
+                                JsonTransferUtil.objectToJson(plasticCardBean)))
+                        .doOnError(error -> log.error("Error API while getting product by card: {}", error.getMessage()))
+                );
     }
 
     private Mono<PlasticCardBean> fallbackGetPlasticCardById(String cardId, Throwable throwable) {

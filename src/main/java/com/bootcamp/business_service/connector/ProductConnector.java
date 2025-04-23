@@ -16,53 +16,66 @@ public class ProductConnector {
 
     public static final String MAIN_PATH_PRODUCT = "/api/products/";
     WebClient webClient;
+    AuthConnector authConnector;
 
-    public ProductConnector(@Qualifier("webClientService") WebClient webClient) {
+    public ProductConnector(@Qualifier("webClientService") WebClient webClient, AuthConnector authConnector) {
         this.webClient = webClient;
+        this.authConnector = authConnector;
     }
 
     // Endpoint de product API crear productos
     @CircuitBreaker(name = "productService", fallbackMethod = "fallbackCreateProduct")
     public Mono<String> createProduct(Mono<ProductRequest> productRequest) {
-        return productRequest
-                .doOnNext(rq -> log.info("API createProduct RQ:  {}", JsonTransferUtil.objectToJson(rq)))
-                .flatMap(rq ->  webClient.post()
-                        .uri("/api/products")
-                        .bodyValue(rq) //Enviado productRequest como body
-                        .retrieve()
-                        .bodyToMono(String.class)
-                        .doOnNext(s -> log.info("API createProduct RS:  {}", JsonTransferUtil.objectToJson(s)))
-                        .doOnError(error -> log.error("API error create product: {}", error.getMessage())));
+
+        return authConnector.getAuthToken()
+                .flatMap(token -> productRequest
+                        .doOnNext(rq -> log.info("API createProduct RQ:  {}", JsonTransferUtil.objectToJson(rq)))
+                        .flatMap(rq ->  webClient.post()
+                                .uri("/api/products")
+                                .header("Authorization", token)
+                                .bodyValue(rq) //Enviado productRequest como body
+                                .retrieve()
+                                .bodyToMono(String.class)
+                                .doOnNext(s -> log.info("API createProduct RS:  {}", JsonTransferUtil.objectToJson(s)))
+                                .doOnError(error -> log.error("API error create product: {}", error.getMessage())))
+                );
+
     }
 
     // Endpoint de product API obtener products por customer id
     @CircuitBreaker(name = "productService", fallbackMethod = "fallbackGetProductsByCustomerId")
     public Flux<ProductResponse> getProductsByCustomerId(String customerId) {
         log.info("API getProductByCustomerId RQ: {}", customerId);
-        return webClient.get()
-                .uri(MAIN_PATH_PRODUCT + "customer/" + customerId)
-                .retrieve()
-                .bodyToFlux(ProductResponse.class)
-                .doOnNext(productResponse -> log.info("API getProductByCustomerId RS {}",
-                        JsonTransferUtil.objectToJson(productResponse)))
-                .doOnError(error -> log.error("Error API while getProductByCustomerId id {}",
-                        error.getMessage()));
+        return authConnector.getAuthToken()
+                .flatMapMany(token ->  webClient.get()
+                        .uri(MAIN_PATH_PRODUCT + "customer/" + customerId)
+                        .header("Authorization",  token)
+                        .retrieve()
+                        .bodyToFlux(ProductResponse.class)
+                        .doOnNext(productResponse -> log.info("API getProductByCustomerId RS {}",
+                                JsonTransferUtil.objectToJson(productResponse)))
+                        .doOnError(error -> log.error("Error API while getProductByCustomerId id {}",
+                                error.getMessage()))
+                );
 
     }
 
     // Endpoint para actualizar producto
     @CircuitBreaker(name = "productService", fallbackMethod = "fallbackUpdateProduct")
     public Mono<ProductResponse> updateProduct(String productId, Mono<ProductUpdateRQ> productUpdateRQ) {
-        return productUpdateRQ
-                .doOnNext(rq -> log.info("API updateProduct RQ: {}", JsonTransferUtil.objectToJson(rq)))
-                .flatMap(rq -> webClient.put()
-                        .uri(MAIN_PATH_PRODUCT + productId)
-                        .body(productUpdateRQ, ProductUpdateRQ.class)
-                        .retrieve()
-                        .bodyToMono(ProductResponse.class)
-                        .doOnNext(response -> log.info("API updateProduct RS: {}",
-                                JsonTransferUtil.objectToJson(response)))
-                        .doOnError(error -> log.error("Error API while update product: {}", error.getMessage()))
+        return authConnector.getAuthToken()
+                .flatMap(token -> productUpdateRQ
+                        .doOnNext(rq -> log.info("API updateProduct RQ: {}", JsonTransferUtil.objectToJson(rq)))
+                        .flatMap(rq -> webClient.put()
+                                .uri(MAIN_PATH_PRODUCT + productId)
+                                .header("Authorization",  token)
+                                .body(productUpdateRQ, ProductUpdateRQ.class)
+                                .retrieve()
+                                .bodyToMono(ProductResponse.class)
+                                .doOnNext(response -> log.info("API updateProduct RS: {}",
+                                        JsonTransferUtil.objectToJson(response)))
+                                .doOnError(error -> log.error("Error API while update product: {}", error.getMessage()))
+                        )
                 );
     }
 
@@ -70,53 +83,65 @@ public class ProductConnector {
     @CircuitBreaker(name = "productService", fallbackMethod = "fallbackGetProductById")
     public Mono<ProductResponse> getProductById(String productId) {
         log.info("API getProductById RQ: {}", productId);
-        return webClient.get()
-                .uri(MAIN_PATH_PRODUCT + productId)
-                .retrieve()
-                .bodyToMono(ProductResponse.class)
-                .doOnNext(response -> log.info("API getProductById RS: {}",
-                        JsonTransferUtil.objectToJson(response)))
-                .doOnError(error -> log.error("Error API while getting product by id: {}", error.getMessage()));
+        return authConnector.getAuthToken()
+                .flatMap(token -> webClient.get()
+                        .uri(MAIN_PATH_PRODUCT + productId)
+                                .header("Authorization",  token)
+                        .retrieve()
+                        .bodyToMono(ProductResponse.class)
+                        .doOnNext(response -> log.info("API getProductById RS: {}",
+                                JsonTransferUtil.objectToJson(response)))
+                        .doOnError(error -> log.error("Error API while getting product by id: {}", error.getMessage()))
+                );
     }
 
     // Endpoint de product API para encontrar el balance de un producto por id
     @CircuitBreaker(name = "productService", fallbackMethod = "fallbackFindBalanceByProductId")
     public Mono<BalanceBeanResponse> findBalanceByProductId(String productId) {
         log.info("API findBalanceByProductId RQ: {}", productId);
-        return webClient.get()
-                .uri(MAIN_PATH_PRODUCT + productId + "/balance")
-                .retrieve()
-                .bodyToMono(BalanceBeanResponse.class)
-                .doOnNext(balanceBeanResponse -> log.info("API findBalanceByProductId RS: {}",
-                        JsonTransferUtil.objectToJson(balanceBeanResponse)))
-                .doOnError(error -> log.error("Error API while getting balance by product: {}", error.getMessage()));
+        return authConnector.getAuthToken()
+                .flatMap(token -> webClient.get()
+                        .uri(MAIN_PATH_PRODUCT + productId + "/balance")
+                        .header("Authorization",  token)
+                        .retrieve()
+                        .bodyToMono(BalanceBeanResponse.class)
+                        .doOnNext(balanceBeanResponse -> log.info("API findBalanceByProductId RS: {}",
+                                JsonTransferUtil.objectToJson(balanceBeanResponse)))
+                        .doOnError(error -> log.error("Error API while getting balance by product: {}", error.getMessage()))
+                );
     }
 
     // Endpoint de product API para actualizar el balance de un producto
     @CircuitBreaker(name = "productService", fallbackMethod = "fallbackUpdateBalance")
     public Mono<BalanceBeanResponse> updateBalance(String productId, Mono<BalanceBeanRequest> balanceBeanRequestMono) {
         log.info("API updateBalance RQ: {}", JsonTransferUtil.objectToJson(balanceBeanRequestMono));
-        return webClient.put()
-                .uri(MAIN_PATH_PRODUCT + productId + "/balance")
-                .body(balanceBeanRequestMono, BalanceBeanRequest.class)
-                .retrieve()
-                .bodyToMono(BalanceBeanResponse.class)
-                .doOnNext(rs -> log.info("API updateBalance RS: {}",
-                        JsonTransferUtil.objectToJson(rs)))
-                .doOnError(error -> log.error("Error API while update balance: {}", error.getMessage()));
+        return authConnector.getAuthToken()
+                .flatMap(token -> webClient.put()
+                        .uri(MAIN_PATH_PRODUCT + productId + "/balance")
+                        .header("Authorization", token)
+                        .body(balanceBeanRequestMono, BalanceBeanRequest.class)
+                        .retrieve()
+                        .bodyToMono(BalanceBeanResponse.class)
+                        .doOnNext(rs -> log.info("API updateBalance RS: {}", JsonTransferUtil.objectToJson(rs)))
+                        .doOnError(error -> log.error("Error API while update balance: {}", error.getMessage()))
+                );
     }
 
     // Endpoint de product API para obtener product por numero de cuenta
     @CircuitBreaker(name = "productService", fallbackMethod = "fallbackGetProductByAccountNumber")
     public Mono<ProductResponse> getProductByAccountNumber(String accountNumber) {
         log.info("API getProductByAccountNumber RQ: {}", accountNumber);
-        return webClient.get()
-                .uri(MAIN_PATH_PRODUCT + "account/" + accountNumber)
-                .retrieve()
-                .bodyToMono(ProductResponse.class)
-                .doOnNext(productResponse -> log.info("API getProductByAccountNumber RS: {} ",
-                        JsonTransferUtil.objectToJson(productResponse)))
-                .doOnError(error -> log.error("Error API while getting product by account: {}", error.getMessage()));
+        return authConnector.getAuthToken()
+                .flatMap(token ->
+                        webClient.get()
+                                .uri(MAIN_PATH_PRODUCT + "account/" + accountNumber)
+                                .header("Authorization", token)
+                                .retrieve()
+                                .bodyToMono(ProductResponse.class)
+                                .doOnNext(productResponse -> log.info("API getProductByAccountNumber RS: {} ",
+                                        JsonTransferUtil.objectToJson(productResponse)))
+                                .doOnError(error -> log.error("Error API while getting product by account: {}", error.getMessage()))
+                );
     }
 
     private Mono<String> fallbackCreateProduct(Mono<ProductRequest> productRequest, Throwable throwable) {

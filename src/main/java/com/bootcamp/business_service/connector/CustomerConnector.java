@@ -15,11 +15,12 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class CustomerConnector {
 
-
+    AuthConnector authConnector;
     WebClient webClient;
 
-    public CustomerConnector(@Qualifier("webClientService") WebClient webClient) {
+    public CustomerConnector(@Qualifier("webClientService") WebClient webClient, AuthConnector authConnector) {
         this.webClient = webClient;
+        this.authConnector = authConnector;
     }
 
     // Endpoint de customer API para traer todos los customers
@@ -33,36 +34,38 @@ public class CustomerConnector {
                         JsonTransferUtil.objectToJson(response)))
                 .doOnError(error -> log.error("API error getAllCustomers: {}", error.getMessage()));
 
-
     }
 
     // Endpoint de customer API para traer customer by id
     @CircuitBreaker(name = "customerService", fallbackMethod = "fallbackForGetCustomerById")
     public Mono<CustomerResponse> getCustomerById(String customerId) {
         log.info("API getCustomerById RQ: {}", customerId);
-        return webClient.get()
-                .uri("/api/customers/" + customerId)
-                .retrieve()
-                .bodyToMono(CustomerResponse.class)
-                .doOnNext(response -> log.info("API getCustomerById RS: {}",
-                        JsonTransferUtil.objectToJson(response)))
-                .doOnError(error -> log.error("API error getCustomerById: {}", error.getMessage()));
+        return authConnector.getAuthToken()
+                .flatMap(token -> webClient.get()
+                        .uri("/api/customers/" + customerId)
+                        .header("Authorization",  token)
+                        .retrieve()
+                        .bodyToMono(CustomerResponse.class)
+                        .doOnNext(response -> log.info("API getCustomerById RS: {}",
+                                JsonTransferUtil.objectToJson(response)))
+                        .doOnError(error -> log.error("API error getCustomerById: {}", error.getMessage())));
     }
 
     // Endpoint de customer API para crear un customer
     @CircuitBreaker(name = "customerService", fallbackMethod = "fallbackForCreateCustomer")
     public Mono<CustomerResponse> createCustomer(Mono<CustomerRequest> customerRequest) {
-        return customerRequest
-                .doOnNext(rq -> log.info("API createCustomer RQ: {}", JsonTransferUtil.objectToJson(rq)))
-                .flatMap(rq -> webClient.post()
-                        .uri("/api/customers")
-                        .bodyValue(rq)
-                        .retrieve()
-                        .bodyToMono(CustomerResponse.class)
-                        .doOnNext(response -> log.info("API createCustomer RS: {}",
-                                JsonTransferUtil.objectToJson(response)))
-                        .doOnError(error -> log.error("API error createCustomer: {}", error.getMessage()))
-                );
+        return authConnector.getAuthToken()
+                .flatMap(token -> customerRequest
+                        .flatMap(rq -> webClient.post()
+                                .uri("/api/customers")
+                                .header("Authorization", token)
+                                .bodyValue(rq)
+                                .retrieve()
+                                .bodyToMono(CustomerResponse.class)
+                                .doOnNext(response -> log.info("API createCustomer RS: {}",
+                                        JsonTransferUtil.objectToJson(response)))
+                                .doOnRequest(request -> log.info("Request Headers: Authorization=Bearer {}", token))
+                                .doOnError(error -> log.error("API error createCustomer: {}", error.getMessage()))));
     }
 
     // El fallbacks que devuelven métodos vacíos

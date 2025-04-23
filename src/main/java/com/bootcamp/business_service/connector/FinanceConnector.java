@@ -15,23 +15,29 @@ import java.util.Optional;
 public class FinanceConnector {
 
     WebClient webClient;
+    AuthConnector authConnector;
 
-    public FinanceConnector(@Qualifier("webClientService") WebClient webClient) {
+    public FinanceConnector(@Qualifier("webClientService") WebClient webClient, AuthConnector authConnector) {
         this.webClient = webClient;
+        this.authConnector = authConnector;
     }
 
     public Flux<ResumeResponse> getResumesByProductId(String productId, LocalDate startDate, LocalDate endDate) {
         log.info("API Get Resumes By ProductId RQ: {} and dates from {}, to {}", productId, startDate, endDate);
-        return webClient.get()
-                .uri(uriBuilder -> {
-                    uriBuilder.path("/api/finance/resumes/{productId}")
-                            .queryParamIfPresent("startDate", Optional.ofNullable(startDate))
-                            .queryParamIfPresent("endDate", Optional.ofNullable(endDate));
-                    return uriBuilder.build(productId);
-                })
-                .retrieve()
-                .bodyToFlux(ResumeResponse.class)
-                .doOnNext(resumeResponse -> log.info("API get Resumes By ProductId success RS: {}", productId))
-                .doOnError(throwable -> log.error("API error get Resumes By ProductId {}", throwable.getMessage()));
+
+        return authConnector.getAuthToken()
+                .flatMapMany(token -> webClient.get()
+                        .uri(uriBuilder -> {
+                            uriBuilder.path("/api/finance/resumes/{productId}")
+                                    .queryParamIfPresent("startDate", Optional.ofNullable(startDate))
+                                    .queryParamIfPresent("endDate", Optional.ofNullable(endDate));
+                            return uriBuilder.build(productId);
+                        })
+                        .header("Authorization", token)
+                        .retrieve()
+                        .bodyToFlux(ResumeResponse.class)
+                        .doOnNext(resumeResponse -> log.info("API get Resumes By ProductId success RS: {}", productId))
+                        .doOnError(throwable -> log.error("API error get Resumes By ProductId {}", throwable.getMessage()))
+                );
     }
 }
